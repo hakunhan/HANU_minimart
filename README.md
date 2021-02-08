@@ -1,4 +1,4 @@
-# BIG_D
+# HANU_minimart
 
 A project of Software Quality Assurance course: 
 * A storage management website of mini market that:
