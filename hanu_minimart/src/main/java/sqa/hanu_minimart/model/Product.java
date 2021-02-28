@@ -9,11 +9,11 @@ public class Product {
     @Id
     @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
-    @Column(name = "id", columnDefinition = "UNSIGNED INT(6)", updatable = false)
+    @Column(name = "id", columnDefinition = "INT(6) UNSIGNED ", updatable = false)
     private int id;
     private String name;
     private double price;
-    @Column(columnDefinition = "UNSIGNED INT(6)")
+    @Column(columnDefinition = "INT(6) UNSIGNED")
     private int quantity;
     private LocalDate importDate;
     private LocalDate expireDate;
