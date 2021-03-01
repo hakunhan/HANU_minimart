@@ -4,3 +4,5 @@ https://developer.okta.com/blog/2018/07/19/simple-crud-react-and-spring-boot
 Link hướng dẫn học setup làm cơ bản:
 https://openplanning.net/11267/huong-dan-lap-trinh-spring-boot-cho-nguoi-moi-bat-dau
 
+Link học Spring Boot: làm RESTFUL API backend with CRUD:
+https://www.youtube.com/watch?v=9SGDpanrc8U&t=1307s
