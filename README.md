@@ -11,3 +11,15 @@ A project of Software Quality Assurance course:
   - Database: MySQL 5
   - Server: Apache Tomcat 9
   - IDE: IntellJ Ultimate
+
+
+* Requirement document (minimum 1000 words):
+  - Software Description:
+     + Detail feature: how user can use software, specific interaction
+     + Main components
+     + Typical user scenario
+     + Details scenario for each feature: what UI has and how user interact
+  - Use cases diagrams and spec (template : book Software Req (page 150) without 5 last line)
+  - Activites Diagram
+  - ER diagram
+  
