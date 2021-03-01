@@ -1,8 +1,8 @@
 package sqa.hanu_minimart.config;
 
-import com.example.minimart.security.CustomUserDetailsService;
-import com.example.minimart.security.JwtAuthenticationEntryPoint;
-import com.example.minimart.security.JwtAuthenticationFilter;
+import sqa.hanu_minimart.security.CustomUserDetailsService;
+import sqa.hanu_minimart.security.JwtAuthenticationEntryPoint;
+import sqa.hanu_minimart.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

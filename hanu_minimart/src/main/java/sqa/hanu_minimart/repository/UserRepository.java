@@ -1,6 +1,6 @@
-package com.example.minimart.repository;
+package sqa.hanu_minimart.repository;
 
-import com.example.minimart.model.User;
+import sqa.hanu_minimart.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package sqa.hanu_minimart.security;
 
-import com.example.minimart.model.User;
+import sqa.hanu_minimart.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

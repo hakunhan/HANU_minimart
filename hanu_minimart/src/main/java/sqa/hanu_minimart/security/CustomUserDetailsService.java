@@ -1,7 +1,7 @@
 package sqa.hanu_minimart.security;
 
-import com.example.minimart.model.User;
-import com.example.minimart.repository.UserRepository;
+import sqa.hanu_minimart.model.User;
+import sqa.hanu_minimart.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,6 +35,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 () -> new UsernameNotFoundException("User not found with id : " + id)
         );
 
-        return com.example.minimart.security.UserPrincipal.create(user);
+        return UserPrincipal.create(user);
     }
 }

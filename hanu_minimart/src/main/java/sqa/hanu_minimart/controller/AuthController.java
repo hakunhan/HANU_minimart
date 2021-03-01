@@ -1,13 +1,13 @@
 package sqa.hanu_minimart.controller;
 
-import com.example.minimart.model.*;
-import com.example.minimart.payload.ApiResponse;
-import com.example.minimart.payload.JwtAuthenticationResponse;
-import com.example.minimart.payload.LoginRequest;
-import com.example.minimart.payload.SignUpRequest;
-import com.example.minimart.repository.RoleRepository;
-import com.example.minimart.repository.UserRepository;
-import com.example.minimart.security.JwtTokenProvider;
+import sqa.hanu_minimart.model.*;
+import sqa.hanu_minimart.payload.ApiResponse;
+import sqa.hanu_minimart.payload.JwtAuthenticationResponse;
+import sqa.hanu_minimart.payload.LoginRequest;
+import sqa.hanu_minimart.payload.SignUpRequest;
+import sqa.hanu_minimart.repository.RoleRepository;
+import sqa.hanu_minimart.repository.UserRepository;
+import sqa.hanu_minimart.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
