@@ -1,4 +1,4 @@
-package com.example.minimart.payload;
+package sqa.hanu_minimart.payload;
 
 public class JwtAuthenticationResponse {
     private String accessToken;

@@ -1,4 +1,4 @@
-package com.example.minimart.payload;
+package sqa.hanu_minimart.payload;
 
 import javax.validation.constraints.NotBlank;
 

@@ -1,4 +1,4 @@
-package com.example.minimart.security;
+package sqa.hanu_minimart.security;
 
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;

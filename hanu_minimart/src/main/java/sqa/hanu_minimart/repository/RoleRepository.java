@@ -1,7 +1,7 @@
-package com.example.minimart.repository;
+package sqa.hanu_minimart.repository;
 
-import com.example.minimart.model.Role;
-import com.example.minimart.model.RoleName;
+import sqa.hanu_minimart.model.Role;
+import sqa.hanu_minimart.model.RoleName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

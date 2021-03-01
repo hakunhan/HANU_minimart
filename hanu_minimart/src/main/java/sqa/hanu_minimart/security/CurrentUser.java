@@ -1,4 +1,4 @@
-package com.example.minimart.security;
+package sqa.hanu_minimart.security;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
