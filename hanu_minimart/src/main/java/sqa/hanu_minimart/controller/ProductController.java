@@ -39,7 +39,7 @@ public class ProductController {
         return productService.getProductNearExpireDate();
     }
 
-    @PostMapping
+    @PostMapping(path = "/add")
     public void addNewProduct(@RequestBody Product product){
         productService.addNewProduct(product);
     }
