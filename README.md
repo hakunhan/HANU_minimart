@@ -1,4 +1,5 @@
-# HANU_minimart
+# HANU_minimart 
+Link for online meeting: https://discord.gg/y9fpU3YZ
 
 A project of Software Quality Assurance course: 
 * A storage management website of mini market that:
