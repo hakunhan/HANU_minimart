@@ -1,4 +1,4 @@
-package com.example.minimart.exception;
+package sqa.hanu_minimart.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

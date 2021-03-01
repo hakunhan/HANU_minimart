@@ -1,4 +1,4 @@
-package com.example.minimart.model;
+package sqa.hanu_minimart.model;
 
 import org.hibernate.annotations.NaturalId;
 

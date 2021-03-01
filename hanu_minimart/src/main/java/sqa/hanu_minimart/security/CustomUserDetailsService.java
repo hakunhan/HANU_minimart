@@ -1,4 +1,4 @@
-package com.example.minimart.security;
+package sqa.hanu_minimart.security;
 
 import com.example.minimart.model.User;
 import com.example.minimart.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.example.minimart.config;
+package sqa.hanu_minimart.config;
 
 import com.example.minimart.security.CustomUserDetailsService;
 import com.example.minimart.security.JwtAuthenticationEntryPoint;

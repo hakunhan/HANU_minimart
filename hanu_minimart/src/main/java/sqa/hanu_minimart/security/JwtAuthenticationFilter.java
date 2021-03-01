@@ -1,4 +1,4 @@
-package com.example.minimart.security;
+package sqa.hanu_minimart.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

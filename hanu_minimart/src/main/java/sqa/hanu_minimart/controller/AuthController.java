@@ -1,4 +1,4 @@
-package com.example.minimart.controller;
+package sqa.hanu_minimart.controller;
 
 import com.example.minimart.model.*;
 import com.example.minimart.payload.ApiResponse;

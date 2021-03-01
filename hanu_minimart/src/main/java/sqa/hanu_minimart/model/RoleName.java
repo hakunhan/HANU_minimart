@@ -1,4 +1,4 @@
-package com.example.minimart.model;
+package sqa.hanu_minimart.model;
 
 public enum RoleName {
     ROLE_CUSTOMER,

@@ -1,4 +1,4 @@
-package com.example.minimart.config;
+package sqa.hanu_minimart.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
