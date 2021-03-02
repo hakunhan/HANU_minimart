@@ -17,7 +17,7 @@ public class ProductConfig {
         return args -> {
             Product bread = new Product("Bread", 2000, 2, "FOOD", LocalDate.now());
             Product candy = new Product("Candy", 10000, 10, "FOOD", LocalDate.now());
-            productRepository.saveAll(List.of(bread, candy));
+
         };
     }
 }

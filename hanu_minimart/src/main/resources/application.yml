@@ -18,7 +18,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
 app:
-  tokenSecret: HanoiAirline180104
+  tokenSecret: HanuMinimart180104
   tokenExpirationInMs: 864000000
 
 logging:
