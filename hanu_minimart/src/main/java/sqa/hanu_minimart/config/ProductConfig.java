@@ -7,6 +7,7 @@ import sqa.hanu_minimart.model.Product;
 import sqa.hanu_minimart.repository.ProductRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -17,7 +18,14 @@ public class ProductConfig {
         return args -> {
             Product bread = new Product("Bread", 2000, 2, "FOOD", LocalDate.now());
             Product candy = new Product("Candy", 10000, 10, "FOOD", LocalDate.now());
+<<<<<<< HEAD
 
+=======
+            List item = new ArrayList();
+            item.add(bread);
+            item.add(candy);
+            productRepository.saveAll(item);
+>>>>>>> 13f873e9f4dcdf6540f023e85586f886ad9e7b3c
         };
     }
 }
