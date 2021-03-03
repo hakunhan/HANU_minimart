@@ -10,11 +10,16 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    List<Product> findByName(String name);
+    List<Product> findByNameContaining(String name);
+
+    List<Product> findByCategoryContaining(String category);
 
     @Query(value = "SELECT * FROM product GROUP BY name ORDER BY import_date DESC ", nativeQuery = true)
     List<Product> findNewestImportProduct();
 
     @Query(value = "SELECT * FROM product WHERE expire_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 90 DAY) ORDER BY import_date ASC", nativeQuery = true)
     List<Product> findNearlyExpireProduct();
+
+    List<Product> findByProductStatus(String status);
+
 }

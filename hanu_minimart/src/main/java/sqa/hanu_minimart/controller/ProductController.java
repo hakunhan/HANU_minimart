@@ -1,6 +1,7 @@
 package sqa.hanu_minimart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import sqa.hanu_minimart.model.Product;
 import sqa.hanu_minimart.service.ProductService;
@@ -12,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = {"/api/product"})
 public class ProductController {
-    private ProductService productService;
+    private final ProductService productService;
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -29,9 +30,19 @@ public class ProductController {
         return productService.getNewProduct();
     }
 
-    @PostMapping(path = "/getByName")
-    public List<Product> getProductByName(@RequestBody String name){
+    @GetMapping(path = "getByName/{name}")
+    public List<Product> getProductByName(@PathVariable("name") String name){
         return productService.getProductByName(name);
+    }
+
+    @GetMapping(path = "getByStatus/{status}")
+    public List<Product> getProductByStatus(@PathVariable("status") String status){
+        return productService.getProductByStatus(status);
+    }
+
+    @GetMapping(path = "getByCategory/{category}")
+    public List<Product> getProductByCategory(@PathVariable("category") String category){
+        return productService.getProductByCategory(category);
     }
 
     @GetMapping(path = "/nearExpire")
@@ -44,18 +55,19 @@ public class ProductController {
         productService.addNewProduct(product);
     }
 
-    @PutMapping(path = "{id}")
-    public void updateProduct(@PathVariable("id") int id,
+    @PutMapping(path = "/update/{id}")
+    public void updateProduct(@PathVariable("id") Integer id,
                               @RequestParam(required = false) String name,
-                              @RequestParam(required = false) int quantity,
-                              @RequestParam(required = false) double price,
-                              @RequestParam(required = false) String category,
-                              @RequestParam(required = false) LocalDate expireDate
+                              @RequestParam(required = false, defaultValue = "0") Double price,
+                              @RequestParam(required = false, defaultValue = "0") Integer quantity,
+                              @RequestParam(required = false, defaultValue = "") String category,
+                              @RequestParam(required = false, defaultValue = "") String status,
+                              @RequestParam(required = false, defaultValue = "") String expireDate
                               ){
-        productService.updateProductQuantity(id, name, quantity, price, category, expireDate);
+        productService.updateProductQuantity(id, name, price, quantity, category,status, expireDate);
     }
 
-    @DeleteMapping(path = {"{id}"})
+    @DeleteMapping(path = {"/delete/{id}"})
     public void deleteProduct(@PathVariable("id") int id){
         productService.deleteProduct(id);
     }
