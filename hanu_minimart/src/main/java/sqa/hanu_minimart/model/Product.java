@@ -2,6 +2,7 @@ package sqa.hanu_minimart.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table (name = "Product")
@@ -9,26 +10,39 @@ public class Product {
     @Id
     @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
-    @Column(name = "id", columnDefinition = "INT(6) UNSIGNED ", updatable = false)
+    @Column(name = "id", columnDefinition = "INT(6) UNSIGNED ", precision = 6, updatable = false)
     private int id;
+    @Column(length = 50)
     private String name;
+    @Column(precision = 8, scale = 2)
     private double price;
     @Column(columnDefinition = "INT(6) UNSIGNED")
     private int quantity;
-    private LocalDate importDate;
+    @Column(length = 16)
+    private String category;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 3)
+    private ProductStatus productStatus;
+    @Column(name = "importDate", nullable = false, updatable = false, insertable = false,
+            columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime importDate;
     private LocalDate expireDate;
 
-    public Product(int id, String name, double price, int quantity, LocalDate importDate, LocalDate expireDate) {
-        this.id = id;
+    public Product(String name, double price, int quantity, String category,
+                   LocalDate expireDate) {
         this.name = name;
         this.price = price;
+        this.category = category;
         this.quantity = quantity;
-        this.importDate = importDate;
         this.expireDate = expireDate;
     }
 
     public Product() {
 
+    }
+
+    public Product(String name){
+        this.name = name;
     }
 
     public int getId() {
@@ -37,11 +51,6 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Product(String name, double price) {
-        this.name = name;
-        this.price = price;
     }
 
     public String getName() {
@@ -68,11 +77,27 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public LocalDate getImportDate() {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public ProductStatus getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(ProductStatus productStatus) {
+        this.productStatus = productStatus;
+    }
+
+    public LocalDateTime getImportDate() {
         return importDate;
     }
 
-    public void setImportDate(LocalDate importDate) {
+    public void setImportDate(LocalDateTime importDate) {
         this.importDate = importDate;
     }
 
@@ -91,8 +116,12 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", productStatus=" + productStatus +
                 ", importDate=" + importDate +
                 ", expireDate=" + expireDate +
                 '}';
     }
+
+
 }
