@@ -90,6 +90,6 @@ public class ProductService {
     }
 
     public List<Product> getProductByCategory(String category) {
-        return productRepository.findByCategoryContaining(category);
+        return productRepository.findByCategory(category);
     }
 }
