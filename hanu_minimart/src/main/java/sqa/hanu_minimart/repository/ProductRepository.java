@@ -10,7 +10,11 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    List<Product> findByName(String name);
+    List<Product> findByNameContaining(String name);
+
+    List<Product> findByCategory(String category);
+
+    List<Product> findByProductStatus(String status);
 
     @Query(value = "SELECT * FROM product GROUP BY name ORDER BY import_date DESC ", nativeQuery = true)
     List<Product> findNewestImportProduct();

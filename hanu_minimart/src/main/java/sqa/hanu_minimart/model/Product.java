@@ -31,6 +31,9 @@ public class Product {
     private int quantity;
     @Column(length = 16)
     private String category;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 3)
+    private ProductStatus productStatus;
     @Column(name = "importDate", nullable = false, updatable = false, insertable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime importDate;
@@ -110,6 +113,7 @@ public class Product {
         this.category = category;
     }
 
+<<<<<<< HEAD
     @Override
     public String toString() {
         return "Product{" +
@@ -122,6 +126,14 @@ public class Product {
                 ", expireDate=" + expireDate +
                 ", status=" + status +
                 '}';
+=======
+    public ProductStatus getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(ProductStatus productStatus) {
+        this.productStatus = productStatus;
+>>>>>>> origin/main
     }
 
     public LocalDateTime getImportDate() {
@@ -140,6 +152,7 @@ public class Product {
         this.expireDate = expireDate;
     }
 
+<<<<<<< HEAD
 	public String getStatus() {
 		return status;
 	}
@@ -164,5 +177,21 @@ public class Product {
 		this.cartItem = cartItem;
 	}
 	
+=======
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", productStatus=" + productStatus +
+                ", importDate=" + importDate +
+                ", expireDate=" + expireDate +
+                '}';
+    }
+
+>>>>>>> origin/main
 
 }

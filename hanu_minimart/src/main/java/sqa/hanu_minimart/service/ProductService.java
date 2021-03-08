@@ -3,11 +3,14 @@ package sqa.hanu_minimart.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sqa.hanu_minimart.model.Product;
+import sqa.hanu_minimart.model.ProductStatus;
 import sqa.hanu_minimart.repository.ProductRepository;
 
 import javax.naming.directory.InvalidAttributesException;
 import javax.transaction.Transactional;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +40,8 @@ public class ProductService {
     }
 
     public List<Product> getProductByName(String name) {
-        return productRepository.findByName(name);
+        System.out.println(name);
+        return productRepository.findByNameContaining(name);
     }
 
     public List<Product> getProductNearExpireDate() {
@@ -48,8 +52,12 @@ public class ProductService {
         return productRepository.findNewestImportProduct();
     }
 
+<<<<<<< HEAD
     @Transactional
     public void updateProductQuantity(int id, String name, int quantity, double price, String category, LocalDate expireDate, String status) {
+=======
+    public void updateProductQuantity(int id, String name, double price, int quantity, String category, String status, String expireDate) {
+>>>>>>> origin/main
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
@@ -57,11 +65,11 @@ public class ProductService {
             product.setName(name);
         }
 
-        if(quantity != 0 && !Objects.equals(quantity, product.getQuantity())){
+        if(quantity != 0 && quantity != product.getQuantity()){
             product.setQuantity(quantity);
         }
 
-        if(price != 0 && !Objects.equals(price, product.getPrice())){
+        if(price != 0 && price != product.getPrice()){
             product.setPrice(price);
         }
 
@@ -69,10 +77,29 @@ public class ProductService {
             product.setCategory(category);
         }
 
-        if(expireDate != null && !Objects.equals(expireDate, product.getExpireDate())){
-            product.setExpireDate(expireDate);
+        if(status.equalsIgnoreCase("hot")){
+            product.setProductStatus(ProductStatus.HOT);
+        }else if (status.equalsIgnoreCase("new")){
+            product.setProductStatus(ProductStatus.NEW);
         }
+<<<<<<< HEAD
         product.setStatus(status);
      
+=======
+
+        if(expireDate != null && expireDate.length() >0 && !expireDate.equals(product.getExpireDate().toString())){
+            product.setExpireDate(LocalDate.parse(expireDate));
+        }
+
+        productRepository.save(product);
+    }
+
+    public List<Product> getProductByStatus(String status) {
+        return productRepository.findByProductStatus(status);
+    }
+
+    public List<Product> getProductByCategory(String category) {
+        return productRepository.findByCategory(category);
+>>>>>>> origin/main
     }
 }
