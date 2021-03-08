@@ -53,7 +53,10 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
+    @OneToOne
+    private Cart cart;
+    @OneToMany
+    private Set<Order> order = new HashSet<>();
     public User() {
 
     }
@@ -121,4 +124,21 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public Set<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(Set<Order> order) {
+		this.order = order;
+	}
+    
 }

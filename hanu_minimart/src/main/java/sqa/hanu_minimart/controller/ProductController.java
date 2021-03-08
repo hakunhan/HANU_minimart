@@ -50,9 +50,10 @@ public class ProductController {
                               @RequestParam(required = false) int quantity,
                               @RequestParam(required = false) double price,
                               @RequestParam(required = false) String category,
-                              @RequestParam(required = false) LocalDate expireDate
+                              @RequestParam(required = false) LocalDate expireDate,
+                              @RequestParam(required = false) String status
                               ){
-        productService.updateProductQuantity(id, name, quantity, price, category, expireDate);
+        productService.updateProductQuantity(id, name, quantity, price, category, expireDate, status);
     }
 
     @DeleteMapping(path = {"{id}"})

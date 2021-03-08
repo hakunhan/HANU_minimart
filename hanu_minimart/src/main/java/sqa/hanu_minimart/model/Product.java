@@ -1,8 +1,19 @@
 package sqa.hanu_minimart.model;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Table (name = "Product")
@@ -24,14 +35,31 @@ public class Product {
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime importDate;
     private LocalDate expireDate;
+    @Lob
+    private String status;
+    @OneToMany
+    private Set<OrderLine> orderLine = new HashSet<>();
+    @OneToMany
+    private Set<CartItem> cartItem = new HashSet<>();
+    
+    
+    public Product(String name, double price, int quantity, String category, LocalDate expireDate) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.category = category;
+		this.expireDate = expireDate;
+	}
 
-    public Product(String name, double price, int quantity, String category,
-                   LocalDate expireDate) {
+	public Product(String name, double price, int quantity, String category,
+                   LocalDate expireDate, String status) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.quantity = quantity;
         this.expireDate = expireDate;
+        this.status = status;
     }
 
     public Product() {
@@ -92,6 +120,7 @@ public class Product {
                 ", category='" + category + '\'' +
                 ", importDate=" + importDate +
                 ", expireDate=" + expireDate +
+                ", status=" + status +
                 '}';
     }
 
@@ -107,8 +136,33 @@ public class Product {
         return expireDate;
     }
 
-    public void setExpireDate(LocalDate expireDate) {
+	public void setExpireDate(LocalDate expireDate) {
         this.expireDate = expireDate;
     }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Set<OrderLine> getOrderLine() {
+		return orderLine;
+	}
+
+	public void setOrderLine(Set<OrderLine> orderLine) {
+		this.orderLine = orderLine;
+	}
+
+	public Set<CartItem> getCartItem() {
+		return cartItem;
+	}
+
+	public void setCartItem(Set<CartItem> cartItem) {
+		this.cartItem = cartItem;
+	}
+	
 
 }

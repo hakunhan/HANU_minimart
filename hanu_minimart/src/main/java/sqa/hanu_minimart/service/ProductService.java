@@ -49,7 +49,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProductQuantity(int id, String name, int quantity, double price, String category, LocalDate expireDate) {
+    public void updateProductQuantity(int id, String name, int quantity, double price, String category, LocalDate expireDate, String status) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
@@ -72,5 +72,7 @@ public class ProductService {
         if(expireDate != null && !Objects.equals(expireDate, product.getExpireDate())){
             product.setExpireDate(expireDate);
         }
+        product.setStatus(status);
+     
     }
 }
