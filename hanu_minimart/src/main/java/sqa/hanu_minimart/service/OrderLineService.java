@@ -32,7 +32,7 @@ public class OrderLineService {
     /*  TODO: sửa lại tạo order line với việc nhận Order ID và tìm Order tương ứng trong db
      *           nếu không thấy trong db trả lại exception
      */
-    public void createNewOrderLine(int orderID, int ordeorderIDrLineID, int quantity, String product) {
+    public void createNewOrderLine(int orderID, int orderLineID, int quantity, String product) {
         List<Product> list = productRepository.findByNameContaining(product);
         Product currProduct = list.get(0);
         double price = currProduct.getPrice() * quantity;
