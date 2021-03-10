@@ -37,7 +37,7 @@ public class OrderLineService {
         Product currProduct = list.get(0);
         double price = currProduct.getPrice() * quantity;
         //TODO: sửa lại repository để tìm order bằng ID
-        Order order = orderRepository.findById(orderID);
+        Order order = null;
         OrderLine o = new OrderLine(orderLineID, order, quantity, product, price);
         orderLineRepository.save(o);
     }
@@ -51,7 +51,7 @@ public class OrderLineService {
     }
 
     public List<OrderLine> findByOrderID(int orderID) {
-        return orderLineRepository.findByOrderID(orderID);
+        return orderLineRepository.findById(orderID);
     }
 
     public double getTotalBill(int orderID) {

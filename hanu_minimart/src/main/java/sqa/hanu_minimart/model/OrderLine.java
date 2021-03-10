@@ -11,7 +11,6 @@ public class OrderLine {
     @Column(name = "orderLineID", columnDefinition = "int(6) UNSIGNED", updatable = false)
     private int orderLineID;
     @ManyToOne
-    @Column(name = "orders")
     private Order order;
     @Column(name = "quantity",columnDefinition = "int(10) not null")
     private int quantity;
