@@ -25,26 +25,31 @@ public class User {
 
     @NotBlank
     @NotNull
-    @Size(max = 40)
+    @Size(max = 30)
+    @Column(length = 30)
     private String name;
 
     @NotBlank
     @NotNull
-    @Size(max = 15)
+    @Size(max = 30)
+    @Column(length = 30)
     private String username;
 
     @NotBlank
     @NotNull
     @Size(max = 100)
+    @Column(length = 100)
     private String password;
 
     @NaturalId
     @NotBlank
     @NotNull
-    @Size(max = 40)
+    @Size(max = 30)
+    @Column(length = 30)
     private String phoneNumber;
 
-    @Size(max = 255)
+    @Size(max = 100)
+    @Column(length = 100)
     @NotNull
     private String address;
 

@@ -3,6 +3,8 @@ package sqa.hanu_minimart.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import sqa.hanu_minimart.model.User;
 import sqa.hanu_minimart.payload.LoginRequest;
@@ -23,6 +25,9 @@ public class AccountController {
     @Autowired
     UserRepository userRepository;
 
+
+    //8085/api/account/getAll?id=1
+    @Secured("ROLE_CUSTOMER")
     @GetMapping(path="/getAll")
     public ResponseEntity<?> getAllAccount( @RequestParam(required = false) Long id,
                                                @RequestParam(required = false, defaultValue = "_") String name,

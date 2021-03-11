@@ -25,7 +25,8 @@ public class ProductController {
         return productService.getProduct();
     }
 
-    @GetMapping(path = "/new")
+
+   @GetMapping(path = "/new")
     public List<Product> getNewProduct(){
         return productService.getNewProduct();
     }
