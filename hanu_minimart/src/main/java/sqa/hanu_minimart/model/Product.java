@@ -14,7 +14,7 @@ public class Product {
     @Column(length = 50)
     private String name;
     @Column(precision = 8, scale = 2)
-    private double price;
+    private Double price;
     @Column(columnDefinition = "INT(4) UNSIGNED")
     private int quantity;
     @Column(length = 16)
@@ -27,7 +27,7 @@ public class Product {
     private Integer sale;
     @Enumerated(EnumType.STRING)
     @Column(length = 3)
-    private ProductStatus productStatus;
+    private ProductStatus status;
     @Column(nullable = false, updatable = false, insertable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime importDate;
@@ -42,6 +42,8 @@ public class Product {
         this.category = category;
         this.quantity = quantity;
         this.expireDate = expireDate;
+        //Add default value for description
+        this.description = "This product does not have description";
     }
 
     public Product() {
@@ -68,11 +70,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -117,11 +119,11 @@ public class Product {
     }
 
     public ProductStatus getProductStatus() {
-        return productStatus;
+        return status;
     }
 
-    public void setProductStatus(ProductStatus productStatus) {
-        this.productStatus = productStatus;
+    public void setProductStatus(ProductStatus status) {
+        this.status = status;
     }
 
     public LocalDateTime getImportDate() {
@@ -155,7 +157,7 @@ public class Product {
                 ", picture_URL='" + picture_URL + '\'' +
                 ", description='" + description + '\'' +
                 ", sale=" + sale +
-                ", productStatus=" + productStatus +
+                ", status=" + status +
                 ", importDate=" + importDate +
                 ", updateAt=" + updateAt +
                 ", expireDate=" + expireDate +

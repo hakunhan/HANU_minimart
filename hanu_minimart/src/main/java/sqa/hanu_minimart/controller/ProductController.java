@@ -20,30 +20,21 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(path = "/all")
-    public List<Product> getAllProduct(){
-        return productService.getProduct();
-    }
-
-
-   @GetMapping(path = "/new")
-    public List<Product> getNewProduct(){
-        return productService.getNewProduct();
-    }
-
-    @GetMapping(path = "getByName/{name}")
-    public List<Product> getProductByName(@PathVariable("name") String name){
-        return productService.getProductByName(name);
-    }
-
-    @GetMapping(path = "getByStatus/{status}")
-    public List<Product> getProductByStatus(@PathVariable("status") String status){
-        return productService.getProductByStatus(status);
-    }
-
-    @GetMapping(path = "getByCategory/{category}")
-    public List<Product> getProductByCategory(@PathVariable("category") String category){
-        return productService.getProductByCategory(category);
+    // VD cách lấy: https//localhost:8085/ap/product/(...) -> thêm vào
+    // muốn lấy hết product trong db -> /getAll
+    // muốn lấy product theo id -> /getAll?id=
+    // tương tự với name, price, ...
+    @GetMapping(path = "/getAll")
+    public List<Product> getProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
+                                     @RequestParam (required = false, defaultValue = "") String name,
+                                     @RequestParam (required = false, defaultValue = "-1") Double price,
+                                     @RequestParam (required = false, defaultValue = "-1") Integer quantity,
+                                     @RequestParam (required = false, defaultValue = "") String category,
+                                     @RequestParam (required = false, defaultValue = "") String status,
+                                     @RequestParam (required = false, defaultValue = "2000-03-21") String importDate,
+                                     @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
+                                     ){
+        return productService.getProducts(id, name, price, quantity, category, status, importDate, expireDate);
     }
 
     @GetMapping(path = "/nearExpire")
@@ -58,14 +49,17 @@ public class ProductController {
 
     @PutMapping(path = "/update/{id}")
     public void updateProduct(@PathVariable("id") Integer id,
-                              @RequestParam(required = false) String name,
-                              @RequestParam(required = false, defaultValue = "0") Double price,
-                              @RequestParam(required = false, defaultValue = "0") Integer quantity,
+                              @RequestParam(required = false, defaultValue = "") String name,
+                              @RequestParam(required = false, defaultValue = "-1") Double price,
+                              @RequestParam(required = false, defaultValue = "-1") Integer quantity,
                               @RequestParam(required = false, defaultValue = "") String category,
+                              @RequestParam(required = false, defaultValue = "") String picture_URL,
+                              @RequestParam(required = false, defaultValue = "") String description,
+                              @RequestParam(required = false, defaultValue = "-1") Integer sale,
                               @RequestParam(required = false, defaultValue = "") String status,
                               @RequestParam(required = false, defaultValue = "") String expireDate
                               ){
-        productService.updateProductQuantity(id, name, price, quantity, category,status, expireDate);
+        productService.updateProduct(id, name, price, quantity, category, description, picture_URL, sale, status, expireDate);
     }
 
     @DeleteMapping(path = {"/delete/{id}"})

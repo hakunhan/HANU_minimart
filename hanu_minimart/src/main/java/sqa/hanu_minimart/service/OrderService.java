@@ -63,7 +63,9 @@ public class OrderService {
                     } else {
                         stt = "new";
                     }
-                    productService.updateProductQuantity(currProduct.getId(), currProduct.getName(), currProduct.getPrice(), currProduct.getQuantity(), currProduct.getCategory(), stt, currProduct.getExpireDate().toString());
+                    productService.updateProduct(currProduct.getId(), currProduct.getName(), currProduct.getPrice(),
+                                                currProduct.getQuantity(), currProduct.getCategory(), currProduct.getDescription(),
+                                                currProduct.getPicture_URL(), currProduct.getSale(), stt, currProduct.getExpireDate().toString());
                     updateOrderStatus(orderID, OrderStatus.ACCEPTED);
                 } else {
                     updateOrderStatus(orderID, OrderStatus.CANCEL);
