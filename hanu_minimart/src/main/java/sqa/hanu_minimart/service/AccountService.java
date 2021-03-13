@@ -82,8 +82,12 @@ public class AccountService {
         return _user;
     }
 
+
+    // deactivate the account
     public void deleteUser (Long id){
         Optional<User> userData = userRepository.findById(id);
-        userRepository.delete(userData.get());
+        User user = userData.get();
+        user.setStatus("DEACTIVATED");
+        userRepository.save(user);
     }
 }

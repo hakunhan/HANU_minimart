@@ -26,8 +26,7 @@ public class AccountController {
     UserRepository userRepository;
 
 
-    //8085/api/account/getAll?id=1
-    @Secured("ROLE_CUSTOMER")
+    @Secured("ROLE_ADMIN")
     @GetMapping(path="/getAll")
     public ResponseEntity<?> getAllAccount( @RequestParam(required = false) Long id,
                                                @RequestParam(required = false, defaultValue = "_") String name,
