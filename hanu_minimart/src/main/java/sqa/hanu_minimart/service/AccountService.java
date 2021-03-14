@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sqa.hanu_minimart.model.User;
+import sqa.hanu_minimart.payload.UserPayload;
 import sqa.hanu_minimart.repository.UserRepository;
 
 import java.util.ArrayList;
@@ -63,8 +64,10 @@ public class AccountService {
         return userRepository.findByNameContainingOrAddressContaining(name, address, pageable);
     }
 
-    public User updateUser(Long id, User request){
+    public User updateUser(Long id, UserPayload request){
         Optional<User> userData = userRepository.findById(id);
+
+        System.out.println("OKK");
 
         if(!userData.isPresent()){
             return null;
