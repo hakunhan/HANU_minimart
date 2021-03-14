@@ -81,6 +81,7 @@ public class AuthenService{
         user.setUsername(signUpRequest.getUsername());
         user.setPhoneNumber(signUpRequest.getPhoneNumber());
         user.setAddress(signUpRequest.getAddress());
+        user.setStatus("ACTIVATED");
 
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 

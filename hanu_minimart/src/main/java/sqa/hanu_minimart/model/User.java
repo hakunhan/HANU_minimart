@@ -59,16 +59,20 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
     public User() {
 
     }
 
-    public User(String name, String username, String password, String phoneNumber, String address) {
+    public User(String name, String username, String password, String phoneNumber, String address, String status) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.status = UserStatus.valueOf(status);
     }
 
     public Long getId() {
@@ -125,5 +129,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = UserStatus.valueOf(status);
     }
 }

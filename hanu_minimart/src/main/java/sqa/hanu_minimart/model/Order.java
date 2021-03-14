@@ -12,7 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "INT(6) UNSIGNED ", precision = 6, updatable = false)
     private int id;
-    @ManyToOne
+    @ManyToOne(optional = true)
     private User user;
     @OneToMany
     private Set<OrderLine> orderLine = new HashSet<>();

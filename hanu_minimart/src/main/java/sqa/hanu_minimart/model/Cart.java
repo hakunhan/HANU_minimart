@@ -19,7 +19,7 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToOne
+	@OneToOne(optional = true)
 	private User user;
 	@OneToMany
 	private Set<CartItem> cartItem = new HashSet<>();

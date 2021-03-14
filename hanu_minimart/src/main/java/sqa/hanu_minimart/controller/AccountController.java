@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import sqa.hanu_minimart.model.User;
 import sqa.hanu_minimart.payload.LoginRequest;
 import sqa.hanu_minimart.payload.SignUpRequest;
+import sqa.hanu_minimart.payload.UserPayload;
 import sqa.hanu_minimart.repository.UserRepository;
 import sqa.hanu_minimart.service.AccountService;
 import sqa.hanu_minimart.service.AuthenService;
@@ -25,9 +26,6 @@ public class AccountController {
     @Autowired
     UserRepository userRepository;
 
-
-    //8085/api/account/getAll?id=1
-    @Secured("ROLE_CUSTOMER")
     @GetMapping(path="/getAll")
     public ResponseEntity<?> getAllAccount( @RequestParam(required = false) Long id,
                                                @RequestParam(required = false, defaultValue = "_") String name,
@@ -47,12 +45,12 @@ public class AccountController {
 
     }
 
-    @PostMapping(path="/update/{id}")
-    public ResponseEntity<?> upadateAccount (@RequestParam Long id, @Valid @RequestBody User request){
+    @PostMapping(path="/update")
+    public ResponseEntity<?> upadateAccount (@RequestParam Long id, @Valid @RequestBody UserPayload request){
         return new ResponseEntity<>(accountService.updateUser(id, request), HttpStatus.OK);
     }
 
-    @GetMapping(path="/delete/{id}")
+    @GetMapping(path="/delete")
     public ResponseEntity<?> deleteAccount (@RequestParam Long id){
         accountService.deleteUser(id);
         return new ResponseEntity<>(null, HttpStatus.OK);
