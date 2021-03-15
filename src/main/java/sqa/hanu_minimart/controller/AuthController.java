@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import sqa.hanu_minimart.service.AuthenService;
-import sun.applet.AppletSecurityException;
 
 import javax.validation.Valid;
 import java.net.URI;
