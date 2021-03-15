@@ -1,0 +1,39 @@
+.infoProduct{
+    font-family:serif;
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(32, 24, 145);
+}
+.Product_Name{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+label{
+    margin-right: 90px;
+}
+.infoProduct input {
+    width: 400px;
+    height: 50px;
+    border: 2px solid rgb(30, 30, 156);
+}
+.Description input{
+    margin-left: -40px;
+}
+.Price input{
+    margin-left: 8px;
+}
+.Quantity input{
+    margin-left: -17px;
+}
+.ExpiredDate input{
+    margin-left: -40px;
+}

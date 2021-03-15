@@ -25,26 +25,31 @@ public class User {
 
     @NotBlank
     @NotNull
-    @Size(max = 40)
+    @Size(max = 30)
+    @Column(length = 30)
     private String name;
 
     @NotBlank
     @NotNull
-    @Size(max = 15)
+    @Size(max = 30)
+    @Column(length = 30)
     private String username;
 
     @NotBlank
     @NotNull
     @Size(max = 100)
+    @Column(length = 100)
     private String password;
 
     @NaturalId
     @NotBlank
     @NotNull
-    @Size(max = 40)
+    @Size(max = 30)
+    @Column(length = 30)
     private String phoneNumber;
 
-    @Size(max = 255)
+    @Size(max = 100)
+    @Column(length = 100)
     @NotNull
     private String address;
 
@@ -54,16 +59,20 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
     public User() {
 
     }
 
-    public User(String name, String username, String password, String phoneNumber, String address) {
+    public User(String name, String username, String password, String phoneNumber, String address, String status) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.status = UserStatus.valueOf(status);
     }
 
     public Long getId() {
@@ -120,5 +129,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = UserStatus.valueOf(status);
     }
 }

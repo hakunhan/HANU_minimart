@@ -8,24 +8,31 @@ import java.time.LocalDateTime;
 @Table (name = "Product")
 public class Product {
     @Id
-    @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
-    @Column(name = "id", columnDefinition = "INT(6) UNSIGNED ", precision = 6, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "INT(4) UNSIGNED ", precision = 4, updatable = false)
     private int id;
     @Column(length = 50)
     private String name;
     @Column(precision = 8, scale = 2)
-    private double price;
-    @Column(columnDefinition = "INT(6) UNSIGNED")
+    private Double price;
+    @Column(columnDefinition = "INT(4) UNSIGNED")
     private int quantity;
     @Column(length = 16)
     private String category;
+    @Lob
+    private String picture_URL;
+    @Lob
+    private String description;
+    @Column(precision = 3, columnDefinition = "INT(3) UNSIGNED")
+    private Integer sale;
     @Enumerated(EnumType.STRING)
     @Column(length = 3)
-    private ProductStatus productStatus;
-    @Column(name = "importDate", nullable = false, updatable = false, insertable = false,
+    private ProductStatus status;
+    @Column(nullable = false, updatable = false, insertable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime importDate;
+    @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime updateAt;
     private LocalDate expireDate;
 
     public Product(String name, double price, int quantity, String category,
@@ -35,6 +42,19 @@ public class Product {
         this.category = category;
         this.quantity = quantity;
         this.expireDate = expireDate;
+        //Add default value for description
+        this.description = "This product does not have description";
+    }
+
+    public Product(String name, double price, int quantity, String category,
+                   LocalDate expireDate, String description) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+        this.expireDate = expireDate;
+        //Add default value for description
+        this.description = description;
     }
 
     public Product() {
@@ -61,11 +81,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -85,20 +105,48 @@ public class Product {
         this.category = category;
     }
 
-    public ProductStatus getProductStatus() {
-        return productStatus;
+    public String getPicture_URL() {
+        return picture_URL;
     }
 
-    public void setProductStatus(ProductStatus productStatus) {
-        this.productStatus = productStatus;
+    public void setPicture_URL(String picture_URL) {
+        this.picture_URL = picture_URL;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getSale() {
+        return sale;
+    }
+
+    public void setSale(Integer sale) {
+        this.sale = sale;
+    }
+
+    public ProductStatus getProductStatus() {
+        return status;
+    }
+
+    public void setProductStatus(ProductStatus status) {
+        this.status = status;
     }
 
     public LocalDateTime getImportDate() {
         return importDate;
     }
 
-    public void setImportDate(LocalDateTime importDate) {
-        this.importDate = importDate;
+    public LocalDateTime getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(LocalDateTime updateAt) {
+        this.updateAt = updateAt;
     }
 
     public LocalDate getExpireDate() {
@@ -117,11 +165,14 @@ public class Product {
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", category='" + category + '\'' +
-                ", productStatus=" + productStatus +
+                ", picture_URL='" + picture_URL + '\'' +
+                ", description='" + description + '\'' +
+                ", sale=" + sale +
+                ", status=" + status +
                 ", importDate=" + importDate +
+                ", updateAt=" + updateAt +
                 ", expireDate=" + expireDate +
                 '}';
     }
-
 
 }

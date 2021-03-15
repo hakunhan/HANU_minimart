@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import sqa.hanu_minimart.model.Product;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -14,11 +15,22 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findByCategory(String category);
 
-    List<Product> findByProductStatus(String status);
+    List<Product> findByStatus(String status);
 
     @Query(value = "SELECT * FROM product GROUP BY name ORDER BY import_date DESC ", nativeQuery = true)
     List<Product> findNewestImportProduct();
 
     @Query(value = "SELECT * FROM product WHERE expire_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 90 DAY) ORDER BY import_date ASC", nativeQuery = true)
     List<Product> findNearlyExpireProduct();
+
+    List<Product> findProductsById(Integer id);
+
+    List<Product> findProductsByPrice(Double price);
+
+    List<Product> findProductsByQuantity(Integer quantity);
+
+    @Query(value = "SELECT * FROM product where DATE(import_date) = ?", nativeQuery = true)
+    List<Product> findByImportDate(LocalDate importDate);
+
+    List<Product> findByExpireDate(LocalDate expireDate);
 }

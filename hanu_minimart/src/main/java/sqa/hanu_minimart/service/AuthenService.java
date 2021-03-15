@@ -27,6 +27,7 @@ import sun.applet.AppletSecurityException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 public class AuthenService{
@@ -56,9 +57,11 @@ public class AuthenService{
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        String usernameOrEmail = loginRequest.getUsernameOrEmail();
+        Optional<User> user = userRepository.findByUsernameOrPhoneNumber(usernameOrEmail, usernameOrEmail );
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user.get()));
     }
 
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
@@ -78,6 +81,7 @@ public class AuthenService{
         user.setUsername(signUpRequest.getUsername());
         user.setPhoneNumber(signUpRequest.getPhoneNumber());
         user.setAddress(signUpRequest.getAddress());
+        user.setStatus("ACTIVATED");
 
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
