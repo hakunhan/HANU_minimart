@@ -20,6 +20,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -70,6 +71,7 @@ public class ProductService {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
         return t -> seen.add(keyExtractor.apply(t));
     }
+
 
     public List<Product> getProducts(Integer id, String name, Double price, Integer quantity, String category, String status, String importDate, String expireDate) {
         if(id > 0){
@@ -168,10 +170,6 @@ public class ProductService {
         }else if (status.equalsIgnoreCase("new")){
             productRepository.updateStatus(product.getName(), ProductStatus.NEW.toString());
             return;
-        }
-
-        if(expireDate != null && expireDate.length() >0 && !expireDate.equals(product.getExpireDate().toString())){
-            product.setExpireDate(LocalDate.parse(expireDate));
         }
 
         productRepository.save(product);

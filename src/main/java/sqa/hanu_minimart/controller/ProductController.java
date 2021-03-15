@@ -50,7 +50,7 @@ public class ProductController {
                                      @RequestParam (required = false, defaultValue = "") String status,
                                      @RequestParam (required = false, defaultValue = "2000-03-21") String importDate,
                                      @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
-    ){
+                                     ){
         return productService.getProducts(id, name, price, quantity, category, status, importDate, expireDate);
     }
 
