@@ -123,7 +123,8 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
         if(name.length() > 0 && !Objects.equals(name, product.getName())){
-            product.setName(name);
+            productRepository.updateName(product.getName(), name);
+            return;
         }
 
         if(quantity > 0 && quantity != product.getQuantity()){

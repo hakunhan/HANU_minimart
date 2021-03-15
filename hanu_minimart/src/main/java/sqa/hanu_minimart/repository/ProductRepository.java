@@ -57,4 +57,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query(value = "Update product SET status = ?2 WHERE name =?1", nativeQuery = true)
     void updateStatus(String name, String status);
+
+    @Modifying
+    @Query(value = "Update product SET name = ?2 WHERE name =?1", nativeQuery = true)
+    void updateName(String oldName, String newName);
 }

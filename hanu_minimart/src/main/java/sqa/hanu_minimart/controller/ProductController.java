@@ -20,7 +20,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    // VD cách lấy: https//localhost:8085/ap/product/(...) -> thêm vào
+    // VD cách lấy: https//localhost:8085/api/product/homepage(...) -> thêm vào
     // muốn lấy hết product trong db -> /getAll
     // muốn lấy product theo id -> /getAll?id=
     // tương tự với name, price, ...
@@ -37,7 +37,7 @@ public class ProductController {
         return productService.getHomepageProducts(id, name, price, quantity, category, status, importDate, expireDate);
     }
 
-    // VD cách lấy: https//localhost:8085/ap/product/(...) -> thêm vào
+    // VD cách lấy: https//localhost:8085/api/product/(...) -> thêm vào
     // muốn lấy hết product trong db -> /getAll
     // muốn lấy product theo id -> /getAll?id=
     // tương tự với name, price, ...
