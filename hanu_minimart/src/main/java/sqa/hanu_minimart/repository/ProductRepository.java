@@ -1,6 +1,7 @@
 package sqa.hanu_minimart.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import sqa.hanu_minimart.model.Product;
@@ -10,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-
     List<Product> findByNameContaining(String name);
 
     List<Product> findByCategory(String category);
@@ -33,4 +33,28 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByImportDate(LocalDate importDate);
 
     List<Product> findByExpireDate(LocalDate expireDate);
+
+    @Modifying
+    @Query(value = "Update product SET category = ?2 WHERE name =?1", nativeQuery = true)
+    void updateCategory(String name, String category);
+
+    @Modifying
+    @Query(value = "Update product SET price = ?2 WHERE name =?1", nativeQuery = true)
+    void updatePrice(String name, double price);
+
+    @Modifying
+    @Query(value = "Update product SET description = ?2 WHERE name =?1", nativeQuery = true)
+    void updateDescription(String name, String description);
+
+    @Modifying
+    @Query(value = "Update product SET picture_url = ?2 WHERE name =?1", nativeQuery = true)
+    void updatePictureURL(String name, String picture_url);
+
+    @Modifying
+    @Query(value = "Update product SET picture_url = ?2 WHERE name =?1", nativeQuery = true)
+    void updateSale(String name, Integer sale);
+
+    @Modifying
+    @Query(value = "Update product SET status = ?2 WHERE name =?1", nativeQuery = true)
+    void updateStatus(String name, String status);
 }

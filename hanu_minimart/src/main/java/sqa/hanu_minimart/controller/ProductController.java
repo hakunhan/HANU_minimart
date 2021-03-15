@@ -24,6 +24,23 @@ public class ProductController {
     // muốn lấy hết product trong db -> /getAll
     // muốn lấy product theo id -> /getAll?id=
     // tương tự với name, price, ...
+    @GetMapping(path = "/homepage/getAll")
+    public List<Product> getHomepageProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
+                                     @RequestParam (required = false, defaultValue = "") String name,
+                                     @RequestParam (required = false, defaultValue = "-1") Double price,
+                                     @RequestParam (required = false, defaultValue = "-1") Integer quantity,
+                                     @RequestParam (required = false, defaultValue = "") String category,
+                                     @RequestParam (required = false, defaultValue = "") String status,
+                                     @RequestParam (required = false, defaultValue = "2000-03-21") String importDate,
+                                     @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
+                                     ){
+        return productService.getHomepageProducts(id, name, price, quantity, category, status, importDate, expireDate);
+    }
+
+    // VD cách lấy: https//localhost:8085/ap/product/(...) -> thêm vào
+    // muốn lấy hết product trong db -> /getAll
+    // muốn lấy product theo id -> /getAll?id=
+    // tương tự với name, price, ...
     @GetMapping(path = "/getAll")
     public List<Product> getProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
                                      @RequestParam (required = false, defaultValue = "") String name,
@@ -33,7 +50,7 @@ public class ProductController {
                                      @RequestParam (required = false, defaultValue = "") String status,
                                      @RequestParam (required = false, defaultValue = "2000-03-21") String importDate,
                                      @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
-                                     ){
+    ){
         return productService.getProducts(id, name, price, quantity, category, status, importDate, expireDate);
     }
 
