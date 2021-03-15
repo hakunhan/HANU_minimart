@@ -22,7 +22,6 @@ import sqa.hanu_minimart.payload.SignUpRequest;
 import sqa.hanu_minimart.repository.RoleRepository;
 import sqa.hanu_minimart.repository.UserRepository;
 import sqa.hanu_minimart.security.JwtTokenProvider;
-import sun.applet.AppletSecurityException;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -85,10 +84,9 @@ public class AuthenService{
 
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_CUSTOMER)
-                .orElseThrow(() -> new AppletSecurityException("User Role not set."));
+        Optional<Role> userRole = roleRepository.findByName(RoleName.ROLE_CUSTOMER);
 
-        user.setRoles(Collections.singleton(userRole));
+        user.setRoles(Collections.singleton(userRole.get()));
 
         User result = userRepository.save(user);
 
