@@ -1,0 +1,27 @@
+.qty{
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+input.qtyplus{
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border: 2px solid #ccc;
+    margin: 20%;
+}
+
+input.qtyminus{
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border: 2px solid #ccc;
+    margin: 20%;
+}
+.header{
+    background-color: rgb(29, 54, 109);
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    height: 50px;
+}

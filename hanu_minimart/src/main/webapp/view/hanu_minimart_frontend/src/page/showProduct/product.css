@@ -1,0 +1,41 @@
+.footer{
+    background-color: #ffffff;
+   
+}
+.Deal{
+    font-family:cursive;
+    color: red;
+}
+.sale{
+    background-color: yellow;
+}
+.load-more-div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* .content_Cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+  .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  } */
+  .form-control-borderless {
+    border: none;
+}
+
+
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
