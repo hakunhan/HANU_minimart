@@ -72,6 +72,9 @@ public class ProductService {
         return t -> seen.add(keyExtractor.apply(t));
     }
 
+    public List<String> getCategory() {
+        return productRepository.findDistinctCategory();
+    }
 
     public List<Product> getProducts(Integer id, String name, Double price, Integer quantity, String category, String status, String importDate, String expireDate) {
         if(id > 0){
@@ -179,4 +182,6 @@ public class ProductService {
     public List<Product> getProductByName(String name) {
         return productRepository.findByNameContaining(name);
     }
+
+
 }

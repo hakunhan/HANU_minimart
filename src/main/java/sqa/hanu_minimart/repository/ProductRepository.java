@@ -35,6 +35,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findByExpireDate(LocalDate expireDate);
 
+    @Query(value = "SELECT DISTINCT category FROM product", nativeQuery = true)
+    List<String> findDistinctCategory();
+
     @Modifying
     @Query(value = "Update product SET category = ?2 WHERE name =?1", nativeQuery = true)
     void updateCategory(String name, String category);
