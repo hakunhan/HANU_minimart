@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import sqa.hanu_minimart.model.Cart;
 import sqa.hanu_minimart.model.Role;
 import sqa.hanu_minimart.model.RoleName;
 import sqa.hanu_minimart.model.User;
