@@ -54,6 +54,10 @@ public class ProductController {
         return productService.getProducts(id, name, price, quantity, category, status, importDate, expireDate);
     }
 
+    @GetMapping(path = "/getCategory")
+    public List<String> getCategorys(){
+        return productService.getCategory();
+    }
     @GetMapping(path = "/nearExpire")
     public List<Product> getProductNearExpireDate(){
         return productService.getProductNearExpireDate();
