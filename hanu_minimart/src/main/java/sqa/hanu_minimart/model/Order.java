@@ -25,7 +25,7 @@ public class Order {
 	
 	@ManyToOne
 	private User user;
-	@OneToMany
+	@OneToMany(mappedBy = "order")
 	private Set<OrderLine> orderLine = new HashSet<>();
 	@Lob
 	private String deliveryNotes;

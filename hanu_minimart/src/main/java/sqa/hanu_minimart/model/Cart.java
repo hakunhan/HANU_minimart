@@ -21,7 +21,7 @@ public class Cart {
 	private int id;
 	@OneToOne
 	private User user;
-	@OneToMany
+	@OneToMany(mappedBy = "cart")
 	private Set<CartItem> cartItem = new HashSet<>();
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;

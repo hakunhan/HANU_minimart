@@ -1,20 +1,28 @@
 package sqa.hanu_minimart.service;
 
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sqa.hanu_minimart.model.Cart;
+import sqa.hanu_minimart.model.CartItem;
 import sqa.hanu_minimart.model.Order;
+import sqa.hanu_minimart.model.OrderLine;
+import sqa.hanu_minimart.model.Product;
+import sqa.hanu_minimart.model.User;
 import sqa.hanu_minimart.repository.OrderRepository;
 
 @Service
 public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	public OrderService() {}
 	
 	public List<Order> getAllOrder(){

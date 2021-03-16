@@ -31,7 +31,6 @@ public class Product {
     private int quantity;
     @Column(length = 16)
     private String category;
-    @Enumerated(EnumType.STRING)
     @Column(length = 3)
     private ProductStatus productStatus;
     @Column(name = "importDate", nullable = false, updatable = false, insertable = false,
@@ -55,17 +54,26 @@ public class Product {
 		this.expireDate = expireDate;
 	}
 
-	public Product(String name, double price, int quantity, String category,
-                   LocalDate expireDate, String status) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.quantity = quantity;
-        this.expireDate = expireDate;
-        this.status = status;
-    }
+    public Product(int id, String name, double price, int quantity, String category, ProductStatus productStatus,
+			LocalDateTime importDate, LocalDate expireDate, String status, Set<OrderLine> orderLine,
+			Set<CartItem> cartItem) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.category = category;
+		this.productStatus = productStatus;
+		this.importDate = importDate;
+		this.expireDate = expireDate;
+		this.status = status;
+		this.orderLine = orderLine;
+		this.cartItem = cartItem;
+	}
 
-    public Product() {
+
+
+	public Product() {
 
     }
 
@@ -113,46 +121,30 @@ public class Product {
         this.category = category;
     }
 
-<<<<<<< HEAD
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", category='" + category + '\'' +
-                ", importDate=" + importDate +
-                ", expireDate=" + expireDate +
-                ", status=" + status +
-                '}';
-=======
-    public ProductStatus getProductStatus() {
-        return productStatus;
-    }
+	public ProductStatus getProductStatus() {
+		return productStatus;
+	}
 
-    public void setProductStatus(ProductStatus productStatus) {
-        this.productStatus = productStatus;
->>>>>>> origin/main
-    }
+	public void setProductStatus(ProductStatus productStatus) {
+		this.productStatus = productStatus;
+	}
 
-    public LocalDateTime getImportDate() {
-        return importDate;
-    }
+	public LocalDateTime getImportDate() {
+		return importDate;
+	}
 
-    public void setImportDate(LocalDateTime importDate) {
-        this.importDate = importDate;
-    }
+	public void setImportDate(LocalDateTime importDate) {
+		this.importDate = importDate;
+	}
 
-    public LocalDate getExpireDate() {
-        return expireDate;
-    }
+	public LocalDate getExpireDate() {
+		return expireDate;
+	}
 
 	public void setExpireDate(LocalDate expireDate) {
-        this.expireDate = expireDate;
-    }
+		this.expireDate = expireDate;
+	}
 
-<<<<<<< HEAD
 	public String getStatus() {
 		return status;
 	}
@@ -176,22 +168,6 @@ public class Product {
 	public void setCartItem(Set<CartItem> cartItem) {
 		this.cartItem = cartItem;
 	}
-	
-=======
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", category='" + category + '\'' +
-                ", productStatus=" + productStatus +
-                ", importDate=" + importDate +
-                ", expireDate=" + expireDate +
-                '}';
-    }
-
->>>>>>> origin/main
-
+    
 }
+

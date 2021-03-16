@@ -52,12 +52,9 @@ public class ProductService {
         return productRepository.findNewestImportProduct();
     }
 
-<<<<<<< HEAD
     @Transactional
-    public void updateProductQuantity(int id, String name, int quantity, double price, String category, LocalDate expireDate, String status) {
-=======
-    public void updateProductQuantity(int id, String name, double price, int quantity, String category, String status, String expireDate) {
->>>>>>> origin/main
+    public void updateProductQuantity(int id, String name, double price, int quantity, String category, String status,LocalDate expireDate) {
+
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
@@ -82,13 +79,11 @@ public class ProductService {
         }else if (status.equalsIgnoreCase("new")){
             product.setProductStatus(ProductStatus.NEW);
         }
-<<<<<<< HEAD
-        product.setStatus(status);
-     
-=======
 
-        if(expireDate != null && expireDate.length() >0 && !expireDate.equals(product.getExpireDate().toString())){
-            product.setExpireDate(LocalDate.parse(expireDate));
+        product.setStatus(status);
+
+        if(expireDate != null  && !expireDate.equals(product.getExpireDate().toString())){
+            product.setExpireDate(expireDate);
         }
 
         productRepository.save(product);
@@ -100,6 +95,6 @@ public class ProductService {
 
     public List<Product> getProductByCategory(String category) {
         return productRepository.findByCategory(category);
->>>>>>> origin/main
+
     }
 }

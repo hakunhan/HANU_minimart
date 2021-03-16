@@ -1,6 +1,7 @@
 package sqa.hanu_minimart.service;
 
 import java.util.List;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,6 @@ import sqa.hanu_minimart.repository.CartItemRepository;
 public class CartItemService {
 	@Autowired
 	private CartItemRepository cartItemRepository;
-	public CartItemService() {
-		
-	}
 	
 	public List<CartItem> getAllItem(){
 		return cartItemRepository.findAll();
@@ -34,6 +32,7 @@ public class CartItemService {
 	public void deleteAll() {
 		cartItemRepository.deleteAll();
 	}
+	@Transactional
 	public void updateItem(int id, int quantity) {
 		CartItem cartItem = cartItemRepository.findById(id)
 				.orElseThrow(() -> new IllegalStateException("Item does not exist!"));

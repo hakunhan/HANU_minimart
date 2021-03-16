@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping(path = {"/api/product"})
 public class ProductController {
     private final ProductService productService;
-
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -56,25 +55,15 @@ public class ProductController {
     }
 
     @PutMapping(path = "/update/{id}")
-    public void updateProduct(@PathVariable("id") Integer id,
+    public void updateProduct(@PathVariable("id") int id,
                               @RequestParam(required = false) String name,
-<<<<<<< HEAD
-                              @RequestParam(required = false) int quantity,
                               @RequestParam(required = false) double price,
+                              @RequestParam(required = false) int quantity,                             
                               @RequestParam(required = false) String category,
-                              @RequestParam(required = false) LocalDate expireDate,
-                              @RequestParam(required = false) String status
+                              @RequestParam(required = false) String status,
+                              @RequestParam(required = false) LocalDate expireDate
                               ){
-        productService.updateProductQuantity(id, name, quantity, price, category, expireDate, status);
-=======
-                              @RequestParam(required = false, defaultValue = "0") Double price,
-                              @RequestParam(required = false, defaultValue = "0") Integer quantity,
-                              @RequestParam(required = false, defaultValue = "") String category,
-                              @RequestParam(required = false, defaultValue = "") String status,
-                              @RequestParam(required = false, defaultValue = "") String expireDate
-                              ){
-        productService.updateProductQuantity(id, name, price, quantity, category,status, expireDate);
->>>>>>> origin/main
+       productService.updateProductQuantity(id, name, price, quantity, category, status, expireDate); 
     }
 
     @DeleteMapping(path = {"/delete/{id}"})
