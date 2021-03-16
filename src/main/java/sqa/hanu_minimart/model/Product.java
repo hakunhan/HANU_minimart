@@ -53,7 +53,17 @@ public class Product {
         this.category = category;
         this.quantity = quantity;
         this.expireDate = expireDate;
-        //Add default value for description
+        this.description = description;
+    }
+    
+    public Product(String name, double price, int quantity, String category,
+                   LocalDate expireDate, String picture_URL, String description) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+        this.expireDate = expireDate;
+        this.picture_URL = picture_URL;
         this.description = description;
     }
 
