@@ -151,11 +151,13 @@ public class ProductService {
             productRepository.updatePictureURL(product.getName(), picture_URL);
         }
 
-        if(sale >= 0){
+        if(sale >= 0 && sale < 100){
             if (sale > 0 && (product.getSale() == null || product.getSale() == 0)){
-                productRepository.updatePrice(product.getName(),product.getPrice() * sale / 100);
-            }else if(sale == 0 && product.getSale() != null && product.getSale() > 0){
-                productRepository.updatePrice(product.getName(),product.getPrice() / product.getSale() * 100);
+                productRepository.updatePrice(product.getName(),product.getPrice() * (100 - sale) / 100);
+            }else if(sale > 0 && product.getSale() > 0){
+                productRepository.updatePrice(product.getName(), product.getPrice() / (100 - product.getSale()) * (100 -sale));
+            } else if(sale == 0 && product.getSale() != null && product.getSale() > 0){
+                productRepository.updatePrice(product.getName(),product.getPrice() / (100 - product.getSale()) * 100);
             }
 
             productRepository.updateSale(product.getName(), sale);
