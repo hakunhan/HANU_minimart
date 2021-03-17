@@ -20,6 +20,7 @@ A project of Software Quality Assurance course:
 
 
 * Requirement document (minimum 1000 words):
+  Link to the requirement description: https://docs.google.com/document/d/16q_ZZo94TsPM0t7BtwkRi7o8_bqu6TDUd3pa1npVr1A/edit?usp=sharing
   - Software Description:
      + Detail feature: how user can use software, specific interaction
      + Main components
