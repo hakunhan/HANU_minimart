@@ -55,7 +55,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     void updatePictureURL(String name, String picture_url);
 
     @Modifying
-    @Query(value = "Update product SET picture_url = ?2 WHERE name =?1", nativeQuery = true)
+    @Query(value = "Update product SET sale = ?2 WHERE name =?1", nativeQuery = true)
     void updateSale(String name, Integer sale);
 
     @Modifying
