@@ -152,7 +152,7 @@ public class ProductService {
         }
 
         if(sale >= 0){
-            if (sale > 0 && product.getSale() == 0){
+            if (sale > 0 && (product.getSale() == null || product.getSale() == 0)){
                 productRepository.updatePrice(product.getName(),product.getPrice() * sale / 100);
             }else if(sale == 0 && product.getSale() != null && product.getSale() > 0){
                 productRepository.updatePrice(product.getName(),product.getPrice() / product.getSale() * 100);
