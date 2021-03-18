@@ -75,8 +75,6 @@ public class Product {
 		this.cartItem = cartItem;
 	}
 
-
-
 	public Product() {
 
     }

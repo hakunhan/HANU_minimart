@@ -1,12 +1,15 @@
 package sqa.hanu_minimart.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sqa.hanu_minimart.model.Order;
 import sqa.hanu_minimart.model.OrderLine;
 import sqa.hanu_minimart.repository.OrderLineRepository;
 

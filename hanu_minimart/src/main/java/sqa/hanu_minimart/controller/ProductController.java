@@ -55,6 +55,7 @@ public class ProductController {
     }
 
     @PutMapping(path = "/update/{id}")
+
     public void updateProduct(@PathVariable("id") Long id,
                               @RequestParam(required = false) String name,
                               @RequestParam(required = false) double price,

@@ -70,6 +70,7 @@ public class ProductService {
     @Transactional
     public void updateProduct(Long id, String name, double price, int quantity, String category, String status,LocalDate expireDate) {
 
+
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 

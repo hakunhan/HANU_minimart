@@ -55,7 +55,6 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-//    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
     @OneToMany(mappedBy = "user")
