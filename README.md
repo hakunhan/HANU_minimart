@@ -5,6 +5,8 @@ Link for Spring Boot API: https://hanu-minimart.herokuapp.com/
 
 Link for figma morkup: https://www.figma.com/file/TZ5hRYVZ0g2VWJed8hH9mI/Minimart?node-id=1%3A363
 
+Link for deployed frontend: https://mugglor.github.io/Hanu_minimart/
+
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
 A project of Software Quality Assurance course: 
