@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import sqa.hanu_minimart.model.CartItem;
 @Repository
-public interface CartItemRepository extends JpaRepository<CartItem, Integer>{
+public interface CartItemRepository extends JpaRepository<CartItem, Long>{
 
 }

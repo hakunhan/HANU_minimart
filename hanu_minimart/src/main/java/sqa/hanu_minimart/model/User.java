@@ -2,6 +2,8 @@ package sqa.hanu_minimart.model;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -53,9 +55,11 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-    @OneToOne
+//    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
-    @OneToMany
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Order> order = new HashSet<>();
     public User() {
 

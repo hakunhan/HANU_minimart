@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import sqa.hanu_minimart.model.Order;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Integer>{
+public interface OrderRepository extends JpaRepository<Order, Long>{
 
 }

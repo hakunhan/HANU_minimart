@@ -6,19 +6,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	@ManyToOne
+	@JoinColumn(name = "produtc_fk")
+	@JsonIgnore
 	private Product product;
 	@ManyToOne
+	@JoinColumn(name = "cart_fk")
+	@JsonIgnore
 	private Cart cart;
 	private int quantity;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -32,7 +39,7 @@ public class CartItem {
 		super();
 	}
 	
-	public CartItem(int id, Product product, Cart cart, int quantity, Date createdAt,
+	public CartItem(Long id, Product product, Cart cart, int quantity, Date createdAt,
 			Date updatedAt, String content) {
 		super();
 		this.id = id;
@@ -43,10 +50,10 @@ public class CartItem {
 		this.updatedAt = updatedAt;
 		this.content = content;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Product getProduct() {

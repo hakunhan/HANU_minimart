@@ -14,14 +14,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	@OneToOne
 	private User user;
-	@OneToMany
+	@OneToMany(mappedBy = "cart")
 	private Set<CartItem> cartItem = new HashSet<>();
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
@@ -34,19 +36,17 @@ public class Cart {
 		super();
 	}
 	
-	public Cart(int id, User user, Date createdAt, Date updateAt, String content) {
+	public Cart(Long id, User user, Date createdAt) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.createdAt = createdAt;
-		this.updateAt = updateAt;
-		this.content = content;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public User getUser() {

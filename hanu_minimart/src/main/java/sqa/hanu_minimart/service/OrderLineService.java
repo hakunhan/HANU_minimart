@@ -14,11 +14,12 @@ import sqa.hanu_minimart.repository.OrderLineRepository;
 public class OrderLineService {
 	@Autowired
 	private OrderLineRepository orderLineRepository;
+	private ProductService productService;
 	public OrderLineService() {}
 	public List<OrderLine> getAllOrderItem(){
 		return orderLineRepository.findAll();
 	}
-	public OrderLine getByid(int id) {
+	public OrderLine getByid(Long id) {
 		return orderLineRepository.findById(id).get();
 	}
 	public void addnewOrderItem(OrderLine orderItem) {
@@ -27,15 +28,16 @@ public class OrderLineService {
 	public void deleteAll() {
 		orderLineRepository.deleteAll();
 	}
-	public void deleteById(int id) {
+	public void deleteById(Long id) {
 		orderLineRepository.deleteById(id);
 	}
 	@Transactional
-	public void update(OrderLine orderLine, int id) {
+	public void update(OrderLine orderLine, Long id) {
 		if(!orderLineRepository.existsById(id)) {
 			throw new IllegalStateException("OrderItem does not exist.");
 		}
-		OrderLine oldOrderLine = orderLineRepository.findById(id).get();
-		oldOrderLine.setQuantity(orderLine.getQuantity());
+		OrderLine currentOrderLine = orderLineRepository.findById(id).get();
+		currentOrderLine.setQuantity(orderLine.getQuantity());
+		orderLineRepository.save(currentOrderLine);
 	}
 }

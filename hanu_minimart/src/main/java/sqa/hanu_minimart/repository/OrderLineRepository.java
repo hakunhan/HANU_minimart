@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import sqa.hanu_minimart.model.OrderLine;
 
 @Repository
-public interface OrderLineRepository extends JpaRepository<OrderLine, Integer>{
+public interface OrderLineRepository extends JpaRepository<OrderLine, Long>{
 
 }

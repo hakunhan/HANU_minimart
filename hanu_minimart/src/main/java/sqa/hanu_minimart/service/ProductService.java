@@ -10,6 +10,7 @@ import javax.naming.directory.InvalidAttributesException;
 import javax.transaction.Transactional;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
@@ -31,14 +32,16 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void deleteProduct(int id) {
+    public void deleteProduct(Long id) {
         boolean exists = productRepository.existsById(id);
         if (!exists){
             throw new IllegalStateException("Product does not exist!");
         }
         productRepository.deleteById(id);
     }
-
+    public void deleteProduct(String name, LocalDate expireDate, LocalDateTime importDate) {
+        productRepository.deleteByNameAndExp(name, expireDate, importDate);
+    }
     public List<Product> getProductByName(String name) {
         System.out.println(name);
         return productRepository.findByNameContaining(name);
@@ -47,17 +50,26 @@ public class ProductService {
     public List<Product> getProductNearExpireDate() {
         return productRepository.findNearlyExpireProduct();
     }
-
+    public List<Product> findProductByIdSortedByExpAndImportDate(String name){
+    	return productRepository.findProductByIdSortedByExpAndImportDate(name);
+    }
     public List<Product> getNewProduct() {
         return productRepository.findNewestImportProduct();
     }
-
-<<<<<<< HEAD
     @Transactional
-    public void updateProductQuantity(int id, String name, int quantity, double price, String category, LocalDate expireDate, String status) {
-=======
-    public void updateProductQuantity(int id, String name, double price, int quantity, String category, String status, String expireDate) {
->>>>>>> origin/main
+    public void updateProductQuantity(Long id ,int quantity) {
+    	Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
+    	if(quantity != 0 && quantity != product.getQuantity()){
+            product.setQuantity(quantity);
+        }
+    	productRepository.save(product);
+    }
+    
+
+    @Transactional
+    public void updateProduct(Long id, String name, double price, int quantity, String category, String status,LocalDate expireDate) {
+
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
@@ -82,13 +94,11 @@ public class ProductService {
         }else if (status.equalsIgnoreCase("new")){
             product.setProductStatus(ProductStatus.NEW);
         }
-<<<<<<< HEAD
-        product.setStatus(status);
-     
-=======
 
-        if(expireDate != null && expireDate.length() >0 && !expireDate.equals(product.getExpireDate().toString())){
-            product.setExpireDate(LocalDate.parse(expireDate));
+        product.setStatus(status);
+
+        if(expireDate != null  && !expireDate.equals(product.getExpireDate().toString())){
+            product.setExpireDate(expireDate);
         }
 
         productRepository.save(product);
@@ -100,6 +110,6 @@ public class ProductService {
 
     public List<Product> getProductByCategory(String category) {
         return productRepository.findByCategory(category);
->>>>>>> origin/main
+
     }
 }

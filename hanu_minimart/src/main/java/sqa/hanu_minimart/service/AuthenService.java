@@ -1,5 +1,12 @@
 package sqa.hanu_minimart.service;
 
+import java.net.URI;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +16,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import sqa.hanu_minimart.model.Cart;
+import sqa.hanu_minimart.model.Order;
 import sqa.hanu_minimart.model.Role;
 import sqa.hanu_minimart.model.RoleName;
 import sqa.hanu_minimart.model.User;
@@ -23,10 +32,6 @@ import sqa.hanu_minimart.repository.RoleRepository;
 import sqa.hanu_minimart.repository.UserRepository;
 import sqa.hanu_minimart.security.JwtTokenProvider;
 import sun.applet.AppletSecurityException;
-
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.Collections;
 
 @Service
 public class AuthenService{
@@ -45,7 +50,9 @@ public class AuthenService{
 
     @Autowired
     JwtTokenProvider tokenProvider;
-
+    
+    CartService cartService;
+    OrderService orderService;
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -87,7 +94,9 @@ public class AuthenService{
         user.setRoles(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
-
+        
+        cartService.addNewCart(new Cart(user.getId(), user, new Date()));
+        
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(result.getUsername()).toUri();
