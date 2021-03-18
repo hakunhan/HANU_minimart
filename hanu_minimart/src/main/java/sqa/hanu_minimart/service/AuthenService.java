@@ -85,7 +85,6 @@ public class AuthenService{
         user.setUsername(signUpRequest.getUsername());
         user.setPhoneNumber(signUpRequest.getPhoneNumber());
         user.setAddress(signUpRequest.getAddress());
-
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
         Role userRole = roleRepository.findByName(RoleName.ROLE_CUSTOMER)
@@ -94,9 +93,10 @@ public class AuthenService{
         user.setRoles(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
-        
-        cartService.addNewCart(new Cart(user.getId(), user, new Date()));
-        
+        Cart cart = new Cart(user.getId(), user, new Date());
+        cartService.addNewCart(cart);
+        user.setCart(cart);
+        result = userRepository.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
                 .buildAndExpand(result.getUsername()).toUri();

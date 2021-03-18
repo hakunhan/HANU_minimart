@@ -10,7 +10,6 @@ import java.util.Set;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import sqa.hanu_minimart.model.Cart;
@@ -19,9 +18,8 @@ import sqa.hanu_minimart.model.Order;
 import sqa.hanu_minimart.model.OrderLine;
 import sqa.hanu_minimart.model.Product;
 import sqa.hanu_minimart.model.User;
-import sqa.hanu_minimart.repository.CartRepository;
 import sqa.hanu_minimart.repository.OrderRepository;
-import sqa.hanu_minimart.security.UserPrincipal;
+
 
 @Service
 public class OrderService {
@@ -36,7 +34,7 @@ public class OrderService {
 	@Autowired
 	private CartItemService cartItemSevice;
 	@Autowired
-	private CartRepository cartRepository;
+	private CartService cartService;
 	public OrderService() {}
 	
 	public List<Order> getAllOrder(){
@@ -45,9 +43,8 @@ public class OrderService {
 	public Order getOrderById(Long id) {
 		return orderRepository.findById(id).get();
 	}
-	public Order addNewOrder(Cart cart) {
-		UserPrincipal principal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = (User) accountService.getAllAccount(principal.getId(), null, null, null, null, 0, 0, null);
+	public Order addNewOrder(Cart cart, Long userId) {
+		User user = (User) accountService.getAllAccount(userId, null, null, null, null, 0, 0, null);
 		
 		Calendar cal = Calendar.getInstance(); // creates calendar
         cal.setTime(new Date());               // sets calendar time/date
@@ -81,8 +78,7 @@ public class OrderService {
 			}
 		}
 		cartItemSevice.deleteAll();
-		cart.setCartItem(null);
-		cartRepository.save(cart);
+		cartService.update(userId, null);
 		order.setTotal(total);
 		order.setOrderLine(orderLine);
 		return orderRepository.save(order);
