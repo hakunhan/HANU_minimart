@@ -1,5 +1,6 @@
 package sqa.hanu_minimart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -61,6 +62,13 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Cart cart;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private Set<Order> order = new HashSet<>();
 
     public User() {
 

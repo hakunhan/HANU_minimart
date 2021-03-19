@@ -8,18 +8,19 @@ import org.springframework.stereotype.Service;
 import sqa.hanu_minimart.model.CartItem;
 import sqa.hanu_minimart.repository.CartItemRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 public class CartItemService {
+
 	@Autowired
 	private CartItemRepository cartItemRepository;
-	public CartItemService() {
-		
-	}
 	
 	public List<CartItem> getAllItem(){
 		return cartItemRepository.findAll();
 	}
-	public CartItem getById(int id) {
+
+	public CartItem getById(Long id) {
 		return cartItemRepository.findById(id).get();
 	}
 
@@ -29,18 +30,23 @@ public class CartItemService {
 	public CartItem addNewItem(CartItem cartItem) {
 		return cartItemRepository.save(cartItem);
 	}
-	public void deleteItem(int id) {
+
+	public void deleteItem(Long id) {
 		if(!cartItemRepository.existsById(id)) {
 			throw new IllegalStateException("Item is not exits");
 		}
 		cartItemRepository.deleteById(id);
 	}
-	public void deleteAll() {
-		cartItemRepository.deleteAll();
+
+	public void deleteByCartId(Long cartId) {
+		cartItemRepository.deleteAllByCart_Id(cartId);
 	}
-	public void updateItem(int id, int quantity) {
+
+	@Transactional
+	public void updateItem(Long id, int quantity) {
 		CartItem cartItem = cartItemRepository.findById(id)
 				.orElseThrow(() -> new IllegalStateException("Item does not exist!"));
 		cartItem.setQuantity(quantity);
+		cartItemRepository.save(cartItem);
 	}
 }

@@ -8,7 +8,7 @@ import sqa.hanu_minimart.model.Order;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Integer> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query(value = "SELECT * FROM OrderLine WHERE status = false", nativeQuery = true)
     List<Order> getPendingOrder();

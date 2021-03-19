@@ -10,20 +10,20 @@ import sqa.hanu_minimart.repository.OrderLineRepository;
 import sqa.hanu_minimart.repository.OrderRepository;
 import sqa.hanu_minimart.repository.ProductRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class OrderLineService {
-    private final OrderLineRepository orderLineRepository;
-    private final OrderRepository orderRepository;
-    private final ProductRepository productRepository;
+    @Autowired
+    private OrderLineRepository orderLineRepository;
 
     @Autowired
-    public OrderLineService(OrderLineRepository orderLineRepository, OrderRepository orderRepository, ProductRepository productRepository) {
-        this.orderLineRepository = orderLineRepository;
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
-    }
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
 
     public List<OrderLine> getAllOrderLine() {
         return orderLineRepository.findAll();
@@ -32,22 +32,26 @@ public class OrderLineService {
     /*  TODO: sửa lại tạo order line với việc nhận Order ID và tìm Order tương ứng trong db
      *           nếu không thấy trong db trả lại exception
      */
-    public void createNewOrderLine(int orderID, int orderLineID, int quantity, String product) {
-        List<Product> list = productRepository.findByNameContaining(product);
-        Product currProduct = list.get(0);
-        double price = currProduct.getPrice() * quantity;
-        //TODO: sửa lại repository để tìm order bằng ID
-        Order order = null;
-        OrderLine o = new OrderLine(orderLineID, order, quantity, product, price);
-        orderLineRepository.save(o);
+    public void addNewOrderItem(OrderLine orderItem) {
+        orderLineRepository.save(orderItem);
     }
 
-    public void deleteOrderLine(int id) {
-        boolean exists = productRepository.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("Order lien doesnt exist!");
-        }
+    public void deleteAll() {
+        orderLineRepository.deleteAll();
+    }
+
+    public void deleteById(Long id) {
         orderLineRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void update(OrderLine orderLine, Long id) {
+        if(!orderLineRepository.existsById(id)) {
+            throw new IllegalStateException("OrderItem does not exist.");
+        }
+        OrderLine currentOrderLine = orderLineRepository.findById(id).get();
+        currentOrderLine.setQuantity(orderLine.getQuantity());
+        orderLineRepository.save(currentOrderLine);
     }
 
     public List<OrderLine> findByOrderID(int orderID) {

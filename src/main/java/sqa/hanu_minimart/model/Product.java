@@ -1,8 +1,12 @@
 package sqa.hanu_minimart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name = "Product")
@@ -35,6 +39,12 @@ public class Product {
     private LocalDateTime updateAt;
     private LocalDate expireDate;
 
+    @OneToMany(mappedBy = "order")
+    private Set<OrderLine> orderLine = new HashSet<>();
+    @OneToMany(mappedBy = "cart")
+    private Set<CartItem> cartItem = new HashSet<>();
+
+
     public Product(String name, double price, int quantity, String category,
                    LocalDate expireDate) {
         this.name = name;
@@ -55,7 +65,7 @@ public class Product {
         this.expireDate = expireDate;
         this.description = description;
     }
-    
+
     public Product(String name, double price, int quantity, String category,
                    LocalDate expireDate, String picture_URL, String description) {
         this.name = name;
@@ -165,6 +175,34 @@ public class Product {
 
     public void setExpireDate(LocalDate expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public ProductStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ProductStatus status) {
+        this.status = status;
+    }
+
+    public void setImportDate(LocalDateTime importDate) {
+        this.importDate = importDate;
+    }
+
+    public Set<OrderLine> getOrderLine() {
+        return orderLine;
+    }
+
+    public void setOrderLine(Set<OrderLine> orderLine) {
+        this.orderLine = orderLine;
+    }
+
+    public Set<CartItem> getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(Set<CartItem> cartItem) {
+        this.cartItem = cartItem;
     }
 
     @Override

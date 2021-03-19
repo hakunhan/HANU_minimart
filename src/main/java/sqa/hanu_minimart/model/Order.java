@@ -1,7 +1,10 @@
 package sqa.hanu_minimart.model;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,24 +14,38 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "INT(6) UNSIGNED ", precision = 6, updatable = false)
-    private int id;
+    private Long id;
+
     @ManyToOne(optional = true)
+    @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany
+
+    @OneToMany(mappedBy = "order")
     private Set<OrderLine> orderLine = new HashSet<>();
+
     @Lob
     private String deliveryNotes;
-    private LocalDate deliverTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deliverTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createdTime;
+
     @Column(name = "billing_address")
     private String billingAddress;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private OrderStatus status;
+
     @Transient
     private Double total;
 
-    public Order(int id, User user, String deliveryNotes, String billingAddress, OrderStatus status) {
-        this.id = id;
+    public Order(User user, Date deliverTime, String deliveryNotes, String billingAddress, OrderStatus status) {
         this.user = user;
+        this.deliverTime = deliverTime;
         this.deliveryNotes = deliveryNotes;
         this.billingAddress = billingAddress;
         this.status = status;
@@ -38,11 +55,11 @@ public class Order {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,12 +87,20 @@ public class Order {
         this.deliveryNotes = deliveryNotes;
     }
 
-    public LocalDate getDeliverTime() {
+    public Date getDeliverTime() {
         return deliverTime;
     }
 
-    public void setDeliverTime(LocalDate deliverTime) {
+    public void setDeliverTime(Date deliverTime) {
         this.deliverTime = deliverTime;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     public String getBillingAddress() {
@@ -100,19 +125,5 @@ public class Order {
 
     public void setTotal(Double total) {
         this.total = total;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", user=" + user +
-                ", orderLine=" + orderLine +
-                ", deliveryNotes='" + deliveryNotes + '\'' +
-                ", deliverTime=" + deliverTime +
-                ", billingAddress='" + billingAddress + '\'' +
-                ", status=" + status +
-                ", total=" + total +
-                '}';
     }
 }

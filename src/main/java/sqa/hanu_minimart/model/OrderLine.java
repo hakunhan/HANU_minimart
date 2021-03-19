@@ -8,19 +8,24 @@ import java.util.List;
 public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderLineID", columnDefinition = "int(6) UNSIGNED", updatable = false)
-    private int orderLineID;
+    @Column(name = "id", columnDefinition = "int(6) UNSIGNED", updatable = false)
+    private Long orderLineID;
+
     @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
+
     @Column(name = "quantity",columnDefinition = "int(10) not null")
     private int quantity;
-    @Column(name = "product",length = 30)
-    private String product;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     @Transient
     private double price;
 
-    public OrderLine(int orderLineID, Order order, int quantity, String product, double price) {
-        this.orderLineID = orderLineID;
+    public OrderLine(Order order, int quantity, Product product, double price) {
         this.order = order;
         this.quantity = quantity;
         this.product = product;
@@ -31,11 +36,11 @@ public class OrderLine {
 
     }
 
-    public int getOrderLineID() {
+    public Long getOrderLineID() {
         return orderLineID;
     }
 
-    public void setOrderLineID(int orderLineID) {
+    public void setOrderLineID(Long orderLineID) {
         this.orderLineID = orderLineID;
     }
 
@@ -55,11 +60,11 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
-    public String getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(String product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 

@@ -1,5 +1,8 @@
 package sqa.hanu_minimart.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,15 +21,22 @@ import javax.persistence.TemporalType;
 public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
+
 	@OneToOne(optional = true)
 	private User user;
-	@OneToMany
+
+	@OneToMany(mappedBy = "cart")
 	private Set<CartItem> cartItem = new HashSet<>();
+
 	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
 	private Date createdAt;
+
 	@Temporal(TemporalType.TIMESTAMP)
+	@LastModifiedDate
 	private Date updateAt;
+
 	@Lob
 	private String content;
 	
@@ -34,42 +44,49 @@ public class Cart {
 		super();
 	}
 	
-	public Cart(int id, User user, Date createdAt, Date updateAt, String content) {
+	public Cart(Long id, User user, String content) {
 		super();
 		this.id = id;
 		this.user = user;
-		this.createdAt = createdAt;
-		this.updateAt = updateAt;
 		this.content = content;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public Date getUpdateAt() {
 		return updateAt;
 	}
+
 	public void setUpdateAt(Date updateAt) {
 		this.updateAt = updateAt;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
@@ -81,5 +98,4 @@ public class Cart {
 	public void setCartItem(Set<CartItem> cartItem) {
 		this.cartItem = cartItem;
 	}
-	
 }

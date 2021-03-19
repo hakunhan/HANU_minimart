@@ -1,30 +1,37 @@
 package sqa.hanu_minimart.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
+
 	@ManyToOne
+	@JoinColumn(name = "product_id")
 	private Product product;
+
 	@ManyToOne
+	@JoinColumn(name = "cart_id")
 	private Cart cart;
+
 	private int quantity;
+
 	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
 	private Date createdAt;
+
 	@Temporal(TemporalType.TIMESTAMP)
+	@LastModifiedDate
 	private Date updatedAt;
+
 	@Lob
 	private String content;
 	
@@ -32,21 +39,18 @@ public class CartItem {
 		super();
 	}
 	
-	public CartItem(int id, Product product, Cart cart, int quantity, Date createdAt,
-			Date updatedAt, String content) {
+	public CartItem(Long id, Product product, Cart cart, int quantity, String content) {
 		super();
 		this.id = id;
 		this.product = product;
 		this.cart = cart;
 		this.quantity = quantity;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
 		this.content = content;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Product getProduct() {

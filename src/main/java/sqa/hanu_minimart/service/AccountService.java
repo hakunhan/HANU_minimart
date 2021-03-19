@@ -60,6 +60,10 @@ public class AccountService {
         return null;
     }
 
+    public User getById(Long id){
+        return userRepository.findById(id).get();
+    }
+
     public Page<User> getAccountByCondition(String name, String address, Pageable pageable){
         return userRepository.findByNameContainingOrAddressContaining(name, address, pageable);
     }
