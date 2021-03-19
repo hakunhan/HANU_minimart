@@ -26,6 +26,11 @@ import AppRouteAdmin from './admin/Layout/index';
 import ManageUser from './admin/Manageuser/user';
 import UserDetails from "./admin/Manageuser/userDetail";
 import ManageProduct from "./admin/product/showProduct/manageProduct";
+import NewProduct from  './admin/product/NewProduct/newProduct';
+import EditProduct from "./admin/product/editProduct/editProduct";
+
+
+import TestTable from "./admin/home.admin.js/testTable";
 class Hanu_minimart extends React.Component {
   constructor(props) {
     super(props);
@@ -121,6 +126,8 @@ class Hanu_minimart extends React.Component {
              
               <AppRoute isLogin={isLogin}>
                 <Home isLogin={isLogin} />
+                {/* <TestTable/> */}
+
               </AppRoute>
             </Route>
             <UnAuthenRoute isLogin={isLogin} exact path="/signup">
@@ -177,6 +184,21 @@ class Hanu_minimart extends React.Component {
            <ManageProduct Authentication = {Authentication}/>
          </AppRouteAdmin>
          </ProtectedRouteAdmin>
+
+         <ProtectedRouteAdmin isLogin= {isLoginAdmin} exact path = "/admin/manageproduct/newproduct">
+         <AppRouteAdmin  isLogin= {isLoginAdmin}>
+           <NewProduct Authentication = {Authentication}/>
+         </AppRouteAdmin>
+         </ProtectedRouteAdmin>
+
+         <ProtectedRouteAdmin isLogin= {isLoginAdmin} exact path = "/admin/manageproduct/edit/:id">
+         <AppRouteAdmin  isLogin= {isLoginAdmin}>
+           <EditProduct Authentication = {Authentication}/>
+         </AppRouteAdmin>
+         </ProtectedRouteAdmin>
+
+        
+
           </Switch>
         </BrowserRouter>
     );

@@ -26,14 +26,14 @@ class DetailProduct extends React.Component {
 
 
   myRef = React.createRef();
-  handleTab = (index) => {
-    this.setState({ index: index });
-    const images = this.myRef.current.children;
-    for (let i = 0; i < images.length; i++) {
-      images[i].className = images[i].className.replace("active", "");
-    }
-    images[index].className = "active";
-  };
+  // handleTab = (index) => {
+  //   this.setState({ index: index });
+  //   const images = this.myRef.current.children;
+  //   for (let i = 0; i < images.length; i++) {
+  //     images[i].className = images[i].className.replace("active", "");
+  //   }
+  //   images[index].className = "active";
+  // };
 
   async componentDidMount() {
     // console.log("okeyyyyyy");
@@ -54,15 +54,15 @@ class DetailProduct extends React.Component {
   }
 
   render() {
-    const { colors } = this.state;
+    // const { colors } = this.state;
     const { product_id, isSaved } = this.state;
     return (
-      <div className="details">
+      <div className="details1">
         {(isSaved) ? (
                 <div className="details" >
                   <div className="big-img">
                     <img
-                      src="https://tutimviec.com/wp-content/uploads/2018/12/vinmart-amp.jpg"
+                      src={product_id.picture_URL}
                       alt=""
                     />
                   </div>
@@ -74,8 +74,8 @@ class DetailProduct extends React.Component {
                     </div>
                     {/* <Colors colors={colors} /> */}
 
-                    <p>quantity: {product_id.quantity}</p>
-                    <p>expireDate: {product_id.expireDate}</p>
+                    <p>{product_id.description}</p>
+                    <p style={{color: "sandybrown"}}>ExpireDate: <strong>{product_id.expireDate}</strong></p>
 
                     {/* <DetailsThumb
                     images={item.src}

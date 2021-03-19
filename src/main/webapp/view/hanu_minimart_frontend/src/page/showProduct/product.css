@@ -5,9 +5,14 @@
 .Deal{
     font-family:cursive;
     color: red;
+    border: 1px solid red;
+    width: 100px;
+    border-radius: 20px 20px;
 }
 .sale{
-    background-color: yellow;
+    /* background-color: yellow; */
+    color: red;
+   
 }
 .load-more-div {
     margin-top: 20px;
@@ -32,6 +37,19 @@
     border: none;
 }
 
+.card-img-top{
+  width: 50px;
+  height: 150px;
+}
+/* .ant-card-body{
+  display: flex;
+  justify-content: center;
+    align-items: center;
+} */
+.ant-card-body{
+  /* width: 1300px; */
+  /* margin-left: 150px; */
+}
 
 
 .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {

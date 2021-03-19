@@ -1,13 +1,12 @@
 package sqa.hanu_minimart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sqa.hanu_minimart.model.Product;
 import sqa.hanu_minimart.service.ProductService;
 
-import java.time.LocalDate;
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -25,7 +24,7 @@ public class ProductController {
     // muốn lấy product theo id -> /getAll?id=
     // tương tự với name, price, ...
     @GetMapping(path = "/homepage/getAll")
-    public List<Product> getHomepageProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
+    public ResponseEntity<?> getHomepageProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
                                      @RequestParam (required = false, defaultValue = "") String name,
                                      @RequestParam (required = false, defaultValue = "-1") Double price,
                                      @RequestParam (required = false, defaultValue = "-1") Integer quantity,
@@ -34,7 +33,11 @@ public class ProductController {
                                      @RequestParam (required = false, defaultValue = "2000-03-21") String importDate,
                                      @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
                                      ){
-        return productService.getHomepageProducts(id, name, price, quantity, category, status, importDate, expireDate);
+        try{
+            return new ResponseEntity<>(productService.getHomepageProducts(id, name, price, quantity, category, status, importDate, expireDate), HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // VD cách lấy: https//localhost:8085/api/product/(...) -> thêm vào
@@ -42,34 +45,52 @@ public class ProductController {
     // muốn lấy product theo id -> /getAll?id=
     // tương tự với name, price, ...
     @GetMapping(path = "/getAll")
-    public List<Product> getProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
-                                     @RequestParam (required = false, defaultValue = "") String name,
-                                     @RequestParam (required = false, defaultValue = "-1") Double price,
-                                     @RequestParam (required = false, defaultValue = "-1") Integer quantity,
-                                     @RequestParam (required = false, defaultValue = "") String category,
-                                     @RequestParam (required = false, defaultValue = "") String status,
-                                     @RequestParam (required = false, defaultValue = "2000-03-21") String importDate,
-                                     @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
+    public ResponseEntity<?> getProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
+                                      @RequestParam (required = false, defaultValue = "") String name,
+                                      @RequestParam (required = false, defaultValue = "-1") Double price,
+                                      @RequestParam (required = false, defaultValue = "-1") Integer quantity,
+                                      @RequestParam (required = false, defaultValue = "") String category,
+                                      @RequestParam (required = false, defaultValue = "") String status,
+                                      @RequestParam (required = false, defaultValue = "2000-03-21") String importDate,
+                                      @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
                                      ){
-        return productService.getProducts(id, name, price, quantity, category, status, importDate, expireDate);
+        try{
+            return new ResponseEntity<>(productService.getProducts(id, name, price, quantity, category, status, importDate, expireDate), HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "/getCategory")
-    public List<String> getCategorys(){
-        return productService.getCategory();
+    public ResponseEntity<?> getCategorys(){
+        try{
+            return new ResponseEntity<>(productService.getCategory(), HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     @GetMapping(path = "/nearExpire")
-    public List<Product> getProductNearExpireDate(){
-        return productService.getProductNearExpireDate();
+    public ResponseEntity<?> getProductNearExpireDate(){
+        try{
+            return new ResponseEntity<>(productService.getProductNearExpireDate(), HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(path = "/add")
-    public void addNewProduct(@RequestBody Product product){
-        productService.addNewProduct(product);
+    public ResponseEntity<?> addNewProduct(@RequestBody Product product){
+        try{
+            productService.addNewProduct(product);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping(path = "/update/{id}")
-    public void updateProduct(@PathVariable("id") Integer id,
+    public ResponseEntity<?> updateProduct(@PathVariable("id") Integer id,
                               @RequestParam(required = false, defaultValue = "") String name,
                               @RequestParam(required = false, defaultValue = "-1") Double price,
                               @RequestParam(required = false, defaultValue = "-1") Integer quantity,
@@ -80,11 +101,21 @@ public class ProductController {
                               @RequestParam(required = false, defaultValue = "") String status,
                               @RequestParam(required = false, defaultValue = "") String expireDate
                               ){
-        productService.updateProduct(id, name, price, quantity, category, description, picture_URL, sale, status, expireDate);
+        try{
+            productService.updateProduct(id, name, price, quantity, category, description, picture_URL, sale, status, expireDate);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping(path = {"/delete/{id}"})
-    public void deleteProduct(@PathVariable("id") int id){
-        productService.deleteProduct(id);
+    public ResponseEntity<?> deleteProduct(@PathVariable("id") int id){
+        try{
+            productService.deleteProduct(id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

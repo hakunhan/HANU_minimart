@@ -26,9 +26,9 @@ public class Product {
     @Lob
     private String picture_URL;
     @Lob
-    private String description;
+    private String description = "This product does not have description";
     @Column(precision = 3, columnDefinition = "INT(3) UNSIGNED")
-    private Integer sale;
+    private Integer sale = 0;
     @Enumerated(EnumType.STRING)
     @Column(length = 3)
     private ProductStatus status;
@@ -54,8 +54,6 @@ public class Product {
         this.category = category;
         this.quantity = quantity;
         this.expireDate = expireDate;
-        //Add default value for description
-        this.description = "This product does not have description";
     }
 
     public Product(String name, double price, int quantity, String category,
@@ -77,6 +75,39 @@ public class Product {
         this.expireDate = expireDate;
         this.picture_URL = picture_URL;
         this.description = description;
+    }
+
+    public Product(String name, double price, int quantity, String category,
+                   LocalDate expireDate, String picture_URL, String description, String status) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+        this.expireDate = expireDate;
+        this.picture_URL = picture_URL;
+        this.description = description;
+
+        if (status.equalsIgnoreCase("new"))
+            this.status = ProductStatus.NEW;
+        else if (status.equalsIgnoreCase("hot"))
+            this.status = ProductStatus.HOT;
+    }
+
+    public Product(String name, double price, int quantity, String category,
+                   LocalDate expireDate, String picture_URL, String description, Integer sale, String status) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+        this.expireDate = expireDate;
+        this.picture_URL = picture_URL;
+        this.description = description;
+        this.sale = sale;
+
+        if (status.equalsIgnoreCase("new"))
+            this.status = ProductStatus.NEW;
+        else if (status.equalsIgnoreCase("hot"))
+            this.status = ProductStatus.HOT;
     }
 
     public Product() {

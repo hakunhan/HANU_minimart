@@ -1,5 +1,5 @@
 import React, { useDebugValue } from "react";
-
+import './index.css'
 import {
   AppstoreOutlined,
   MailOutlined,

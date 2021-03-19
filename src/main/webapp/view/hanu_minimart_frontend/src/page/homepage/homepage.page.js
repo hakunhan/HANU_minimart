@@ -58,10 +58,9 @@ class Home extends React.Component {
 
 
         </div> */}
-        <h3>Bread / Candy</h3>
           <Product/>
           <hr />
-        <div className="content">
+        {/* <div className="content">
           <div className="title1">
             <Title level={4}>
               <RotateLeftOutlined
@@ -96,7 +95,7 @@ class Home extends React.Component {
               <i>Free delivery nationwide</i>
             </h4>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

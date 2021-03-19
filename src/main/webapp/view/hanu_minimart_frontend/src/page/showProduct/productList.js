@@ -1,31 +1,34 @@
 import React from "react";
 import axios from "axios";
-import './product.css'
+import "./product.css";
 import { Card } from "antd";
 import Product from "./product";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { ReloadOutlined } from "@ant-design/icons";
 
 import { ProductConsumer } from "../../contextAPI";
 import { withRouter } from "react-router";
- class ProductList extends React.Component {
+class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       search: "",
       product: [],
+      productSale: [],
       detailProduct: null,
       steps: 6,
-      img: [
-
-      ]
+      img: [],
     };
     // this.getProduct = this.getProduct.bind(this);
     // this.getDetailProduct = this.getDetailProduct.bind(this);
     this.handleLoadMore = this.handleLoadMore.bind(this);
     this.fetch_Search_Product = this.fetch_Search_Product.bind(this);
-    this.handleChange= this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    // this.fetchDataHotSale = this.fetchDataHotSale.bind(this);
   }
+  // fetchDataHotSale(){
+  //   const {sale} = this.
+  // }
 
   getItem = (id) => {
     const product = this.state.product.find((item) => item.id === id);
@@ -49,21 +52,26 @@ import { withRouter } from "react-router";
       product: product,
       detailProduct: product,
     });
-    
-  }
-  async fetch_Search_Product(e){
-    e.preventDefault();
-    console.log(typeof this.state.search)
 
-    const url =  `http://localhost:8085/api/product/getAll?name=${this.state.search}`;
+    const productsale = this.state.product.filter((item) => item.sale > 50);
+    this.setState({
+      productSale: productsale,
+    });
+    console.log("salesssssssssssss", productsale);
+  }
+  async fetch_Search_Product(e) {
+    e.preventDefault();
+    console.log(typeof this.state.search);
+
+    const url = `http://localhost:8085/api/product/getAll?name=${this.state.search}`;
     const data = await axios.get(url);
     const product = data.data;
     this.setState({
-      product: product
-    })
+      product: product,
+    });
   }
   handleChange(event) {
-    this.setState({ search: event.target.value })
+    this.setState({ search: event.target.value });
   }
   handleLoadMore() {
     const { product, steps } = this.state;
@@ -79,29 +87,78 @@ import { withRouter } from "react-router";
   }
 
   render() {
-    const { product, steps } = this.state;
+    const { product, steps, productSale } = this.state;
     return (
-      
-        <div>
+      <div>
         <div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <form class="card card-sm" >
-                                <div class="card-body row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <i class="fas fa-search h4 text-body"></i>
-                                    </div>
-                                    <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search By Name" onChange={this.handleChange}/>
-                                    </div>
-                                    <div class="col-auto">
-                                        <button class="btn btn-lg btn-success" type="submit" onClick = {this.fetch_Search_Product}>Search</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+          <div class="col-12 col-md-10 col-lg-8">
+            <form class="card card-sm">
+              <div class="card-body row no-gutters align-items-center">
+                <div class="col-auto">
+                  <i class="fas fa-search h4 text-body"></i>
+                </div>
+                <div class="col">
+                  <input
+                    class="form-control form-control-lg form-control-borderless"
+                    type="search"
+                    placeholder="Search By Name"
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div class="col-auto">
+                  <button
+                    class="btn btn-lg btn-success"
+                    type="submit"
+                    onClick={this.fetch_Search_Product}
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <br />
+        {productSale ? (
+          <div className="content_Cart">
+            <Card>
+              <div>
+                <Button variant="danger">Flash Sale</Button>
+              </div>
+              {productSale.map((productSale, index) => {
+                if (index < steps) {
+                  return (
+                    <div>
+                      <Card.Grid style={{ width: 350 }}>
+                        <Product
+                          key={index}
+                          product={productSale}
+                          getItem={this.getItem}
+                          handleDetails={this.handleDetails}
+                        />
+                      </Card.Grid>
                     </div>
-          {product && product.length > 0 ? (
-            <div className ="content_Cart">
+                  );
+                }
+              })}
+            </Card>
+
+            <div className="load-more-div">
+              <Button variant="success" size="sm" onClick={this.handleLoadMore}>
+                <ReloadOutlined />
+                Load more
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div> ko có dữ liệu</div>
+        )}
+        <div>
+          <Button variant="outline-primary">View All</Button>
+        </div>
+        {product && product.length > 0 ? (
+          <div className="content_Cart">
             <Card>
               {product.map((product, index) => {
                 if (index < steps) {
@@ -119,27 +176,20 @@ import { withRouter } from "react-router";
                   );
                 }
               })}
-              </Card>
+            </Card>
 
-              <div className="load-more-div">
-              <Button
-                    variant="success"
-                    size="sm"
-                    onClick={this.handleLoadMore}
-                    >
-                        <ReloadOutlined />
-                        Load more
-                  
-                  </Button>
-                    </div>
+            <div className="load-more-div">
+              <Button variant="success" size="sm" onClick={this.handleLoadMore}>
+                <ReloadOutlined />
+                Load more
+              </Button>
             </div>
-          ) : (
-            <div> ko có dữ liệu</div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div> ko có dữ liệu</div>
+        )}
+      </div>
     );
   }
 }
 export default withRouter(ProductList);
-
-

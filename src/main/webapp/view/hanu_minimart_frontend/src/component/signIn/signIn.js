@@ -1,9 +1,14 @@
+import Layout from "antd/lib/layout/layout";
+import Title from "antd/lib/typography/Title";
 import axios from "axios";
 import { error } from "jquery";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+
 import "./login.css";
+const { Header } = Layout;
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +22,7 @@ class SignIn extends Component {
     this.setPassword = this.setPassword.bind(this);
     this.fetLogin = this.fetLogin.bind(this);
   }
+ 
   setUserName() {
     const userNameInput = document.querySelector("#username");
     this.setState({
@@ -24,11 +30,15 @@ class SignIn extends Component {
     });
   }
   setPassword() {
+
     const passwordInput = document.querySelector("#password");
     this.setState({
       password: passwordInput.value,
     });
+   
   }
+  
+  
   async fetLogin(e) {
     e.preventDefault();
     console.log("load.............");
@@ -40,25 +50,34 @@ class SignIn extends Component {
       usernameOrEmail: usernameOrEmail,
       password: password,
     };
-     const response = await axios.post(url, body)
-     const data = await response.data;
-     console.log(data);
-     if(data === "false"){
-       this.setState({
-         status: "password or email is not exactly"
-       })
-     }else {
-       this.createCookie("username", `${data.user.username}`,14.4);
-       this.createCookie("uid", `${data.user.id}`,14.4)
-       this.props.setStateLogin(true, () => {
-         this.props.history.push('/')
-       });
-       const Authentication = data.tokenType + " " + data.accessToken ;
-       console.log(Authentication);
+    try{
+      const response = await axios.post(url, body);
+      const data = await response.data;
+      console.log(data);
+      if (data.user.status === "ACTIVATED") {
+        this.createCookie("username", `${data.user.username}`, 14.4);
+        this.createCookie("uid", `${data.user.id}`, 14.4);
+        this.props.setStateLogin(true, () => {
+          this.props.history.push("/");
+        });
+        const Authentication = data.tokenType + " " + data.accessToken;
+        console.log(Authentication);
         this.props.saveAuthentication(Authentication, data.user);
-
-     }
-    
+      } else if (data.status !== "ACTIVATED") {
+        alert("this account is not exist");
+      }else{
+        this.setState({
+          status: "password or username is empty"
+        })
+      }
+    }catch(e){
+      console.log( "errrrrrrr");
+      this.setState({
+        status: "ERROR: password or username is not exact"
+      })
+    }
+   
+   
   }
 
   createCookie(name, value, minutes) {
@@ -74,7 +93,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className="wrapper">
+        <div className="wrapper">
         <div className="title">Register Here</div>
         <div className="social_media">
           <div className="item">
@@ -115,18 +134,20 @@ class SignIn extends Component {
               onInput={this.setPassword}
             />
             <i className="fas fa-lock"></i>
+
           </div>
           <Link className="linksignup" to="/signup">
-            {" "}
             You has not an account, go to register page{" "}
           </Link>
-          <h6>{this.state.status}</h6>
+          <h6 style={{color: "red"}}> {this.state.status}</h6>
 
           <button className="btn" type="submit" onClick={this.fetLogin}>
             Register
           </button>
         </form>
       </div>
+      
+      
     );
   }
 }

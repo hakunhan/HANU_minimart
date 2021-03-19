@@ -9,7 +9,7 @@ class UserProfile extends React.Component {
   render() {
     const { user } = this.props;
     return (
-      <div class="container">
+      <div class="">
         <div class="main-body">
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb"></ol>

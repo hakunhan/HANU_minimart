@@ -27,7 +27,6 @@ public class Cart {
 			columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private LocalDateTime createdAt;
 
-	private LocalDateTime importDate;
 	@Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	private LocalDateTime updateAt;
 
