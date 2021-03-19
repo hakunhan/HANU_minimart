@@ -31,7 +31,7 @@ public class CartItemController {
 		return cartItemService.getAllItem();
 	}
 	@GetMapping("/cartItems/{id}")
-	CartItem getById(@PathVariable int id) {
+	CartItem getById(@PathVariable Long id) {
 		return cartItemService.getById(id);
 	}
 	@PostMapping("/cartItems")
@@ -39,15 +39,15 @@ public class CartItemController {
 		return cartItemService.addNewItem(newItem);
 	}
 	@PutMapping("cartItems/{id}")
-	void updateCartItem(@PathVariable int id, @RequestParam int quantity) {
+	void updateCartItem(@PathVariable Long id, @RequestParam int quantity) {
 		cartItemService.updateItem(id, quantity);
 	}
-	@DeleteMapping("/cartItems")
-	void deleteAllCartItem() {
-		cartItemService.deleteAll();
-	}
+//	@DeleteMapping("/cartItems")
+//	void deleteAllCartItem() {
+//		cartItemService.deleteAll();
+//	}
 	@DeleteMapping("/cartItems/{id}")
-	void deleteCartItem(@PathVariable int id) {
+	void deleteCartItem(@PathVariable Long id) {
 		cartItemService.deleteItem(id);
 	}
 }
