@@ -9,6 +9,11 @@ Link for deployed frontend: https://mugglor.github.io/Hanu_minimart/
 
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
+Database azure: 
+- servername: hanuminimartrt.mysql.database.azure.com
+- username: hanuadmin@hanuminimartrt
+- password: hanu4C18
+
 A project of Software Quality Assurance course: 
 * A storage management website of mini market that:
   - Customer can see and order the products.
