@@ -22,20 +22,17 @@ public class OrderLineController {
     public List<OrderLine> getAllOrderLine(){ return orderLineService.getAllOrderLine();}
 
     @PostMapping(path = "/newOrderLine")
-    public void createNewOrderLine(@RequestParam(required = false) int orderID,
-                                   @RequestParam(required = false) String product,
-                                   @RequestParam(required = false) int quantity,
-                                   @RequestParam(required = false) int orderLineID){
-        orderLineService.createNewOrderLine(orderID, orderLineID, quantity, product);
+    public void createNewOrderLine(@RequestBody OrderLine orderItem){
+        orderLineService.addNewOrderItem(orderItem);
     }
 
-    @DeleteMapping(path ={ "/delete/{id}"})
-    public void deleteOrderLine(@PathVariable("id") int orderLineID){
-        orderLineService.deleteOrderLine(orderLineID);
-    }
+//    @DeleteMapping(path ={ "/delete/{id}"})
+//    public void deleteOrderLine(@PathVariable("id") Long orderLineID){
+//        orderLineService.deleteOrderLine(orderLineID);
+//    }
 
-    @GetMapping(path = {"/bill"})
-    public double getTotalBill(int orderID){
-         return orderLineService.getTotalBill(orderID);
-    }
+//    @GetMapping(path = {"/bill"})
+//    public double getTotalBill(Long orderID){
+//         return orderLineService.getTotalBill(orderID);
+//    }
 }

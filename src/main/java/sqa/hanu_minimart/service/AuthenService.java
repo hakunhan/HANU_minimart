@@ -27,6 +27,7 @@ import sqa.hanu_minimart.security.JwtTokenProvider;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -46,6 +47,9 @@ public class AuthenService{
 
     @Autowired
     JwtTokenProvider tokenProvider;
+
+    @Autowired
+    CartService cartService;
 
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -90,6 +94,11 @@ public class AuthenService{
         user.setRoles(Collections.singleton(userRole.get()));
 
         User result = userRepository.save(user);
+
+        Cart cart = new Cart(user.getId(), user, user.getName());
+        cartService.addNewCart(cart);
+        result.setCart(cart);
+        userRepository.save(result);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")

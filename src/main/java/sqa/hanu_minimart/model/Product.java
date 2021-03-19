@@ -40,8 +40,10 @@ public class Product {
     private LocalDate expireDate;
 
     @OneToMany(mappedBy = "order")
+    @JsonIgnore
     private Set<OrderLine> orderLine = new HashSet<>();
     @OneToMany(mappedBy = "cart")
+    @JsonIgnore
     private Set<CartItem> cartItem = new HashSet<>();
 
 

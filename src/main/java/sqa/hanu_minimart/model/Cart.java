@@ -1,5 +1,6 @@
 package sqa.hanu_minimart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -27,6 +28,7 @@ public class Cart {
 	private User user;
 
 	@OneToMany(mappedBy = "cart")
+	@JsonIgnore
 	private Set<CartItem> cartItem = new HashSet<>();
 
 	@Temporal(TemporalType.TIMESTAMP)

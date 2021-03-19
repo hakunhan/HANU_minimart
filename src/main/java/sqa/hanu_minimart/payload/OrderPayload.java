@@ -42,14 +42,6 @@ public class OrderPayload {
         this.deliveryNotes = deliveryNotes;
     }
 
-    public Date getDeliverTime() {
-        return deliverTime;
-    }
-
-    public void setDeliverTime(Date deliverTime) {
-        this.deliverTime = deliverTime;
-    }
-
     public String getBillingAddress() {
         return billingAddress;
     }

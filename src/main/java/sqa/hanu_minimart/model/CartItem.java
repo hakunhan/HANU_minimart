@@ -40,7 +40,6 @@ public class CartItem {
 	}
 	
 	public CartItem(Long id, Product product, Cart cart, int quantity, String content) {
-		super();
 		this.id = id;
 		this.product = product;
 		this.cart = cart;

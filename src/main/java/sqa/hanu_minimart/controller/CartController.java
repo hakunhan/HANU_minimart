@@ -28,7 +28,7 @@ public class CartController {
 	}
 	
 	@GetMapping("/carts/{id}")
-	Cart getOne(@PathVariable int id) {
+	Cart getOne(@PathVariable Long id) {
 		return cartService.getCartById(id);
 	}
 	@PostMapping("/carts")
@@ -37,7 +37,7 @@ public class CartController {
 	}
 	
 	@DeleteMapping("/carts/{id}")
-	void deleteCart(@PathVariable int id) {
+	void deleteCart(@PathVariable Long id) {
 		cartService.deleteCart(id);
 	}
 }

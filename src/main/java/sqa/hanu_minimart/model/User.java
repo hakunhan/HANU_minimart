@@ -64,6 +64,7 @@ public class User {
     private UserStatus status;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonIgnore
     private Cart cart;
 
     @OneToMany(mappedBy = "user")
@@ -145,5 +146,25 @@ public class User {
 
     public void setStatus(String status) {
         this.status = UserStatus.valueOf(status);
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Set<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order) {
+        this.order = order;
     }
 }

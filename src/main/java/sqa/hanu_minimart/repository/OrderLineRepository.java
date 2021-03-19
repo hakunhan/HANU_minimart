@@ -5,8 +5,11 @@ import sqa.hanu_minimart.model.OrderLine;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderLineRepository extends JpaRepository<OrderLine,Long> {
-    List<OrderLine> findById(int orderID);
+    Optional<OrderLine> findById(Long orderID);
+
+    List<OrderLine> findByOrder_Id(Long orderId);
 
 }

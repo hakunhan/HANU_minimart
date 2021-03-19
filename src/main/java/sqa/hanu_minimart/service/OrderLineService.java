@@ -54,11 +54,11 @@ public class OrderLineService {
         orderLineRepository.save(currentOrderLine);
     }
 
-    public List<OrderLine> findByOrderID(int orderID) {
-        return orderLineRepository.findById(orderID);
+    public List<OrderLine> findByOrderID(Long orderID) {
+        return orderLineRepository.findByOrder_Id(orderID);
     }
 
-    public double getTotalBill(int orderID) {
+    public double getTotalBill(Long orderID) {
         List<OrderLine> list = findByOrderID(orderID);
         double total = 0;
         for (int i = 0; i < list.size(); i++) {
