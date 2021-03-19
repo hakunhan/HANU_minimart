@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import { Layout } from "antd";
 import Title from "antd/lib/typography/Title";
 import { Link, withRouter } from "react-router-dom";
-import SiderMenu from "./SiderMenu"
+import SiderMenu from "./SiderMenu";
 import Navbar from "./navbar";
 // import Product from '../product/productList';
 
@@ -17,14 +17,14 @@ class AppRoute extends React.Component {
   }
   render() {
     const { children, isLogin } = this.props;
-    console.log('approutprops', this.props)
+    console.log("approutprops", this.props);
     return (
       <Layout style={{ backgroundColor: "red" }}>
         <Header style={{ padding: 10 }}>
-          <Navbar isLogin={isLogin} />
           <Title style={{ color: "white" }} level={3}>
-            <Link to="/"> HANU_mimimart</Link>
+            <Link to="/"> HANU_minimart</Link>
           </Title>
+          <Navbar isLogin={isLogin} />
         </Header>
         <Layout>
           <SiderMenu />

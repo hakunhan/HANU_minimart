@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./product.css";
 class Product extends React.Component {
   render() {
-    const { id, name, price, expiredDate } = this.props.product;
+    const { id, name, price, expiredDate,picture_URL, sale } = this.props.product;
     return (
       <div className="card_product">
         <Card
@@ -22,15 +22,15 @@ class Product extends React.Component {
             <Card.Img
               variant="top"
               src={
-                "https://vincom.com.vn/sites/default/files/2016-10/VinMart_1.jpg"
+                picture_URL
               }
             />
           </Link>
           <Card.Body>
             <Card.Title> {name}</Card.Title>
-            <p className="Deal">
-              shock deal: <i className="sale">SaleOff 50%</i>
-            </p>
+            <div className="Deal">
+              <i className="sale">SaleOff {sale} %</i>
+            </div>
           </Card.Body>
           <Card.Footer className="footer">
             <Row>

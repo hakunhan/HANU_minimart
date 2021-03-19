@@ -34,7 +34,7 @@ public class ProductController {
                                      @RequestParam (required = false, defaultValue = "2000-03-21") String expireDate
                                      ){
         try{
-            return new ResponseEntity<>(productService.getProducts(id, name, price, quantity, category, status, importDate, expireDate), HttpStatus.OK);
+            return new ResponseEntity<>(productService.getHomepageProducts(id, name, price, quantity, category, status, importDate, expireDate), HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

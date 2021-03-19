@@ -1,3 +1,10 @@
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .infoProduct{
     font-family:serif;
     width: 100%;
@@ -36,4 +43,15 @@ label{
 }
 .ExpiredDate input{
     margin-left: -40px;
+}
+.new{
+    width: 100px;
+    height: 35px;
+    border-radius: 20px 20px;
+    color: #fff;
+    background-color: #7498e6;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

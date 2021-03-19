@@ -39,7 +39,10 @@ class AdminSignIn extends Component {
       usernameOrEmail: usernameOrEmail,
       password: password,
     };
-     const response = await axios.post(url, body)
+
+    try{
+
+      const response = await axios.post(url, body)
      const data = await response.data;
      console.log(data.user);
      if(data.user.roles[0].name === "ROLE_ADMIN"){
@@ -57,6 +60,12 @@ class AdminSignIn extends Component {
         status: "password or email is not exactly or you is not admin"
       })
      }
+    }catch(e){
+      this.setState({
+        status: "ERROR: password or email is not exactly "
+      })
+    }
+     
     
   }
 
@@ -118,7 +127,7 @@ class AdminSignIn extends Component {
           <Link className="linksignup" to="/signup">
             You has not an account, go to register page{" "}
           </Link>
-          <h6>{this.state.status}</h6>
+          <h6 style={{color: "red"}}>{this.state.status}</h6>
 
           <button className="btn" type="submit" onClick={this.fetLogin}>
             Register

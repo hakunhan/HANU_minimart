@@ -1,11 +1,10 @@
 .containerSlide {
-    width: 900px;
-    margin: auto;
+  width: 900px;
+  margin: auto;
+  box-shadow: 5px 5px 15px #7498e6;
 }
 
 .containerSlide img {
-    height: 350px;
-    width: 900px;
+  height: 350px;
+  width: 900px;
 }
-
-

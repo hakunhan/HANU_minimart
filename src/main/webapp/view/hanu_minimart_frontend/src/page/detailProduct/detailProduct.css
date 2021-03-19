@@ -9,6 +9,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     padding: 30px 0;
+    box-shadow: 8px 11px 17px #7498e6;;
   }
   .details .big-img{
     max-width: 500px;
@@ -28,6 +29,7 @@
     max-width: 500px;
     min-width: 290px;
     margin: 25px;
+
   }
   .box .row{
     display: flex;

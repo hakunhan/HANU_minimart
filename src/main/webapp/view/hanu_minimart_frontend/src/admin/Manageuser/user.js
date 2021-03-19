@@ -10,9 +10,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Button } from "bootstrap";
-
-
+import { Button } from "react-bootstrap";
 
 //  const useStyles = makeStyles({
 //   table: {
@@ -27,12 +25,36 @@ class ManageUser extends React.Component {
       Authentication: this.props.Authentication,
       user: null,
       dataSource: [],
+      showList: [],
+      search: "",
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.fetch_Search_User = this.fetch_Search_User.bind(this);
+  }
+
+  async fetch_Search_User(e) {
+    e.preventDefault();
+    console.log("a_______________", typeof this.state.search);
+
+    const url = `http://localhost:8085/api/account/getAll?name=${this.state.search}`;
+    const getData = await axios({
+      method: "GET",
+      url,
+      headers: { authorization: this.state.Authentication },
+    });
+    const user_data = getData.data.content;
+    this.setState({
+      dataSource: user_data,
+    });
+    console.log("data search ------", user_data);
+  }
+
+  handleChange(event) {
+    this.setState({ search: event.target.value });
   }
 
   async componentDidMount() {
     console.log("start.................");
-    console.log(this.state.Authentication);
     const url = "http://localhost:8085/api/account/getAll";
     //    const postAuthen = await axios({method: "POST", url, headers:{authorization: this.state.Authentication}})
     const getData = await axios({
@@ -40,22 +62,41 @@ class ManageUser extends React.Component {
       url,
       headers: { authorization: this.state.Authentication },
     });
-    this.setState({
-      dataSource: getData.data.content,
+    // const data_Active = getData.data.content.filter((user) => user.status === "ACTIVATED")
+
+    const filter = getData.data.content.filter((user) => {
+      return user.status === "ACTIVATED";
     });
-    console.log(getData.data.content);
+    console.log(filter);
+    this.setState({
+      dataSource: filter,
+    });
+    console.log(typeof this.state.dataSource);
 
     console.log("end.................");
   }
   render() {
     const { dataSource } = this.state;
-    // const classes = useStyles();
+   
     return (
       <div>
-        {dataSource.length > 1 ? (
+        <div>
+          <form>
+            <input
+              style={{ border: "1px solid blue", width: 300, height: 37 }}
+              placeholder="Search "
+              onInput={this.handleChange}
+            />
+            <Button type="submit" onClick={this.fetch_Search_User}>
+              Search
+            </Button>
+          </form>
+        </div>
+        <br />
+        {dataSource.length >= 1 ? (
           <div>
             <TableContainer component={Paper}>
-              <Table style={{minWidth: 650}} aria-label="simple table">
+              <Table style={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>Id</TableCell>
@@ -64,7 +105,6 @@ class ManageUser extends React.Component {
                     <TableCell align="right">Address</TableCell>
                     <TableCell align="right">PhoneNumber</TableCell>
                     <TableCell align="right">Action</TableCell>
-
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -77,8 +117,14 @@ class ManageUser extends React.Component {
                       <TableCell align="right">{user.username}</TableCell>
                       <TableCell align="right">{user.address}</TableCell>
                       <TableCell align="right">{user.phoneNumber}</TableCell>
-                      <TableCell align="right"><Link style= {{color: "blue"}} to = {`/admin/manageuser/${user.id}`}>Edit</Link></TableCell>
-                      
+                      <TableCell align="right">
+                        <Link
+                          style={{ color: "blue" }}
+                          to={`/admin/manageuser/${user.id}`}
+                        >
+                          Edit
+                        </Link>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
