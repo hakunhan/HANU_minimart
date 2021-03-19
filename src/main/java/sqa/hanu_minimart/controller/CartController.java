@@ -3,14 +3,7 @@ package sqa.hanu_minimart.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import sqa.hanu_minimart.model.Cart;
 import sqa.hanu_minimart.service.CartService;
@@ -25,6 +18,11 @@ public class CartController {
 	@GetMapping("/carts")
 	List<Cart> getAll() {
 		return cartService.getAllCart();
+	}
+
+	@GetMapping("/carts/getByUser")
+	Cart getByUser(@RequestParam Long userId){
+		return cartService.getByUserId(userId);
 	}
 	
 	@GetMapping("/carts/{id}")

@@ -52,4 +52,8 @@ public class CartService {
 				.orElseThrow(() -> new IllegalStateException("Cart does not exist!"));
 		cartRepository.save(cart);
 	}
+
+	public Cart getByUserId(Long userId){
+		return cartRepository.findByUser_Id(userId);
+	}
 }

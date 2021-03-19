@@ -1,5 +1,6 @@
 package sqa.hanu_minimart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -21,6 +22,7 @@ public class CartItem {
 
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
+	@JsonIgnore
 	private Cart cart;
 
 	private int quantity;
@@ -40,8 +42,7 @@ public class CartItem {
 		super();
 	}
 	
-	public CartItem(Long id, Product product, Cart cart, int quantity, String content) {
-		this.id = id;
+	public CartItem(Product product, Cart cart, int quantity, String content) {
 		this.product = product;
 		this.cart = cart;
 		this.quantity = quantity;

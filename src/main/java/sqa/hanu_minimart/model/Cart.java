@@ -21,7 +21,6 @@ public class Cart {
 	private User user;
 
 	@OneToMany(mappedBy = "cart")
-	@JsonIgnore
 	private Set<CartItem> cartItem = new HashSet<>();
 
 	@Column(nullable = false, updatable = false, insertable = false,
