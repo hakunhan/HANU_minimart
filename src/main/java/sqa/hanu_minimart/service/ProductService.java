@@ -124,7 +124,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProduct(int id, String name, double price, int quantity, String category, String description, String picture_URL, Integer sale, String status, String expireDate) {
+    public void updateProduct(Integer id, String name, Double price, Integer quantity, String category, String description, String picture_URL, String sale, String status, String expireDate) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
@@ -136,7 +136,7 @@ public class ProductService {
             product.setQuantity(quantity);
         }
 
-        if(price > 0 && price != product.getPrice()){
+        if(price > 0 && !price.equals(product.getPrice())){
             productRepository.updatePrice(product.getName(), price);
         }
 
@@ -152,16 +152,16 @@ public class ProductService {
             productRepository.updatePictureURL(product.getName(), picture_URL);
         }
 
-        if(sale >= 0 && sale < 100){
-            if (sale > 0 && (product.getSale() == null || product.getSale() == 0)){
-                productRepository.updatePrice(product.getName(),product.getPrice() * (100 - sale) / 100);
-            }else if(sale > 0 && product.getSale() > 0){
-                productRepository.updatePrice(product.getName(), product.getPrice() / (100 - product.getSale()) * (100 -sale));
-            } else if(sale == 0 && product.getSale() != null && product.getSale() > 0){
+        if(!sale.equals("null") && Integer.parseInt(sale) >= 0 && Integer.parseInt(sale) < 100){
+            if (Integer.parseInt(sale) > 0 && (product.getSale() == null || product.getSale() == 0)){
+                productRepository.updatePrice(product.getName(),product.getPrice() * (100 - Integer.parseInt(sale)) / 100);
+            }else if(Integer.parseInt(sale) > 0 && product.getSale() > 0){
+                productRepository.updatePrice(product.getName(), product.getPrice() / (100 - product.getSale()) * (100 - Integer.parseInt(sale)));
+            } else if(Integer.parseInt(sale) == 0 && product.getSale() != null && product.getSale() > 0){
                 productRepository.updatePrice(product.getName(),product.getPrice() / (100 - product.getSale()) * 100);
             }
 
-            productRepository.updateSale(product.getName(), sale);
+            productRepository.updateSale(product.getName(), Integer.parseInt(sale));
         }
 
         if(status.equalsIgnoreCase("hot")){

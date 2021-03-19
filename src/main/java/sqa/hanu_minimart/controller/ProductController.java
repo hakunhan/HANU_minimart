@@ -97,7 +97,7 @@ public class ProductController {
                               @RequestParam(required = false, defaultValue = "") String category,
                               @RequestParam(required = false, defaultValue = "") String picture_URL,
                               @RequestParam(required = false, defaultValue = "") String description,
-                              @RequestParam(required = false, defaultValue = "-1") Integer sale,
+                              @RequestParam(required = false, defaultValue = "-1") String sale,
                               @RequestParam(required = false, defaultValue = "") String status,
                               @RequestParam(required = false, defaultValue = "") String expireDate
                               ){
