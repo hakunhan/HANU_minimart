@@ -4,14 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sqa.hanu_minimart.model.Product;
 import sqa.hanu_minimart.model.ProductStatus;
+import sqa.hanu_minimart.repository.CartItemRepository;
 import sqa.hanu_minimart.repository.ProductRepository;
 
-import javax.naming.directory.InvalidAttributesException;
 import javax.transaction.Transactional;
-import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -24,10 +21,14 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final CartItemRepository cartItemRepository;
+    private final OrderLineService orderLineService;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, CartItemRepository cartItemRepository, OrderLineService orderLineService) {
         this.productRepository = productRepository;
+        this.cartItemRepository = cartItemRepository;
+        this.orderLineService = orderLineService;
     }
 
     public List<Product> getHomepageProducts(Integer id, String name, Double price, Integer quantity, String category, String status, String importDate, String expireDate) {
