@@ -18,18 +18,17 @@ public class OrderLine {
 	@JoinColumn(name = "order_fk")
 	@JsonIgnore
 	private Order order;
-	@ManyToOne
-	@JoinColumn(name = "product_fk")
-	@JsonIgnore
-	private Product product;
+
+//	@JoinColumn(name = "product_name")
+	private String productName;
 	private int quantity;
 	
 	public OrderLine() {}
 
-	public OrderLine( Order order, Product product, int quantity) {
+	public OrderLine( Order order, String productName, int quantity) {
 		super();
 		this.order = order;
-		this.product = product;
+		this.productName = productName;
 		this.quantity = quantity;
 	}
 
@@ -41,12 +40,13 @@ public class OrderLine {
 		this.order = order;
 	}
 
-	public Product getProduct() {
-		return product;
+	
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public int getQuantity() {

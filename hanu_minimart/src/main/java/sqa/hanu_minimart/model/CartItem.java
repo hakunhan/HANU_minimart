@@ -19,10 +19,8 @@ public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
-	@JoinColumn(name = "produtc_fk")
-	@JsonIgnore
-	private Product product;
+
+	private String productName;
 	@ManyToOne
 	@JoinColumn(name = "cart_fk")
 	@JsonIgnore
@@ -39,11 +37,11 @@ public class CartItem {
 		super();
 	}
 	
-	public CartItem(Long id, Product product, Cart cart, int quantity, Date createdAt,
+	public CartItem(Long id, String productName, Cart cart, int quantity, Date createdAt,
 			Date updatedAt, String content) {
 		super();
 		this.id = id;
-		this.product = product;
+		this.productName = productName;
 		this.cart = cart;
 		this.quantity = quantity;
 		this.createdAt = createdAt;
@@ -56,12 +54,15 @@ public class CartItem {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Product getProduct() {
-		return product;
+	
+	public String getProductName() {
+		return productName;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
+
 	public Cart getCart() {
 		return cart;
 	}
@@ -91,6 +92,12 @@ public class CartItem {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "CartItem [id=" + id + ", productName=" + productName + ", cart=" + cart + ", quantity=" + quantity
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", content=" + content + "]";
 	}
 	
 	

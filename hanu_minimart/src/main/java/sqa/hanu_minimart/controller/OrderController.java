@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import sqa.hanu_minimart.model.Cart;
 import sqa.hanu_minimart.model.Order;
-import sqa.hanu_minimart.service.CartItemService;
-import sqa.hanu_minimart.service.CartService;
+
 import sqa.hanu_minimart.service.OrderService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -25,8 +25,6 @@ import sqa.hanu_minimart.service.OrderService;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
-	private CartService cartService;
-	private CartItemService cartItemService;
 	@GetMapping
 	public List<Order> getAll(){
 		return orderService.getAllOrder();
@@ -35,9 +33,9 @@ public class OrderController {
 	public Order getById(@PathVariable Long id) {
 		return orderService.getOrderById(id);
 	}
-	@PostMapping
-	public Order newOrder(@RequestBody Cart cart) {
-		return orderService.addNewOrder(cart);
+	@PostMapping(path = "/{id}")
+	public Order newOrder(@RequestBody Cart cart, @PathVariable Long id) {
+		return orderService.addNewOrder(cart, id);
 	}
 	@DeleteMapping("/{id}")
 	public void deleteOrder(@PathVariable Long id) {

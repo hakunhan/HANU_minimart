@@ -17,6 +17,7 @@ import java.util.Objects;
 
 @Service
 public class ProductService {
+	@Autowired
     private final ProductRepository productRepository;
 
     @Autowired
@@ -60,9 +61,8 @@ public class ProductService {
     public void updateProductQuantity(Long id ,int quantity) {
     	Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
-    	if(quantity != 0 && quantity != product.getQuantity()){
+  
             product.setQuantity(quantity);
-        }
     	productRepository.save(product);
     }
     

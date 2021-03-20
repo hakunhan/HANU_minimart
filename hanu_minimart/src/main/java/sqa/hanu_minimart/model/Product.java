@@ -44,9 +44,9 @@ public class Product {
     @OneToMany(mappedBy = "order")
     @JsonIgnore
     private Set<OrderLine> orderLine = new HashSet<>();
-    @OneToMany(mappedBy = "cart")
-    @JsonIgnore
-    private Set<CartItem> cartItem = new HashSet<>();
+//    @OneToMany(mappedBy = "cart")
+//    @JsonIgnore
+//    private Set<CartItem> cartItem = new HashSet<>();
     
     
     public Product(String name, double price, int quantity, String category, LocalDate expireDate) {
@@ -72,7 +72,6 @@ public class Product {
 		this.expireDate = expireDate;
 		this.status = status;
 		this.orderLine = orderLine;
-		this.cartItem = cartItem;
 	}
 
 	public Product() {
@@ -161,14 +160,6 @@ public class Product {
 
 	public void setOrderLine(Set<OrderLine> orderLine) {
 		this.orderLine = orderLine;
-	}
-
-	public Set<CartItem> getCartItem() {
-		return cartItem;
-	}
-
-	public void setCartItem(Set<CartItem> cartItem) {
-		this.cartItem = cartItem;
 	}
     
 }

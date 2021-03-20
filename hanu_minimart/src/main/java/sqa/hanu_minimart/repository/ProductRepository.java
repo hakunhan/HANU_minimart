@@ -4,7 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +15,10 @@ import sqa.hanu_minimart.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+	@Modifying
+	@Transactional
 	@Query(value = "Delete from product where name = ?1 and expire_date = ?2 and import_date = ?3", nativeQuery = true)
-	Product deleteByNameAndExp(String name, LocalDate exp, LocalDateTime importDate);
+	void deleteByNameAndExp(String name, LocalDate exp, LocalDateTime importDate);
 	
     List<Product> findByNameContaining(String name);
 

@@ -17,7 +17,7 @@ import sqa.hanu_minimart.repository.OrderLineRepository;
 public class OrderLineService {
 	@Autowired
 	private OrderLineRepository orderLineRepository;
-	private ProductService productService;
+	@Autowired
 	public OrderLineService() {}
 	public List<OrderLine> getAllOrderItem(){
 		return orderLineRepository.findAll();
@@ -25,8 +25,11 @@ public class OrderLineService {
 	public OrderLine getByid(Long id) {
 		return orderLineRepository.findById(id).get();
 	}
-	public void addnewOrderItem(OrderLine orderItem) {
-		orderLineRepository.save(orderItem);
+	public OrderLine addnewOrderItem(OrderLine orderItem) {
+		return orderLineRepository.save(orderItem);
+	}
+	public void update(Long orderId, Long orderItemId) {
+		orderLineRepository.update(orderId, orderItemId);
 	}
 	public void deleteAll() {
 		orderLineRepository.deleteAll();

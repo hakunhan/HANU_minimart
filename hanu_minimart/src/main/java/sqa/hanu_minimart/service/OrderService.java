@@ -44,7 +44,7 @@ public class OrderService {
 		return orderRepository.findById(id).get();
 	}
 	public Order addNewOrder(Cart cart, Long userId) {
-		User user = (User) accountService.getAllAccount(userId, null, null, null, null, 0, 0, null);
+		User user = accountService.findById(userId).get();
 		
 		Calendar cal = Calendar.getInstance(); // creates calendar
         cal.setTime(new Date());               // sets calendar time/date
@@ -52,25 +52,24 @@ public class OrderService {
         cal.getTime();                         // returns new date object plus 72 hour
 		
 		Order order = new Order(user, null, cal.getTime(), new Date(), "pending", 0);
-		
-        Set<OrderLine> orderLine = new HashSet<>();
+        Set<OrderLine> orderLines = new HashSet<>();
 		Set<CartItem> cartItem = cart.getCartItem();
 		float total = 0;
 		for(CartItem item:cartItem) {
-			String productName = item.getProduct().getName();
+			List<Product> products = productService.findProductByIdSortedByExpAndImportDate(item.getProductName());
 			int quantity = item.getQuantity();
-			total += quantity*item.getProduct().getPrice();
-			orderLine.add(new OrderLine(order, item.getProduct(), quantity));
-			orderLineService.addnewOrderItem(new OrderLine(order, item.getProduct(), quantity));
-			//product by name : sorted with importdate DESC and expDate asc
-			List<Product> products = productService.getProductByName(productName);
+			total += quantity * products.get(0).getPrice();
+
+			OrderLine orderLine = orderLineService.addnewOrderItem(new OrderLine(null, item.getProductName(), quantity));
+			orderLines.add(orderLine);
+
 			for(Product product:products) {
 				if(product.getQuantity() > quantity) {
 					productService.updateProductQuantity(product.getId(), product.getQuantity()-quantity);
 					quantity = 0 ;
 				}else {
 					quantity -= product.getQuantity();
-					productService.deleteProduct(productName, product.getExpireDate(), product.getImportDate());
+					productService.deleteProduct(item.getProductName(), product.getExpireDate(), product.getImportDate());
 				}
 				if(quantity == 0) {
 					break;
@@ -80,8 +79,12 @@ public class OrderService {
 		cartItemSevice.deleteAll();
 		cartService.update(userId, null);
 		order.setTotal(total);
-		order.setOrderLine(orderLine);
-		return orderRepository.save(order);
+		order.setOrderLine(orderLines);
+		order = orderRepository.save(order);
+		for(OrderLine orderLine:orderLines) {
+			orderLineService.update(order.getId(), orderLine.getId());
+		}
+		return order;
 	}
 	public void deleteOrder(Long id) {
 		if(!orderRepository.existsById(id)) {

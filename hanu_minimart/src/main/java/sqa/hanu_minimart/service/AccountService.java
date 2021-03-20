@@ -83,7 +83,9 @@ public class AccountService {
 
         return _user;
     }
-
+    public Optional<User> findById(Long id){
+    	return userRepository.findById(id);
+    }
     // deactivate the account
 //    public void deleteUser (Long id){
 //        Optional<User> userData = userRepository.findById(id);
