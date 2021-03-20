@@ -28,10 +28,11 @@ public class OrderLine {
     @Transient
     private Double price;
 
-    public OrderLine(Order order, String productName, Integer quantity) {
+    public OrderLine(Order order, String productName, Integer quantity, Double price) {
         this.order = order;
         this.quantity = quantity;
         this.productName = productName;
+        this.price = price;
     }
 
     public OrderLine() {

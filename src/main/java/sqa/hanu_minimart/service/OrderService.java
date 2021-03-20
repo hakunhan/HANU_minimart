@@ -69,7 +69,7 @@ public class OrderService {
 
             total += quantity * products.get(0).getPrice();
 
-            OrderLine orderLine = new OrderLine(order, item.getProductName(), quantity);
+            OrderLine orderLine = new OrderLine(order, item.getProductName(), quantity, products.get(0).getPrice());
             orderLine.setEnough(quantity <= totalProductInStorage);
 
             orderLines.add(orderLine);
