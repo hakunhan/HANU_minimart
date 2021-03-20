@@ -64,8 +64,7 @@ class EditProduct extends React.Component {
     //   console.log(body);
 
       try{
-          const url =`http://localhost:8085/api/product/update/${id1}
-          ?name=${name}&price=${price}&quantity=${quantity}&description=${description}&category=${category}&picture_URL=${picture_URL}&sale=${sale}&expireDate=${expireDate}`;
+          const url =`http://localhost:8085/api/product/update/${id1}?name=${name}&price=${price}&quantity=${quantity}&description=${description}&category=${category}&picture_URL=${picture_URL}&sale=${sale}&expireDate=${expireDate}`;
           console.log("link kkkkkkkkkkkkkk",url);
           const sendData = await axios.put(url);
           console.log(sendData.data);
@@ -254,6 +253,7 @@ class EditProduct extends React.Component {
                           type="text"
                           class="form-control"
                           id="expireDate"
+                          type="date"
                           defaultValue={product.expireDate}
                           onChange={this.handleChangeInput}
 

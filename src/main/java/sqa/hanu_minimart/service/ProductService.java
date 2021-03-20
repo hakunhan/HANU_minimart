@@ -170,6 +170,11 @@ public class ProductService {
             productRepository.updateStatus(product.getName(), ProductStatus.NEW.toString());
         }
 
+        if(!LocalDate.parse(expireDate).equals(product.getExpireDate())){
+            System.out.println(expireDate);
+            product.setExpireDate(LocalDate.parse(expireDate));
+        }
+
         productRepository.save(product);
     }
 

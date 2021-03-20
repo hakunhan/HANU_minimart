@@ -143,7 +143,7 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="title">Register Here</div>
+        <div className="title">Sign up</div>
         <div className="social_media">
           <div className="item">
             <i className="fab fa-facebook-f"></i>
@@ -177,7 +177,7 @@ class SignUp extends React.Component {
               id="username"
               name="username"
               type="text"
-              placeholder="UserName"
+              placeholder="Username"
               className="input"
               onInput={this.setUserName}
             />
@@ -212,7 +212,7 @@ class SignUp extends React.Component {
               id="phoneNumber"
               name="phoneNumber"
               type="number"
-              placeholder="PhoneNumber"
+              placeholder="Phone number"
               className="input"
               onInput={this.setPhoneNumber}
             />

@@ -83,7 +83,7 @@ class AdminSignIn extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="title">Register Here</div>
+        <div className="title">Sign In</div>
         <div className="social_media">
           <div className="item">
             <i className="fab fa-facebook-f"></i>
@@ -106,7 +106,7 @@ class AdminSignIn extends Component {
               id="username"
               name="username"
               type="text"
-              placeholder="UserName"
+              placeholder="Username"
               className="input"
               onInput={this.setUserName}
             />
@@ -125,12 +125,12 @@ class AdminSignIn extends Component {
             <i className="fas fa-lock"></i>
           </div>
           <Link className="linksignup" to="/signup">
-            You has not an account, go to register page{" "}
+            Register account{" "}
           </Link>
           <h6 style={{color: "red"}}>{this.state.status}</h6>
 
           <button className="btn" type="submit" onClick={this.fetLogin}>
-            Register
+            Sign in
           </button>
         </form>
       </div>

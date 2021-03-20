@@ -114,11 +114,11 @@ class SignUp extends React.Component {
             <i className="fas fa-user"></i>
           </div>
           <div className="input_field">
-            <input
+            <input	
             id = "username"
               name="username"
               type="text"
-              placeholder="UserName"
+              placeholder="Username"
               className="input"
               onInput= {this.setUserName}
             />
@@ -151,7 +151,7 @@ class SignUp extends React.Component {
             id = 'phoneNumber'
               name="phoneNumber"
               type="number"
-              placeholder="PhoneNumber"
+              placeholder="Phone number"
               className="input"
               onInput= {this.setPhoneNumber}
             />

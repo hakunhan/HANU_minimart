@@ -94,7 +94,7 @@ class SignIn extends Component {
   render() {
     return (
         <div className="wrapper">
-        <div className="title">Register Here</div>
+        <div className="title">Sign in</div>
         <div className="social_media">
           <div className="item">
             <i className="fab fa-facebook-f"></i>
@@ -117,7 +117,7 @@ class SignIn extends Component {
               id="username"
               name="username"
               type="text"
-              placeholder="UserName"
+              placeholder="User name"
               className="input"
               onInput={this.setUserName}
             />
