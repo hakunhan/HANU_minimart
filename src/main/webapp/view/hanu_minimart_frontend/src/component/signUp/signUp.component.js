@@ -23,6 +23,24 @@ class SignUp extends React.Component {
 
     this.checkPassword = this.checkPassword.bind(this);
   }
+  checkName(name){
+	if (name.length < 0) {
+		return 0;
+	}else if (name.length < 2){
+		return 1;
+	}else if (name.length > 40){
+		return 2;
+	}
+  }
+  checkUsername(username){
+	if (username.length < 0) {
+		return 0;
+	}else if (username.length < 3){
+		return 1;
+	}else if (username.length > 15){
+		return 2;
+	}
+  }
   checkPassword(password) {
     let strength = 0;
     if (password.length < 6) {
@@ -46,41 +64,60 @@ class SignUp extends React.Component {
     console.log("passtrength: ", strength);
     return strength;
   }
+  checkPhoneNumber(phoneNumber){
+	if (phoneNumber.length < 0) {
+		return 0;
+	}
+
+	if (typeof phoneNumber !== "undefined") {
+		var pattern = new RegExp(/^[0-9\b]+$/);
+
+		if (!pattern.test(phoneNumber)) {
+			return 1;
+		}else if(phoneNumber.length != 10){
+			return 2;
+		}else{
+			return 3;
+		}
+	}
+	
+	return 69;
+  }
   setPassword() {
 
     const passwordInput = document.querySelector("#password");
-    const checkValid = document.querySelector("#checkvalid");
+    const checkPasswordValid = document.querySelector("#checkPasswordValid");
 
     this.setState({
       password: passwordInput.value,
     });
     if (typeof this.checkPassword(passwordInput.value) == "string") {
-      checkValid.innerHTML = `<span style="color:red">${this.checkPassword(passwordInput.value)}</span>`;
+      checkPasswordValid.innerHTML = `<span style="color:red">${this.checkPassword(passwordInput.value)}</span>`;
     } else {
       switch (this.checkPassword(passwordInput.value)) {
         case 0:
-          checkValid.innerHTML =
+          checkPasswordValid.innerHTML =
             '<span style="color:red">Your password is very weak</span>';
           break;
         case 1:
-          checkValid.innerHTML =
+          checkPasswordValid.innerHTML =
             '<span style="color:orange">Your password is weak</span>';
           break;
         case 3:
-          checkValid.innerHTML =
+          checkPasswordValid.innerHTML =
             '<span style="color:yellow">Your password is ok</span>';
           break;
         case 4:
-          checkValid.innerHTML =
+          checkPasswordValid.innerHTML =
             '<span style="color:green">Your password is strong</span>';
           break;
         default:
-          checkValid.innerHTML = "";
+          checkPasswordValid.innerHTML = "";
           break;
       }
     }
     if (passwordInput.value === "") {
-      checkValid.innerHTML = "";
+      checkPasswordValid.innerHTML = "";
     }
   }
 
@@ -89,13 +126,49 @@ class SignUp extends React.Component {
     this.setState({
       name: nameInput.value,
     });
+    const checkNameValid = document.querySelector("#checkNameValid");
+    switch (this.checkName(nameInput.value)) {
+        case 0:
+          checkNameValid.innerHTML =
+            '<span style="color:red">Please enter your name</span>';
+          break;
+        case 1:
+          checkNameValid.innerHTML =
+            '<span style="color:red">Your name is too short</span>';
+          break;
+        case 2:
+          checkNameValid.innerHTML =
+            '<span style="color:red">Your name is too long</span>';
+          break;
+        default:
+          checkNameValid.innerHTML = "";
+          break;
+      }
   }
 
   setUserName() {
-    const userNameInput = document.querySelector("#username");
+    const usernameInput = document.querySelector("#username");
     this.setState({
-      username: userNameInput.value,
+      username: usernameInput.value,
     });
+    const checkUsernameValid = document.querySelector("#checkUsernameValid");
+    switch (this.checkUsername(usernameInput.value)) {
+        case 0:
+          checkUsernameValid.innerHTML =
+            '<span style="color:red">Please enter username</span>';
+          break;
+        case 1:
+          checkUsernameValid.innerHTML =
+            '<span style="color:red">Your username is too short</span>';
+          break;
+        case 2:
+          checkUsernameValid.innerHTML =
+            '<span style="color:red">Your username is too long</span>';
+          break;
+        default:
+          checkUsernameValid.innerHTML = "";
+          break;
+      }
   }
   setAddress() {
     const addressInput = document.querySelector("#address");
@@ -105,10 +178,30 @@ class SignUp extends React.Component {
   }
   setPhoneNumber() {
     const phoneNumberInput = document.querySelector("#phoneNumber");
+    const checkPhoneNumberValid = document.querySelector("#checkPhoneNumberValid");
     this.setState({
       phoneNumber: phoneNumberInput.value,
     });
+    
+    switch (this.checkPhoneNumber(phoneNumberInput.value)) {
+        case 0:
+          checkPhoneNumberValid.innerHTML =
+            '<span style="color:red">Please enter your phone number</span>';
+          break;
+        case 1:
+          checkPhoneNumberValid.innerHTML =
+            '<span style="color:red">Please enter only number</span>';
+          break;
+        case 2:
+          checkPhoneNumberValid.innerHTML =
+            '<span style="color:red">Please enter valid phone number</span>';
+          break;
+        default:
+          checkPhoneNumberValid.innerHTML = "";
+          break;
+      }
   }
+  
 
   async fetRegister(e) {
     e.preventDefault();
@@ -172,6 +265,8 @@ class SignUp extends React.Component {
             />
             <i className="fas fa-user"></i>
           </div>
+          <div id="checkNameValid"></div>
+          
           <div className="input_field">
             <input
               id="username"
@@ -183,6 +278,7 @@ class SignUp extends React.Component {
             />
             <i className="fas fa-user"></i>
           </div>
+          <div id="checkUsernameValid"></div>
 
           <div className="input_field">
             <input
@@ -195,7 +291,7 @@ class SignUp extends React.Component {
             />
             <i className="fas fa-lock"></i>
           </div>
-          <div id="checkvalid"></div>
+          <div id="checkPasswordValid"></div>
 
           <div className="input_field">
             <input
@@ -211,11 +307,12 @@ class SignUp extends React.Component {
             <input
               id="phoneNumber"
               name="phoneNumber"
-              type="number"
+              type="text"
               placeholder="Phone number"
               className="input"
               onInput={this.setPhoneNumber}
             />
+            <div id="checkPhoneNumberValid"></div>
             <i class="fas fa-phone-square-alt"></i>{" "}
           </div>
           <h6 id="error"></h6>
