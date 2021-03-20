@@ -35,13 +35,7 @@ public class UserPayload {
     @NotNull
     private String address;
 
-
-    public UserPayload(@NotBlank @NotNull @Size(max = 30) String name, @NotBlank @NotNull @Size(max = 30) String username, @NotBlank @NotNull @Size(max = 30) String phoneNumber, @Size(max = 100) @NotNull String address) {
-        this.name = name;
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
+    private String role;
 
     public String getName() {
         return name;
@@ -75,4 +69,11 @@ public class UserPayload {
         this.address = address;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

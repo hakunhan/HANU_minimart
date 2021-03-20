@@ -97,8 +97,6 @@ public class AuthenService{
 
         Cart cart = new Cart(user.getId(), user, user.getName());
         cartService.addNewCart(cart);
-        result.setCart(cart);
-        userRepository.save(result);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")

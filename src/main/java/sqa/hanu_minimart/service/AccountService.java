@@ -8,11 +8,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import sqa.hanu_minimart.model.Role;
+import sqa.hanu_minimart.model.RoleName;
 import sqa.hanu_minimart.model.User;
 import sqa.hanu_minimart.payload.UserPayload;
+import sqa.hanu_minimart.repository.RoleRepository;
 import sqa.hanu_minimart.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +25,10 @@ public class AccountService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
     public Page<User> getAllAccount(Long id, String username, String phoneNumber, String name, String address, int page, int size, String[] sort){
 
         List<Order> orders = new ArrayList<>();
@@ -83,6 +91,10 @@ public class AccountService {
         user.setName(request.getName());
         user.setPhoneNumber(request.getPhoneNumber());
         user.setAddress(request.getAddress());
+
+        Optional<Role> role = roleRepository.findByName(RoleName.valueOf(request.getRole()));
+
+        user.setRoles(Collections.singleton(role.get()));
 
         User _user = userRepository.save(user);
 
