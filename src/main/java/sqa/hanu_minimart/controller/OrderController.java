@@ -44,4 +44,10 @@ public class OrderController {
     public void updateOrder(@RequestBody Order order, @PathVariable Long id) {
         orderService.updateOrder(order, id);
     }
+
+    @PutMapping(path = "/updateStatus/{id}")
+    public void updateOrderStatus(@PathVariable Long id,
+                                  @RequestParam String status){
+        orderService.updateOrderStatus(id, status);
+    }
 }

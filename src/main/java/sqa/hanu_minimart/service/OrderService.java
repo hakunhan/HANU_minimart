@@ -1,8 +1,11 @@
 package sqa.hanu_minimart.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpServerErrorException;
+import sqa.hanu_minimart.exception.AppException;
 import sqa.hanu_minimart.model.*;
 import sqa.hanu_minimart.payload.OrderPayload;
 import sqa.hanu_minimart.repository.OrderRepository;
@@ -58,9 +61,17 @@ public class OrderService {
         for(CartItem item:cartItem) {
             List<Product> products = productService.findProductByNameSortedByExpAndImportDate(item.getProductName());
             int quantity = item.getQuantity();
+            int totalProductInStorage = 0;
+
+            for(Product product:products){
+                totalProductInStorage = product.getQuantity();
+            }
+
             total += quantity * products.get(0).getPrice();
 
             OrderLine orderLine = new OrderLine(order, item.getProductName(), quantity);
+            orderLine.setEnough(quantity <= totalProductInStorage);
+
             orderLines.add(orderLine);
         }
         cartItemSevice.deleteAll();
@@ -73,7 +84,6 @@ public class OrderService {
         return order;
     }
 
-
     public void deleteOrder(Long orderID) {
         boolean exists = orderRepository.existsById(orderID);
         if (!exists){
@@ -81,19 +91,6 @@ public class OrderService {
         }
         orderRepository.deleteById(orderID);
     }
-
-//    for(Product product:products) {
-//        if(product.getQuantity() > quantity) {
-//            productService.updateProductQuantity(product.getId(), product.getQuantity()-quantity);
-//            quantity = 0 ;
-//        }else {
-//            quantity -= product.getQuantity();
-//            productService.deleteProduct(item.getProductName(), product.getExpireDate(), product.getImportDate());
-//        }
-//        if(quantity == 0) {
-//            break;
-//        }
-//    }
 
     @Transactional
     public void updateOrder(Order order, Long id) {
@@ -104,39 +101,54 @@ public class OrderService {
 
         currentOrder.setDeliveryNotes(order.getDeliveryNotes());
         currentOrder.setDeliveryTime(order.getDeliveryTime());
-        currentOrder.setStatus(order.getStatus());
         currentOrder.setOrderLine(order.getOrderLine());
         currentOrder.setTotal(order.getTotal());
         orderRepository.save(currentOrder);
     }
 
+    @Transactional
+    public void updateOrderStatus(Long id, String status){
+        if(!orderRepository.existsById(id)) {
+            throw new IllegalStateException("Order does not exist");
+        }
+        Order currentOrder = orderRepository.findById(id).get();
 
-    public void processOrder(int orderID) {
-//        List<OrderLine> orderLineList = orderLineService.findByOrderID(orderID);
-//        for (int i = 0; i < orderLineList.size(); i++) {
-//            OrderLine currOrderLine = orderLineList.get(i);
-//            List<Product> productList = productService.getProductByName(currOrderLine.getProduct());
-//            for (int j = 0; j < productList.size(); j++) {
-//                Product currProduct = productList.get(j);
-//                if (currProduct.getQuantity() >= currOrderLine.getQuantity()) {
-//                    ProductStatus status = currProduct.getProductStatus();
-//                    String stt = "";
-//                    if (status.equals(ProductStatus.HOT)) {
-//                        stt = "hot";
-//                    } else {
-//                        stt = "new";
-//                    }
-//                    productService.updateProduct(currProduct.getId(), currProduct.getName(), currProduct.getPrice(),
-//                                                currProduct.getQuantity(), currProduct.getCategory(), currProduct.getDescription(),
-//                                                currProduct.getPicture_URL(), currProduct.getSale(), stt, currProduct.getExpireDate().toString());
-//                    updateOrderStatus(orderID, OrderStatus.ACCEPTED);
-//                } else {
-//                    updateOrderStatus(orderID, OrderStatus.CANCEL);
-//                }
-//            }
-//        }
+        if (status.equalsIgnoreCase("accepted")) {
+            if (currentOrder.getStatus() != OrderStatus.ACCEPTED) {
+                for (OrderLine orderLine : currentOrder.getOrderLine()) {
+                    if (!orderLine.isEnough()) {
+                        throw new AppException("Not enough product in storage");
+                    }
 
-        // Logic to reduce the product quantity will be put here
-        // Remember to change the order status to Accept
+                    List<Product> products = productService.findProductByNameSortedByExpAndImportDate(orderLine.getProductName());
+                    int quantity = orderLine.getQuantity();
+
+                    for (Product product : products) {
+                        if (product.getQuantity() > quantity) {
+                            product.setQuantity(product.getQuantity() - quantity);
+                            productService.updateProduct(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), product.getCategory(),
+                                    product.getDescription(), product.getPicture_URL(), product.getSale().toString(), product.getStatus().toString(), product.getExpireDate().toString());
+                            break;
+                        } else if (product.getQuantity() == quantity) {
+                            productService.deleteProduct(product.getId());
+                            break;
+                        } else {
+                            quantity -= product.getQuantity();
+                            productService.deleteProduct(product.getId());
+                        }
+                    }
+                }
+
+                currentOrder.setStatus(OrderStatus.ACCEPTED);
+                orderRepository.save(currentOrder);
+            }else{
+                return;
+            }
+        }else if(status.equalsIgnoreCase("cancel")){
+            currentOrder.setStatus(OrderStatus.CANCEL);
+            orderRepository.save(currentOrder);
+        }else{
+            return;
+        }
     }
 }

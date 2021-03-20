@@ -23,7 +23,10 @@ public class OrderLine {
     private Integer quantity;
 
     @Transient
-    private double price;
+    private boolean enough;
+
+    @Transient
+    private Double price;
 
     public OrderLine(Order order, String productName, Integer quantity) {
         this.order = order;
@@ -47,11 +50,11 @@ public class OrderLine {
         this.order = order;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -63,12 +66,20 @@ public class OrderLine {
         this.productName = productName;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public boolean isEnough() {
+        return enough;
+    }
+
+    public void setEnough(boolean enough) {
+        this.enough = enough;
     }
 
     @Override
