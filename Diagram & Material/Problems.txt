@@ -1,1 +1,5 @@
-
+Hiếu:
+Thiếu kinh nghiệm quản lý project
+Chia việc kém
+Thiếu giao tiếp
+Design ko kĩ (thiếu Class Diagram)
