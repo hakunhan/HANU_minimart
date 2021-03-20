@@ -22,7 +22,6 @@ public class OrderLine {
     @Column(columnDefinition = "int(10) not null")
     private Integer quantity;
 
-    @Transient
     private boolean enough;
 
     @Transient

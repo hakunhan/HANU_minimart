@@ -64,7 +64,7 @@ public class OrderService {
             int totalProductInStorage = 0;
 
             for(Product product:products){
-                totalProductInStorage = product.getQuantity();
+                totalProductInStorage += product.getQuantity();
             }
 
             total += quantity * products.get(0).getPrice();
@@ -126,8 +126,7 @@ public class OrderService {
                     for (Product product : products) {
                         if (product.getQuantity() > quantity) {
                             product.setQuantity(product.getQuantity() - quantity);
-                            productService.updateProduct(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), product.getCategory(),
-                                    product.getDescription(), product.getPicture_URL(), product.getSale().toString(), product.getStatus().toString(), product.getExpireDate().toString());
+                            productService.updateProductQuantity(product.getId(), product.getQuantity());
                             break;
                         } else if (product.getQuantity() == quantity) {
                             productService.deleteProduct(product.getId());
