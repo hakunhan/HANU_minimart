@@ -9,6 +9,7 @@ import sqa.hanu_minimart.repository.ProductRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class ProductService {
         this.orderLineService = orderLineService;
     }
 
-    public List<Product> getHomepageProducts(Integer id, String name, Double price, Integer quantity, String category, String status, String importDate, String expireDate) {
+    public List<Product> getHomepageProducts(Long id, String name, Double price, Integer quantity, String category, String status, String importDate, String expireDate) {
         List<Product> query;
 
         if (id > 0){
@@ -77,7 +78,7 @@ public class ProductService {
         return productRepository.findDistinctCategory();
     }
 
-    public List<Product> getProducts(Integer id, String name, Double price, Integer quantity, String category, String status, String importDate, String expireDate) {
+    public List<Product> getProducts(Long id, String name, Double price, Integer quantity, String category, String status, String importDate, String expireDate) {
         if(id > 0){
             return productRepository.findProductsById(id);
         }
@@ -107,11 +108,15 @@ public class ProductService {
         }
     }
 
+    public List<Product> getProductByName(String name) {
+        return productRepository.findByNameContaining(name);
+    }
+
     public void addNewProduct(Product product) {
         productRepository.save(product);
     }
 
-    public void deleteProduct(int id) {
+    public void deleteProduct(Long id) {
         boolean exists = productRepository.existsById(id);
         if (!exists){
             throw new IllegalStateException("Product does not exist!");
@@ -119,12 +124,20 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public void deleteProduct(String name, LocalDate expireDate, LocalDateTime importDate) {
+        productRepository.deleteByNameAndExp(name, expireDate, importDate);
+    }
+
     public List<Product> getProductNearExpireDate() {
         return productRepository.findNearlyExpireProduct();
     }
 
+    public List<Product> findProductByIdSortedByExpAndImportDate(String name){
+        return productRepository.findProductByIdSortedByExpAndImportDate(name);
+    }
+
     @Transactional
-    public void updateProduct(Integer id, String name, Double price, Integer quantity, String category, String description, String picture_URL, String sale, String status, String expireDate) {
+    public void updateProduct(Long id, String name, Double price, Integer quantity, String category, String description, String picture_URL, String sale, String status, String expireDate) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
@@ -178,10 +191,13 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    @Transactional
+    public void updateProductQuantity(Long id ,int quantity) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
 
-    public List<Product> getProductByName(String name) {
-        return productRepository.findByNameContaining(name);
+        product.setQuantity(quantity);
+        productRepository.save(product);
     }
-
 
 }

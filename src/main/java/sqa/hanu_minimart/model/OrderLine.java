@@ -1,5 +1,7 @@
 package sqa.hanu_minimart.model;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,39 +11,32 @@ public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "int(6) UNSIGNED", updatable = false)
-    private Long orderLineID;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Order order;
 
-    @Column(name = "quantity",columnDefinition = "int(10) not null")
-    private int quantity;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    private String productName;
+    @Column(columnDefinition = "int(10) not null")
+    private Integer quantity;
 
     @Transient
     private double price;
 
-    public OrderLine(Order order, int quantity, Product product, double price) {
+    public OrderLine(Order order, String productName, Integer quantity) {
         this.order = order;
         this.quantity = quantity;
-        this.product = product;
-        this.price = price;
+        this.productName = productName;
     }
 
     public OrderLine() {
 
     }
 
-    public Long getOrderLineID() {
-        return orderLineID;
-    }
-
-    public void setOrderLineID(Long orderLineID) {
-        this.orderLineID = orderLineID;
+    public Long getId() {
+        return id;
     }
 
     public Order getOrder() {
@@ -60,12 +55,12 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public double getPrice() {
@@ -79,10 +74,10 @@ public class OrderLine {
     @Override
     public String toString() {
         return "OrderLine{" +
-                "orderLineID=" + orderLineID +
+                "id=" + id +
                 ", order=" + order +
+                ", productName='" + productName + '\'' +
                 ", quantity=" + quantity +
-                ", product='" + product + '\'' +
                 ", price=" + price +
                 '}';
     }

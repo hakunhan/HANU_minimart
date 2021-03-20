@@ -24,7 +24,7 @@ public class ProductController {
     // muốn lấy product theo id -> /getAll?id=
     // tương tự với name, price, ...
     @GetMapping(path = "/homepage/getAll")
-    public ResponseEntity<?> getHomepageProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
+    public ResponseEntity<?> getHomepageProducts(@RequestParam (required = false, defaultValue = "-1") Long id,
                                      @RequestParam (required = false, defaultValue = "") String name,
                                      @RequestParam (required = false, defaultValue = "-1") Double price,
                                      @RequestParam (required = false, defaultValue = "-1") Integer quantity,
@@ -45,7 +45,7 @@ public class ProductController {
     // muốn lấy product theo id -> /getAll?id=
     // tương tự với name, price, ...
     @GetMapping(path = "/getAll")
-    public ResponseEntity<?> getProducts(@RequestParam (required = false, defaultValue = "-1") Integer id,
+    public ResponseEntity<?> getProducts(@RequestParam (required = false, defaultValue = "-1") Long id,
                                       @RequestParam (required = false, defaultValue = "") String name,
                                       @RequestParam (required = false, defaultValue = "-1") Double price,
                                       @RequestParam (required = false, defaultValue = "-1") Integer quantity,
@@ -90,7 +90,7 @@ public class ProductController {
     }
 
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable("id") Integer id,
+    public ResponseEntity<?> updateProduct(@PathVariable("id") Long id,
                               @RequestParam(required = false, defaultValue = "") String name,
                               @RequestParam(required = false, defaultValue = "-1") Double price,
                               @RequestParam(required = false, defaultValue = "-1") Integer quantity,
@@ -110,7 +110,7 @@ public class ProductController {
     }
 
     @DeleteMapping(path = {"/delete/{id}"})
-    public ResponseEntity<?> deleteProduct(@PathVariable("id") int id){
+    public ResponseEntity<?> deleteProduct(@PathVariable("id") Long id){
         try{
             productService.deleteProduct(id);
             return new ResponseEntity<>(null, HttpStatus.OK);

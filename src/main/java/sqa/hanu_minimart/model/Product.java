@@ -14,7 +14,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "INT(4) UNSIGNED ", precision = 4, updatable = false)
-    private int id;
+    private Long id;
     @Column(length = 50)
     private String name;
     @Column(precision = 8, scale = 2)
@@ -39,12 +39,13 @@ public class Product {
     private LocalDateTime updateAt;
     private LocalDate expireDate;
 
+
     @OneToMany(mappedBy = "order")
     @JsonIgnore
     private Set<OrderLine> orderLine = new HashSet<>();
-    @OneToMany(mappedBy = "cart")
-    @JsonIgnore
-    private Set<CartItem> cartItem = new HashSet<>();
+//    @OneToMany(mappedBy = "cart")
+//    @JsonIgnore
+//    private Set<CartItem> cartItem = new HashSet<>();
 
 
     public Product(String name, double price, int quantity, String category,
@@ -118,11 +119,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -228,14 +229,6 @@ public class Product {
 
     public void setOrderLine(Set<OrderLine> orderLine) {
         this.orderLine = orderLine;
-    }
-
-    public Set<CartItem> getCartItem() {
-        return cartItem;
-    }
-
-    public void setCartItem(Set<CartItem> cartItem) {
-        this.cartItem = cartItem;
     }
 
     @Override

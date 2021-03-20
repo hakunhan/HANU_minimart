@@ -2,6 +2,7 @@ package sqa.hanu_minimart.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sqa.hanu_minimart.model.*;
 import sqa.hanu_minimart.payload.OrderPayload;
 import sqa.hanu_minimart.repository.OrderRepository;
@@ -12,17 +13,25 @@ import java.util.*;
 @Service
 public class OrderService {
     @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
     @Autowired
-    private OrderLineService orderLineService;
+    private final OrderLineService orderLineService;
     @Autowired
     private ProductService productService;
     @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
     @Autowired
-    private CartItemService cartItemSevice;
+    private final CartItemService cartItemSevice;
     @Autowired
-    private CartService cartService;
+    private final CartService cartService;
+
+    public OrderService(OrderRepository orderRepository, OrderLineService orderLineService, AccountService accountService, CartItemService cartItemSevice, CartService cartService) {
+        this.orderRepository = orderRepository;
+        this.orderLineService = orderLineService;
+        this.accountService = accountService;
+        this.cartItemSevice = cartItemSevice;
+        this.cartService = cartService;
+    }
 
     public List<Order> getAllOrders(){
         return orderRepository.findAll();
@@ -32,60 +41,49 @@ public class OrderService {
         return orderRepository.findById(id).get();
     }
 
-    public Order addNewOrder(OrderPayload request) {
+    public Order addNewOrder(Cart cart, Long userId) {
 
-        User user = (User) accountService.getById(request.getUserId());
-
-        Cart cart = cartService.getCartById(request.getCartId());
+        User user = accountService.findById(userId).get();
 
         Calendar cal = Calendar.getInstance(); // creates calendar
         cal.setTime(new Date());               // sets calendar time/date
         cal.add(Calendar.HOUR_OF_DAY, 72);      // adds 72 hour
-        Date deliverDate = cal.getTime();                         // returns new date object plus 72 hour
+        cal.getTime();                         // returns new date object plus 72 hour
 
-        Order order = new Order(user, deliverDate, request.getDeliveryNotes(), request.getBillingAddress(), OrderStatus.PENDING);
-        // save the order so we can get the order_id
-        Order newOrder = orderRepository.save(order);
-
+        Order order = new Order(user, cal.getTime(), OrderStatus.PENDING);
         Set<OrderLine> orderLines = new HashSet<>();
-        Set<CartItem> cartItems = cart.getCartItem();
-        Double orderTotalPrice = 0.0;
-        Double orderLineTotalPrice = 0.0;
-
-        //transfer cartItems of a cart into orderLines of an order, also calculate the total price
-        for(CartItem item:cartItems) {
-            String productName = item.getProduct().getName();
+        Set<CartItem> cartItem = cart.getCartItem();
+        Double total = 0.0;
+        for(CartItem item:cartItem) {
+            List<Product> products = productService.findProductByIdSortedByExpAndImportDate(item.getProductName());
             int quantity = item.getQuantity();
-            orderLineTotalPrice = quantity * item.getProduct().getPrice();
-            orderTotalPrice += orderLineTotalPrice;
+            total += quantity * products.get(0).getPrice();
 
-            OrderLine newOrderLine = new OrderLine(newOrder,quantity, item.getProduct(), orderLineTotalPrice);
+            OrderLine orderLine = orderLineService.addNewOrderItem(new OrderLine(null, item.getProductName(), quantity));
+            orderLines.add(orderLine);
 
-            orderLines.add(newOrderLine);
-            orderLineService.addNewOrderItem(newOrderLine);
-
-            // only when the order status being set Accepted by employee
-            // then the product quantity being reduced
-
-//            //product by name : sorted with importdate DESC and expDate asc
-//            List<Product> products = productService.getProductByName(productName);
-//            for(Product product:products) {
-//                if(product.getQuantity() > quantity) {
-//                    productService.updateProductQuantity(product.getId(), product.getQuantity()-quantity);
-//                    quantity = 0 ;
-//                }else {
-//                    quantity -= product.getQuantity();
-//                    productService.deleteProduct(productName, product.getExpireDate(), product.getImportDate());
-//                }
-//                if(quantity == 0) {
-//                    break;
-//                }
-//            }
+            for(Product product:products) {
+                if(product.getQuantity() > quantity) {
+                    productService.updateProductQuantity(product.getId(), product.getQuantity()-quantity);
+                    quantity = 0 ;
+                }else {
+                    quantity -= product.getQuantity();
+                    productService.deleteProduct(item.getProductName(), product.getExpireDate(), product.getImportDate());
+                }
+                if(quantity == 0) {
+                    break;
+                }
+            }
         }
-        // Reset the cart of a particular user
-        cartItemSevice.deleteByCartId(cart.getId());
-        newOrder.setTotal(orderTotalPrice);
-        return orderRepository.save(newOrder);
+        cartItemSevice.deleteAll();
+        cartService.update(userId);
+        order.setTotal(total);
+        order.setOrderLine(orderLines);
+        order = orderRepository.save(order);
+        for(OrderLine orderLine:orderLines) {
+            orderLineService.update(order.getId(), orderLine.getId());
+        }
+        return order;
     }
 
     public List<Order> getPendingOrder(){ return orderRepository.getPendingOrder();}
@@ -106,6 +104,22 @@ public class OrderService {
 
         orderRepository.save(order);
     }
+
+    @Transactional
+    public void updateOrder(Order order, Long id) {
+        if(!orderRepository.existsById(id)) {
+            throw new IllegalStateException("Order does not exist");
+        }
+        Order currentOrder = orderRepository.findById(id).get();
+        currentOrder.setDeliveryNotes(order.getDeliveryNotes());
+        currentOrder.setDeliveryTime(order.getDeliveryTime());
+        currentOrder.setCreatedTime(order.getCreatedTime());
+        currentOrder.setStatus(order.getStatus());
+        currentOrder.setOrderLine(order.getOrderLine());
+        currentOrder.setTotal(order.getTotal());
+        orderRepository.save(currentOrder);
+    }
+
 
     public void processOrder(int orderID) {
 //        List<OrderLine> orderLineList = orderLineService.findByOrderID(orderID);

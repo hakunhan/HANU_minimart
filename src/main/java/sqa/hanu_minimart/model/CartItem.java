@@ -16,9 +16,7 @@ public class CartItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private Product product;
+	private String productName;
 
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
@@ -41,8 +39,8 @@ public class CartItem {
 		super();
 	}
 	
-	public CartItem(Product product, Cart cart, int quantity, String content) {
-		this.product = product;
+	public CartItem(String productName, Cart cart, int quantity, String content) {
+		this.productName = productName;
 		this.cart = cart;
 		this.quantity = quantity;
 		this.content = content;
@@ -53,12 +51,15 @@ public class CartItem {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Product getProduct() {
-		return product;
+
+	public String getProductName() {
+		return productName;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
+
 	public Cart getCart() {
 		return cart;
 	}

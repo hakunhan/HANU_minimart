@@ -14,8 +14,12 @@ import javax.transaction.Transactional;
 public class CartItemService {
 
 	@Autowired
-	private CartItemRepository cartItemRepository;
-	
+	private final CartItemRepository cartItemRepository;
+
+	public CartItemService(CartItemRepository cartItemRepository) {
+		this.cartItemRepository = cartItemRepository;
+	}
+
 	public List<CartItem> getAllItem(){
 		return cartItemRepository.findAll();
 	}
@@ -36,6 +40,9 @@ public class CartItemService {
 			throw new IllegalStateException("Item is not exits");
 		}
 		cartItemRepository.deleteById(id);
+	}
+	public void deleteAll() {
+		cartItemRepository.deleteAll();
 	}
 
 	public void deleteByCartId(Long cartId) {

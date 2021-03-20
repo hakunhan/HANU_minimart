@@ -13,8 +13,12 @@ import sqa.hanu_minimart.service.CartService;
 @RequestMapping(path = {"/api"})
 public class CartController {
 	@Autowired
-	private CartService cartService;
-	
+	private final CartService cartService;
+
+	public CartController(CartService cartService) {
+		this.cartService = cartService;
+	}
+
 	@GetMapping("/carts")
 	List<Cart> getAll() {
 		return cartService.getAllCart();
@@ -29,6 +33,7 @@ public class CartController {
 	Cart getOne(@PathVariable Long id) {
 		return cartService.getCartById(id);
 	}
+
 	@PostMapping("/carts")
 	Cart newCart(@RequestBody Cart newCart) {
 		return cartService.addNewCart(newCart);

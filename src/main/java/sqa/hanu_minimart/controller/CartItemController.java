@@ -24,16 +24,22 @@ import sqa.hanu_minimart.service.CartItemService;
 @RequestMapping(path = {"/api"})
 public class CartItemController {
 	@Autowired
-	private CartItemService cartItemService;
-	
+	private final CartItemService cartItemService;
+
+	public CartItemController(CartItemService cartItemService) {
+		this.cartItemService = cartItemService;
+	}
+
 	@GetMapping("/cartItems")
 	List<CartItem> getAll() {
 		return cartItemService.getAllItem();
 	}
+
 	@GetMapping("/cartItems/{id}")
 	CartItem getById(@PathVariable Long id) {
 		return cartItemService.getById(id);
 	}
+
 	@PostMapping("/cartItems")
 	CartItem addNewItem(@RequestBody CartItem newItem) {
 		return cartItemService.addNewItem(newItem);
@@ -42,10 +48,11 @@ public class CartItemController {
 	void updateCartItem(@PathVariable Long id, @RequestParam int quantity) {
 		cartItemService.updateItem(id, quantity);
 	}
-//	@DeleteMapping("/cartItems")
-//	void deleteAllCartItem() {
-//		cartItemService.deleteAll();
-//	}
+
+	@DeleteMapping("/cartItems")
+	void deleteAllCartItem() {
+		cartItemService.deleteAll();
+	}
 	@DeleteMapping("/cartItems/{id}")
 	void deleteCartItem(@PathVariable Long id) {
 		cartItemService.deleteItem(id);

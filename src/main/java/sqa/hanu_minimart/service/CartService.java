@@ -1,8 +1,6 @@
 package sqa.hanu_minimart.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -10,16 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sqa.hanu_minimart.model.Cart;
-import sqa.hanu_minimart.model.CartItem;
 import sqa.hanu_minimart.repository.CartRepository;
 
 @Service
 public class CartService {
 	@Autowired
-	private CartRepository cartRepository;
+	private final CartRepository cartRepository;
 	
-	public CartService() {
-		
+	public CartService(CartRepository cartRepository) {
+		this.cartRepository = cartRepository;
 	}
 	
 	public List<Cart> getAllCart(){

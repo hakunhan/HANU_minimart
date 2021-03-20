@@ -4,13 +4,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import sqa.hanu_minimart.model.Product;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameContaining(String name);
 
     List<Product> findByCategory(String category);
@@ -23,7 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT * FROM product WHERE expire_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 90 DAY) ORDER BY import_date ASC", nativeQuery = true)
     List<Product> findNearlyExpireProduct();
 
-    List<Product> findProductsById(Integer id);
+    List<Product> findProductsById(Long id);
 
     List<Product> findProductsByPrice(Double price);
 
@@ -36,6 +38,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query(value = "SELECT DISTINCT category FROM product", nativeQuery = true)
     List<String> findDistinctCategory();
+
+    @Query(value = "Select * from product Where name = ?1 order by import_date ASC, expire_date DESc ", nativeQuery = true)
+    List<Product> findProductByIdSortedByExpAndImportDate(String name);
 
     @Modifying
     @Query(value = "Update product SET category = ?2 WHERE name =?1", nativeQuery = true)
@@ -64,4 +69,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query(value = "Update product SET name = ?2 WHERE name =?1", nativeQuery = true)
     void updateName(String oldName, String newName);
+
+    @Modifying
+    @Transactional
+    @Query(value = "Delete from product where name = ?1 and expire_date = ?2 and import_date = ?3", nativeQuery = true)
+    void deleteByNameAndExp(String name, LocalDate exp, LocalDateTime importDate);
 }

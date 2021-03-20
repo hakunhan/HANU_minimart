@@ -34,9 +34,6 @@ public class Order {
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdTime;
 
-    @Column(name = "billing_address")
-    private String billingAddress;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private OrderStatus status;
@@ -44,11 +41,16 @@ public class Order {
     @Transient
     private Double total;
 
-    public Order(User user, Date deliverTime, String deliveryNotes, String billingAddress, OrderStatus status) {
+    public Order(User user, Date deliverTime, String deliveryNotes, OrderStatus status) {
         this.user = user;
         this.deliverTime = deliverTime;
         this.deliveryNotes = deliveryNotes;
-        this.billingAddress = billingAddress;
+        this.status = status;
+    }
+
+    public Order(User user, Date deliverTime,  OrderStatus status) {
+        this.user = user;
+        this.deliverTime = deliverTime;
         this.status = status;
     }
 
@@ -88,11 +90,11 @@ public class Order {
         this.deliveryNotes = deliveryNotes;
     }
 
-    public Date getDeliverTime() {
+    public Date getDeliveryTime() {
         return deliverTime;
     }
 
-    public void setDeliverTime(Date deliverTime) {
+    public void setDeliveryTime(Date deliverTime) {
         this.deliverTime = deliverTime;
     }
 
@@ -102,14 +104,6 @@ public class Order {
 
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
-    }
-
-    public String getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
     }
 
     public OrderStatus getStatus() {
