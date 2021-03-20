@@ -132,8 +132,8 @@ public class ProductService {
         return productRepository.findNearlyExpireProduct();
     }
 
-    public List<Product> findProductByIdSortedByExpAndImportDate(String name){
-        return productRepository.findProductByIdSortedByExpAndImportDate(name);
+    public List<Product> findProductByNameSortedByExpAndImportDate(String name){
+        return productRepository.findProductByNameSortedByExpAndImportDate(name);
     }
 
     @Transactional

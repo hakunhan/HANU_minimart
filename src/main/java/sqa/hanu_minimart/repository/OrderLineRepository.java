@@ -18,6 +18,6 @@ public interface OrderLineRepository extends JpaRepository<OrderLine,Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "Update order_line set order_fk = :orderId where id = :orderItemId", nativeQuery = true)
+    @Query(value = "Update order_line set order_id = :orderId where id = :orderItemId", nativeQuery = true)
     void update(@Param("orderId") Long orderId, @Param("orderItemId") Long orderItemId);
 }

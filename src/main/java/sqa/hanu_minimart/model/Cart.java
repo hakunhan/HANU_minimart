@@ -37,9 +37,7 @@ public class Cart {
 		super();
 	}
 	
-	public Cart(Long id, User user, String content) {
-		super();
-		this.id = id;
+	public Cart(User user, String content) {
 		this.user = user;
 		this.content = content;
 	}

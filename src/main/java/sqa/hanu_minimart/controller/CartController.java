@@ -10,7 +10,7 @@ import sqa.hanu_minimart.service.CartService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(path = {"/api"})
+@RequestMapping(path = {"/api/cart"})
 public class CartController {
 	@Autowired
 	private final CartService cartService;
@@ -19,27 +19,27 @@ public class CartController {
 		this.cartService = cartService;
 	}
 
-	@GetMapping("/carts")
+	@GetMapping("/getAll")
 	List<Cart> getAll() {
 		return cartService.getAllCart();
 	}
 
-	@GetMapping("/carts/getByUser")
+	@GetMapping("/getByUser")
 	Cart getByUser(@RequestParam Long userId){
 		return cartService.getByUserId(userId);
 	}
 	
-	@GetMapping("/carts/{id}")
+	@GetMapping("/{id}")
 	Cart getOne(@PathVariable Long id) {
 		return cartService.getCartById(id);
 	}
 
-	@PostMapping("/carts")
+	@PostMapping("/add")
 	Cart newCart(@RequestBody Cart newCart) {
 		return cartService.addNewCart(newCart);
 	}
 	
-	@DeleteMapping("/carts/{id}")
+	@DeleteMapping("/delete/{id}")
 	void deleteCart(@PathVariable Long id) {
 		cartService.deleteCart(id);
 	}

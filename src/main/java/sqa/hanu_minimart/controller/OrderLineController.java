@@ -28,7 +28,7 @@ public class OrderLineController {
 
     @PostMapping(path = "/newOrderLine")
     public void createNewOrderLine(@RequestBody OrderLine orderItem){
-        orderLineService.addNewOrderItem(orderItem);
+        orderLineService.addNewOrderLine(orderItem);
     }
 
     @PutMapping("/{id}")

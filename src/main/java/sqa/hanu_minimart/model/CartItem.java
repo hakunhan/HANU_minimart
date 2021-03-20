@@ -39,7 +39,7 @@ public class CartItem {
 		super();
 	}
 	
-	public CartItem(String productName, Cart cart, int quantity, String content) {
+	public CartItem(Cart cart, String productName, int quantity, String content) {
 		this.productName = productName;
 		this.cart = cart;
 		this.quantity = quantity;

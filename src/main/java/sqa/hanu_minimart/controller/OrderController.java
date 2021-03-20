@@ -1,6 +1,5 @@
 package sqa.hanu_minimart.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sqa.hanu_minimart.model.Cart;
@@ -19,7 +18,7 @@ public class OrderController {
     @Autowired
     public OrderController(OrderService orderService) {this.orderService = orderService;}
 
-    @GetMapping(path = {"/all"})
+    @GetMapping(path = {"/getAll"})
     public List<Order> getAllOrder() { return orderService.getAllOrders();}
 
     @GetMapping("/{id}")
@@ -27,13 +26,10 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
-    @PostMapping(path = "/{id}")
-    public Order newOrder(@RequestBody Cart cart, @PathVariable Long id) {
-        return orderService.addNewOrder(cart, id);
+    @PostMapping(path = "/add")
+    public Order newOrder(@RequestBody OrderPayload orderPayload) {
+        return orderService.addNewOrder(orderPayload);
     }
-
-    @GetMapping(path = {"/pendingOrder"})
-    public List<Order> getPendingOrder() { return orderService.getPendingOrder(); }
 
     @DeleteMapping(path = {"/delete{orderID}"})
     public void deleteOrder(@PathVariable("id") Long orderID){
@@ -44,7 +40,7 @@ public class OrderController {
 //    public void processOrder(@PathVariable("orderID")Long orderID){
 //        orderService.processOrder(orderID);
 //    }
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public void updateOrder(@RequestBody Order order, @PathVariable Long id) {
         orderService.updateOrder(order, id);
     }

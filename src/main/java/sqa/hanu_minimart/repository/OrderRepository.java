@@ -9,9 +9,6 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-
-    @Query(value = "SELECT * FROM OrderLine WHERE status = false", nativeQuery = true)
-    List<Order> getPendingOrder();
-
-
+    @Query(value = "SELECT * from orders ORDER BY status DESC", nativeQuery = true)
+    List<Order> findAllOrder();
 }

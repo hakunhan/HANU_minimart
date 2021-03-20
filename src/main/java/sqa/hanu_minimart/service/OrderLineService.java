@@ -37,7 +37,7 @@ public class OrderLineService {
     /*  TODO: sửa lại tạo order line với việc nhận Order ID và tìm Order tương ứng trong db
      *           nếu không thấy trong db trả lại exception
      */
-    public OrderLine addNewOrderItem(OrderLine orderItem) {
+    public OrderLine addNewOrderLine(OrderLine orderItem) {
         return orderLineRepository.save(orderItem);
     }
 

@@ -40,7 +40,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<String> findDistinctCategory();
 
     @Query(value = "Select * from product Where name = ?1 order by import_date ASC, expire_date DESc ", nativeQuery = true)
-    List<Product> findProductByIdSortedByExpAndImportDate(String name);
+    List<Product> findProductByNameSortedByExpAndImportDate(String name);
 
     @Modifying
     @Query(value = "Update product SET category = ?2 WHERE name =?1", nativeQuery = true)

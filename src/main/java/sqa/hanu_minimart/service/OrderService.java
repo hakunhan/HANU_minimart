@@ -8,6 +8,7 @@ import sqa.hanu_minimart.payload.OrderPayload;
 import sqa.hanu_minimart.repository.OrderRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -34,16 +35,16 @@ public class OrderService {
     }
 
     public List<Order> getAllOrders(){
-        return orderRepository.findAll();
+        return orderRepository.findAllOrder();
     }
 
     public Order getOrderById(Long id) {
         return orderRepository.findById(id).get();
     }
 
-    public Order addNewOrder(Cart cart, Long userId) {
-
-        User user = accountService.findById(userId).get();
+    public Order addNewOrder(OrderPayload orderPayload) {
+        User user = accountService.findById(orderPayload.getUserId()).get();
+        Cart cart = cartService.getCartById(orderPayload.getCartId());
 
         Calendar cal = Calendar.getInstance(); // creates calendar
         cal.setTime(new Date());               // sets calendar time/date
@@ -52,41 +53,26 @@ public class OrderService {
 
         Order order = new Order(user, cal.getTime(), OrderStatus.PENDING);
         Set<OrderLine> orderLines = new HashSet<>();
-        Set<CartItem> cartItem = cart.getCartItem();
-        Double total = 0.0;
+        Set<CartItem> cartItem = new HashSet<>(cart.getCartItem());
+        double total = 0.0;
         for(CartItem item:cartItem) {
-            List<Product> products = productService.findProductByIdSortedByExpAndImportDate(item.getProductName());
+            List<Product> products = productService.findProductByNameSortedByExpAndImportDate(item.getProductName());
             int quantity = item.getQuantity();
             total += quantity * products.get(0).getPrice();
 
-            OrderLine orderLine = orderLineService.addNewOrderItem(new OrderLine(null, item.getProductName(), quantity));
+            OrderLine orderLine = new OrderLine(order, item.getProductName(), quantity);
             orderLines.add(orderLine);
-
-            for(Product product:products) {
-                if(product.getQuantity() > quantity) {
-                    productService.updateProductQuantity(product.getId(), product.getQuantity()-quantity);
-                    quantity = 0 ;
-                }else {
-                    quantity -= product.getQuantity();
-                    productService.deleteProduct(item.getProductName(), product.getExpireDate(), product.getImportDate());
-                }
-                if(quantity == 0) {
-                    break;
-                }
-            }
         }
         cartItemSevice.deleteAll();
-        cartService.update(userId);
         order.setTotal(total);
         order.setOrderLine(orderLines);
         order = orderRepository.save(order);
         for(OrderLine orderLine:orderLines) {
-            orderLineService.update(order.getId(), orderLine.getId());
+            orderLineService.addNewOrderLine(orderLine);
         }
         return order;
     }
 
-    public List<Order> getPendingOrder(){ return orderRepository.getPendingOrder();}
 
     public void deleteOrder(Long orderID) {
         boolean exists = orderRepository.existsById(orderID);
@@ -96,14 +82,18 @@ public class OrderService {
         orderRepository.deleteById(orderID);
     }
 
-    private void updateOrderStatus(Long orderID, OrderStatus status) {
-        Order order = orderRepository.findById(orderID)
-                .orElseThrow(() -> new IllegalStateException("Product does not exist!"));
-
-        order.setStatus(status);
-
-        orderRepository.save(order);
-    }
+//    for(Product product:products) {
+//        if(product.getQuantity() > quantity) {
+//            productService.updateProductQuantity(product.getId(), product.getQuantity()-quantity);
+//            quantity = 0 ;
+//        }else {
+//            quantity -= product.getQuantity();
+//            productService.deleteProduct(item.getProductName(), product.getExpireDate(), product.getImportDate());
+//        }
+//        if(quantity == 0) {
+//            break;
+//        }
+//    }
 
     @Transactional
     public void updateOrder(Order order, Long id) {
@@ -111,9 +101,9 @@ public class OrderService {
             throw new IllegalStateException("Order does not exist");
         }
         Order currentOrder = orderRepository.findById(id).get();
+
         currentOrder.setDeliveryNotes(order.getDeliveryNotes());
         currentOrder.setDeliveryTime(order.getDeliveryTime());
-        currentOrder.setCreatedTime(order.getCreatedTime());
         currentOrder.setStatus(order.getStatus());
         currentOrder.setOrderLine(order.getOrderLine());
         currentOrder.setTotal(order.getTotal());

@@ -12,11 +12,14 @@ public class OrderPayload {
 
     private Long userId;
 
-    @Lob
-    private String deliveryNotes;
+    public OrderPayload(){
 
-    @Column(name = "billing_address")
-    private String billingAddress;
+    }
+
+    public OrderPayload(Long cartId, Long userId) {
+        this.cartId = cartId;
+        this.userId = userId;
+    }
 
     public Long getCartId() {
         return cartId;
@@ -32,21 +35,5 @@ public class OrderPayload {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getDeliveryNotes() {
-        return deliveryNotes;
-    }
-
-    public void setDeliveryNotes(String deliveryNotes) {
-        this.deliveryNotes = deliveryNotes;
-    }
-
-    public String getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
     }
 }

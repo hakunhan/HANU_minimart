@@ -5,8 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sqa.hanu_minimart.model.Cart;
 import sqa.hanu_minimart.model.CartItem;
+import sqa.hanu_minimart.model.Product;
+import sqa.hanu_minimart.payload.CartItemPayLoad;
 import sqa.hanu_minimart.repository.CartItemRepository;
+import sqa.hanu_minimart.repository.CartRepository;
 
 import javax.transaction.Transactional;
 
@@ -15,9 +19,13 @@ public class CartItemService {
 
 	@Autowired
 	private final CartItemRepository cartItemRepository;
+	private final CartRepository cartRepository;
+	private final ProductService productService;
 
-	public CartItemService(CartItemRepository cartItemRepository) {
+	public CartItemService(CartItemRepository cartItemRepository, CartRepository cartRepository, ProductService productService) {
 		this.cartItemRepository = cartItemRepository;
+		this.cartRepository = cartRepository;
+		this.productService = productService;
 	}
 
 	public List<CartItem> getAllItem(){
@@ -31,7 +39,12 @@ public class CartItemService {
 	/*  TODO: sửa lại tạo order line với việc nhận Card ID và tìm Cart tương ứng trong db
 	 *           nếu không thấy trong db trả lại exception
 	 */
-	public CartItem addNewItem(CartItem cartItem) {
+	public CartItem addNewItem(CartItemPayLoad cartItemPayLoad) {
+		Cart cart = cartRepository.findCartById(cartItemPayLoad.getCartId());
+
+		CartItem cartItem = new CartItem(cart, cartItemPayLoad.getProductName(), cartItemPayLoad.getQuantity(), cartItemPayLoad.getContent());
+		cart.getCartItem().add(cartItem);
+
 		return cartItemRepository.save(cartItem);
 	}
 
