@@ -42,7 +42,6 @@ public class User {
     @Column(length = 100)
     private String password;
 
-    @NaturalId
     @NotBlank
     @NotNull
     @Size(max = 30)

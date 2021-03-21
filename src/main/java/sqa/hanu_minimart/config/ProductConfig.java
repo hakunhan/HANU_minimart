@@ -13,7 +13,7 @@ import java.util.List;
 
 @Configuration
 public class ProductConfig {
-
+//
 //    @Bean
 //    CommandLineRunner commandLineRunner(ProductRepository productRepository){
 //        return args -> {

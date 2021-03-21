@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hanu_minimart?createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Ho_Chi_Minh
-    username: admin
-    password: admin
+    url: jdbc:mysql://hanuminimartrt.mysql.database.azure.com:3306/minimart?createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Ho_Chi_Minh
+    username: hanuadmin@hanuminimartrt
+    password: hanu4C18
     initialization-mode: always
 
   jpa:
