@@ -44,7 +44,7 @@ public class CartItemService {
 		CartItem cartItem = new CartItem(cart, cartItemPayLoad.getProductName(), cartItemPayLoad.getQuantity(), cartItemPayLoad.getContent());
 		cartItem.setPrice(price);
 		cart.getCartItem().add(cartItem);
-                if(cart.getTotalPrice == null)
+                if(cart.getTotalPrice() == null)
                     cart.setTotalPrice(0.0);
 		cart.setTotalPrice(cart.getTotalPrice() + price);
 
