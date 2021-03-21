@@ -11,4 +11,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT * from orders ORDER BY status DESC", nativeQuery = true)
     List<Order> findAllOrder();
+
+    List<Order> findByUser_Id(Long userId);
 }

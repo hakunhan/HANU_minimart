@@ -45,6 +45,10 @@ public class OrderService {
         return orderRepository.findById(id).get();
     }
 
+    public List<Order> getOrderByUserId(Long userId){
+        return orderRepository.findByUser_Id(userId);
+    }
+
     public Order addNewOrder(OrderPayload orderPayload) {
         User user = accountService.findById(orderPayload.getUserId()).get();
         Cart cart = cartService.getCartById(orderPayload.getCartId());

@@ -1,4 +1,6 @@
 # HANU_minimart 
+Link for SQA presentation slides: https://docs.google.com/presentation/d/1THxwb0td3FNAK2tzAo4FM2kIYfbOAhY9F7FUqmlLbpg/edit?usp=sharing
+
 Link for online meeting: https://discord.gg/y9fpU3YZ
 
 Link for Spring Boot API: https://hanu-minimart.herokuapp.com/
@@ -6,6 +8,12 @@ Link for Spring Boot API: https://hanu-minimart.herokuapp.com/
 Link for figma morkup: https://www.figma.com/file/TZ5hRYVZ0g2VWJed8hH9mI/Minimart?node-id=1%3A363
 
 Link for deployed frontend: https://mugglor.github.io/Hanu_minimart/
+
+Link for SQA user manual: https://docs.google.com/document/d/1MaFgI4Ca8pCnpM_8Eq36Dx7K1EAd0_E6K91e9RG8VWk/edit?usp=sharing
+
+Link for Requirement Description: https://docs.google.com/document/d/16q_ZZo94TsPM0t7BtwkRi7o8_bqu6TDUd3pa1npVr1A/edit?usp=sharing
+
+Link for Activity Report: https://docs.google.com/document/d/1eK8ZXBSCzxIFZFaYQt9ay1usiHQa7yXsug1mlx5OKEM/edit?usp=sharing
 
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
