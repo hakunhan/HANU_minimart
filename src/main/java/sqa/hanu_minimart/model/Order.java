@@ -38,7 +38,6 @@ public class Order {
     @Column(name = "status")
     private OrderStatus status;
 
-    @Transient
     private Double total;
 
     public Order(User user, Date deliverTime, String deliveryNotes, OrderStatus status) {

@@ -11,6 +11,7 @@ Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
 Database azure: 
 - servername: hanuminimartrt.mysql.database.azure.com
+- database: minimart
 - username: hanuadmin@hanuminimartrt
 - password: hanu4C18
 

@@ -41,9 +41,13 @@ public class CartItemService {
 	 */
 	public CartItem addNewItem(CartItemPayLoad cartItemPayLoad) {
 		Cart cart = cartRepository.findCartById(cartItemPayLoad.getCartId());
+		Product product = productService.findProductByNameSortedByExpAndImportDate(cartItemPayLoad.getProductName()).get(0);
+		Double price = product.getPrice() * cartItemPayLoad.getQuantity();
 
 		CartItem cartItem = new CartItem(cart, cartItemPayLoad.getProductName(), cartItemPayLoad.getQuantity(), cartItemPayLoad.getContent());
+		cartItem.setPrice(price);
 		cart.getCartItem().add(cartItem);
+		cart.setTotalPrice(cart.getTotalPrice() + price);
 
 		return cartItemRepository.save(cartItem);
 	}

@@ -32,7 +32,9 @@ public class Cart {
 
 	@Lob
 	private String content;
-	
+
+	private Double totalPrice;
+
 	public Cart() {
 		super();
 	}
@@ -40,6 +42,7 @@ public class Cart {
 	public Cart(User user, String content) {
 		this.user = user;
 		this.content = content;
+		this.totalPrice = 0.0;
 	}
 	
 	public Long getId() {
@@ -88,5 +91,13 @@ public class Cart {
 
 	public void setCartItem(Set<CartItem> cartItem) {
 		this.cartItem = cartItem;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 }

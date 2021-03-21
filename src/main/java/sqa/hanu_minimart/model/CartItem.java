@@ -34,6 +34,8 @@ public class CartItem {
 
 	@Lob
 	private String content;
+
+	private Double price;
 	
 	public CartItem() {
 		super();
@@ -90,6 +92,12 @@ public class CartItem {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 }
