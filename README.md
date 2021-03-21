@@ -1,4 +1,6 @@
 # HANU_minimart 
+Link for SQA presentation slides: https://docs.google.com/presentation/d/1THxwb0td3FNAK2tzAo4FM2kIYfbOAhY9F7FUqmlLbpg/edit?usp=sharing
+
 Link for online meeting: https://discord.gg/y9fpU3YZ
 
 Link for Spring Boot API: https://hanu-minimart.herokuapp.com/
