@@ -3,9 +3,11 @@ server:
 
 spring:
   datasource:
+
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hanu_minimart?createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Ho_Chi_Minh
     username: root
     password: Nghiem00@
+
     initialization-mode: always
 
   jpa:

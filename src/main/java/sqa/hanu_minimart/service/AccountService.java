@@ -15,10 +15,7 @@ import sqa.hanu_minimart.payload.UserPayload;
 import sqa.hanu_minimart.repository.RoleRepository;
 import sqa.hanu_minimart.repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AccountService {
@@ -92,9 +89,18 @@ public class AccountService {
         user.setPhoneNumber(request.getPhoneNumber());
         user.setAddress(request.getAddress());
 
+
+        System.out.println(request.getRole().toString());
         Optional<Role> role = roleRepository.findByName(RoleName.valueOf(request.getRole()));
 
-        user.setRoles(Collections.singleton(role.get()));
+        System.out.println(role.get().toString());
+
+        Set<Role> roles = user.getRoles();
+
+        Role lastRole = roles.stream().findFirst().get();
+
+        roles.remove(lastRole);
+        roles.add(role.get());
 
         User _user = userRepository.save(user);
 
