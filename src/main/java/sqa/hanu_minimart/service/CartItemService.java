@@ -36,14 +36,17 @@ public class CartItemService {
 		return cartItemRepository.findById(id).get();
 	}
 
-	/*  TODO: sửa lại tạo order line với việc nhận Card ID và tìm Cart tương ứng trong db
-	 *           nếu không thấy trong db trả lại exception
-	 */
 	public CartItem addNewItem(CartItemPayLoad cartItemPayLoad) {
 		Cart cart = cartRepository.findCartById(cartItemPayLoad.getCartId());
+		Product product = productService.findProductByNameSortedByExpAndImportDate(cartItemPayLoad.getProductName()).get(0);
+		Double price = product.getPrice() * cartItemPayLoad.getQuantity();
 
 		CartItem cartItem = new CartItem(cart, cartItemPayLoad.getProductName(), cartItemPayLoad.getQuantity(), cartItemPayLoad.getContent());
+		cartItem.setPrice(price);
 		cart.getCartItem().add(cartItem);
+                if(cart.getTotalPrice == null)
+                    cart.setTotalPrice(0.0);
+		cart.setTotalPrice(cart.getTotalPrice() + price);
 
 		return cartItemRepository.save(cartItem);
 	}
