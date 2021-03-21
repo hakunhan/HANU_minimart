@@ -24,7 +24,6 @@ public class OrderLine {
 
     private boolean enough;
 
-    @Transient
     private Double price;
 
     public OrderLine(Order order, String productName, Integer quantity, Double price) {
