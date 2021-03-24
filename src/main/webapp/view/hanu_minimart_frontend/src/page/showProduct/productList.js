@@ -45,7 +45,7 @@ class ProductList extends React.Component {
 
   async componentDidMount() {
     console.log("okeyyyyyy");
-    const urlProduct = "http://localhost:8085/api/product/getAll";
+    const urlProduct = "http://localhost:8085/api/product/homepage/getAll";
     const getDataProduct = await axios.get(urlProduct);
     const product = getDataProduct.data;
     this.setState({
@@ -63,7 +63,7 @@ class ProductList extends React.Component {
     e.preventDefault();
     console.log(typeof this.state.search);
 
-    const url = `http://localhost:8085/api/product/getAll?name=${this.state.search}`;
+    const url = `http://localhost:8085/api/product/homepage/getAll?name=${this.state.search}`;
     const data = await axios.get(url);
     const product = data.data;
     this.setState({
@@ -154,12 +154,13 @@ class ProductList extends React.Component {
         ) : (
           <div> ko có dữ liệu</div>
         )}
-        <div>
-          <Button variant="outline-primary">View All</Button>
-        </div>
+
         {product && product.length > 0 ? (
           <div className="content_Cart">
             <Card>
+              <div>
+                <Button variant="outline-primary">View All</Button>
+              </div>
               {product.map((product, index) => {
                 if (index < steps) {
                   return (

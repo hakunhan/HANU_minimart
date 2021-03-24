@@ -136,6 +136,16 @@ class Hanu_minimart extends React.Component {
             <UnAuthenRoute isLogin={isLogin} exact path="/signin">
               <SignIn setStateLogin={this.setStateLogin} saveAuthentication= {this.saveAuthentication} />
             </UnAuthenRoute>
+            <ProtectedRoute isLogin={isLogin} exact path="/cart">
+            <AppRoute isLogin={isLogin}>
+            <Cart user= {user}/>
+              </AppRoute>
+            </ProtectedRoute>
+            {/* <UnAuthenRoute isLogin={isLogin} exact path="/cart">
+            <AppRoute isLogin={isLogin}>
+            <Cart/>
+              </AppRoute>
+            </UnAuthenRoute> */}
             <Route isLogin={isLogin} exact path="/product">
             <AppRoute isLogin={isLogin}>
             <TestProduct/>
@@ -143,11 +153,11 @@ class Hanu_minimart extends React.Component {
             </Route>
             <Route isLogin={isLogin} exact path="/product/:id">
               <AppRoute isLogin={isLogin}>
-                <DetailProduct/>
+                <DetailProduct user= {user}/>
               </AppRoute>
             </Route>
             <ProtectedRoute user ={user} path ='/profile' isLogin={isLogin}>
-            <AppRoute isLogin={isLogin} user= {user}>
+            <AppRoute isLogin={isLogin}>
             <Profile user= {user} />
               </AppRoute>
             </ProtectedRoute>

@@ -183,11 +183,11 @@ class NewProduct extends React.Component {
                         />
                       </div>
                     </div>
-                    {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="sale">Sale</label>
+                        <label className ="new" for="status">Status</label>
                         <input
-                        name="sale"
+                        name="status"
                           type="text"
                           class="form-control"
                           id="sale"
@@ -197,7 +197,7 @@ class NewProduct extends React.Component {
                           // onInput = {this.setAddress}
                         />
                       </div>
-                    </div> */}
+                    </div>
                   </div>
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
