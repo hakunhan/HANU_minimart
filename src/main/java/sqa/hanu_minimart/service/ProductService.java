@@ -51,7 +51,7 @@ public class ProductService {
             query = productRepository.findByCategory(category);
         }
         else if (status.length() > 0){
-            query = productRepository.findByStatus(status);
+            query = productRepository.findByProductStatus(status);
         }
         else if (!importDate.equals("2000-03-21")){
             query = productRepository.findByImportDate(LocalDate.parse(importDate));
@@ -95,7 +95,7 @@ public class ProductService {
             return productRepository.findByCategory(category);
         }
         else if (status.length() > 0){
-            return productRepository.findByStatus(status);
+            return productRepository.findByProductStatus(status);
         }
         else if (!importDate.equals("2000-03-21")){
             return productRepository.findByImportDate(LocalDate.parse(importDate));

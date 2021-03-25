@@ -43,3 +43,9 @@ header .signIn, header .signUp {
     width: 200px;
 
 }
+
+
+.ant-menu-item .ant-menu-item-icon + span, .ant-menu-submenu-title .ant-menu-item-icon + span, .ant-menu-item .anticon + span, .ant-menu-submenu-title .anticon + span{
+    color: rgb(22, 19, 211);
+    font-weight: bolder;
+}

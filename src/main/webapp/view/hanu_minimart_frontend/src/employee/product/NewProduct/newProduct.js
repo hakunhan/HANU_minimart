@@ -22,7 +22,7 @@ class NewProduct extends React.Component {
 
   }
   handleClick() {
-    this.props.history.push("/admin/manageproduct");
+    this.props.history.push("/employee/manageproduct");
   }
   handleChangeInput(e) {
     const { name, value } = e.target;
@@ -32,12 +32,12 @@ class NewProduct extends React.Component {
   }
   async fetchDataAdd(){
 
-    console.log("Clickkkkkkkkkkkk");
+    console.log("Clickkkkkkk")
     const {name, price, quantity,description, status, sale, category, picture_URL,expireDate
     } = this.state;
   
         const body ={
-          name: name.strim(),
+          name: name,
           price: price,
           quantity: quantity,
           description: description,
@@ -50,7 +50,7 @@ class NewProduct extends React.Component {
       const url = "http://localhost:8085/api/product/add";
       const postNew = await axios.post(url, body);
       console.log("neww Product>>>>>>>>>>>>");
-        this.props.history.push("/admin/manageproduct");
+        this.props.history.push("/employee/manageproduct");
       
 
     }

@@ -1,4 +1,4 @@
-.authen {
+/* .authen {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,7 @@
   border-radius: 10px 10px;
   width: 65px;
   height: 50px;
-  background-color: #fff;
+  background-color: #7498e6;
   margin:  0 5px;
 
 }
@@ -19,11 +19,11 @@ a {
   font-weight: bold;
   margin-left: 7px;
   margin-right: 7px;
-  color: rgb(4, 13, 53);
+  color: #fff;
   text-decoration: none;
   size: 30px;
 }
 .profileIcon{
   width: 2em;
   height: 2em;
-}
+} */

@@ -1,7 +1,7 @@
 import React from "react";
 
 import axios from "axios";
-
+import  ScollToTop from "../../component/ScrollTotop/ScrollToTop"
 import "./detailProduct.css";
 // import Colors from "./color";
 import { withRouter } from "react-router";
@@ -13,18 +13,20 @@ class DetailProduct extends React.Component {
       isSaved: false,
       product_id: {},
       product: [],
-      colors: ["red", "black", "crimson", "teal"],
+      // colors: ["red", "black", "crimson", "teal"],
       index: 0,
       //cart Item.....
       count: 0,
       quantity1: 1,
       cartItems: {
-        product: {},
-        cart: {},
+        cartId: 0,
+        productName: {},
         quantity: 0,
         content: "",
       },
-      user: this.props
+      user: this.props.user,
+      uid: null,
+      inCart: false
     };
     this.clickAddToCartItem = this.clickAddToCartItem.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -56,6 +58,12 @@ class DetailProduct extends React.Component {
     });
   }
 
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
   myRef = React.createRef();
   // handleTab = (index) => {
   //   this.setState({ index: index });
@@ -66,32 +74,50 @@ class DetailProduct extends React.Component {
   //   images[index].className = "active";
   // };
 
+ 
  async clickAddToCartItem() {
-    console.log("enterrrrrrrrrrrrrrrrrrrr",this.props.user.id);
-    
-    const {product_id, quantity1} = this.state;
-  
-
-    const urlGetCart = `http://localhost:8085/api/carts/getByUser?userId=${this.props.user.id}`;
-    const getCartForUser = await axios.get(urlGetCart);
-    console.log("lấy cart nè......", getCartForUser.data);
+    console.log("enterrrrrrrrrrrrrrrrrrrr");
    
+    try{
+      const {product_id, quantity1} = this.state;
+      console.log("uid", this.state.uid);
+      const urlGetCart = `http://localhost:8085/api/cart/getByUser?userId=${this.state.uid}`;
+      const getCartForUser = await axios.get(urlGetCart);
+      console.log("lấy cart nè......", getCartForUser.data.id);
+     
+  
+      const body = {
+        cartId: getCartForUser.data.id,
+          productName: product_id.name,
+          quantity: quantity1,
+          content: ""
+      }
+      console.log("content cart??????", body);
+  
+      const urlSendCardItem = "http://localhost:8085/api/cartItem/add";
+      const postCartItem = await axios.post(urlSendCardItem, body);
+      console.log("Sent ...........", postCartItem);
+      // window.location.reload()
 
-    const body = {
-      product: product_id,
-      cart: getCartForUser.data,
-      quantity: quantity1,
-      content: ""
+      if(postCartItem){
+        this.setState({
+          inCart: true
+        })
+      }
+
+    }catch(e){
+      alert("you must login before add product")
     }
-    console.log("content cart??????", body);
-
-    const urlSendCardItem = "http://localhost:8085/api/cartItems";
-    const postCartItem = await axios.post(urlSendCardItem, body);
-
-    console.log("Sent ...........", postCartItem)
+    
   }
 
+  
   async componentDidMount() {
+    // console.log("enterrrrrrrrrrrrrrrrrrrr",this.props.user.id);
+
+    this.setState({
+      uid: this.getCookie('uid')
+    })
     // console.log("okeyyyyyy");
     const urlProduct = "http://localhost:8085/api/product/getAll";
     const getDataProduct = await axios.get(urlProduct);
@@ -110,10 +136,12 @@ class DetailProduct extends React.Component {
   }
 
   render() {
+    console.log(this.state.uid, "dddddddddddddd");
     // const { colors } = this.state;
-    const { product_id, isSaved } = this.state;
+    const { product_id, isSaved, inCart } = this.state;
     return (
       <div className="details1">
+      <ScollToTop/>
         {isSaved ? (
           <div className="details">
             <div className="big-img">
@@ -164,16 +192,20 @@ class DetailProduct extends React.Component {
                   /> */}
               <br />
               <br />
-
-              <button
+           
+                  <button
                 // variant="dark"
                 className="cart"
-                // disabled={inCart}
-                onClick={this.clickAddToCartItem}
-              >
-                {/* {inCart === true ? <span>InCart</span> :  */}
-                <span>Add To Cart</span>
-              </button>
+                disabled={inCart}
+                onClick={ 
+                  this.clickAddToCartItem
+
+                }
+              >{ (inCart === true) ? <span>InCart</span> : (<span>Add To Cart</span>) }
+                </button>
+               
+              
+              
             </div>
           </div>
         ) : (

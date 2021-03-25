@@ -8,20 +8,19 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-      username: " "
+      username: " ",
     }
     this.getUserName = this.getUserName.bind(this);
     }
 
 getUserName(){
-  const {isLogin} = this.props;
-  if(isLogin){
+  const { isLogin } = this.props;
+  if (isLogin) {
     const username = this.getCookie("username");
     this.setState({
-      username: username
-    })
-    console.log(username)
-
+      username: username,
+    });
+    console.log(username);
   }
 }
 getCookie(name) {
@@ -31,7 +30,7 @@ getCookie(name) {
 }
   componentDidMount(){
     this.getUserName()
-      console.log(this.props.isLogin)
+      // console.log(this.props.isLogin)
   }
   deleteCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -56,7 +55,7 @@ getCookie(name) {
               ) : (
                 <div className="authen">
                   <Link  className="signIn" to="/signin">
-                  Login
+                    Login
                   </Link>
                   <Link to="/signup">Register</Link>
                 </div>

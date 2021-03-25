@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "antd";
 import { Link, withRouter } from "react-router-dom";
+import { WhatsAppOutlined,HomeOutlined } from "@ant-design/icons";
 import "./signup.css";
 class SignUp extends React.Component {
   constructor(props) {
@@ -23,23 +24,23 @@ class SignUp extends React.Component {
 
     this.checkPassword = this.checkPassword.bind(this);
   }
-  checkName(name){
-	if (name.length < 0) {
-		return 0;
-	}else if (name.length < 2){
-		return 1;
-	}else if (name.length > 40){
-		return 2;
-	}
+  checkName(name) {
+    if (name.length < 0) {
+      return 0;
+    } else if (name.length < 2) {
+      return 1;
+    } else if (name.length > 40) {
+      return 2;
+    }
   }
-  checkUsername(username){
-	if (username.length < 0) {
-		return 0;
-	}else if (username.length < 3){
-		return 1;
-	}else if (username.length > 15){
-		return 2;
-	}
+  checkUsername(username) {
+    if (username.length < 0) {
+      return 0;
+    } else if (username.length < 3) {
+      return 1;
+    } else if (username.length > 15) {
+      return 2;
+    }
   }
   checkPassword(password) {
     let strength = 0;
@@ -64,27 +65,26 @@ class SignUp extends React.Component {
     console.log("passtrength: ", strength);
     return strength;
   }
-  checkPhoneNumber(phoneNumber){
-	if (phoneNumber.length < 0) {
-		return 0;
-	}
+  checkPhoneNumber(phoneNumber) {
+    if (phoneNumber.length < 0) {
+      return 0;
+    }
 
-	if (typeof phoneNumber !== "undefined") {
-		var pattern = new RegExp(/^[0-9\b]+$/);
+    if (typeof phoneNumber !== "undefined") {
+      var pattern = new RegExp(/^[0-9\b]+$/);
 
-		if (!pattern.test(phoneNumber)) {
-			return 1;
-		}else if(phoneNumber.length != 10){
-			return 2;
-		}else{
-			return 3;
-		}
-	}
-	
-	return 69;
+      if (!pattern.test(phoneNumber)) {
+        return 1;
+      } else if (phoneNumber.length != 10) {
+        return 2;
+      } else {
+        return 3;
+      }
+    }
+
+    return 69;
   }
   setPassword() {
-
     const passwordInput = document.querySelector("#password");
     const checkPasswordValid = document.querySelector("#checkPasswordValid");
 
@@ -92,7 +92,9 @@ class SignUp extends React.Component {
       password: passwordInput.value,
     });
     if (typeof this.checkPassword(passwordInput.value) == "string") {
-      checkPasswordValid.innerHTML = `<span style="color:red">${this.checkPassword(passwordInput.value)}</span>`;
+      checkPasswordValid.innerHTML = `<span style="color:red">${this.checkPassword(
+        passwordInput.value
+      )}</span>`;
     } else {
       switch (this.checkPassword(passwordInput.value)) {
         case 0:
@@ -128,22 +130,22 @@ class SignUp extends React.Component {
     });
     const checkNameValid = document.querySelector("#checkNameValid");
     switch (this.checkName(nameInput.value)) {
-        case 0:
-          checkNameValid.innerHTML =
-            '<span style="color:red">Please enter your name</span>';
-          break;
-        case 1:
-          checkNameValid.innerHTML =
-            '<span style="color:red">Your name is too short</span>';
-          break;
-        case 2:
-          checkNameValid.innerHTML =
-            '<span style="color:red">Your name is too long</span>';
-          break;
-        default:
-          checkNameValid.innerHTML = "";
-          break;
-      }
+      case 0:
+        checkNameValid.innerHTML =
+          '<span style="color:red">Please enter your name</span>';
+        break;
+      case 1:
+        checkNameValid.innerHTML =
+          '<span style="color:red">Your name is too short</span>';
+        break;
+      case 2:
+        checkNameValid.innerHTML =
+          '<span style="color:red">Your name is too long</span>';
+        break;
+      default:
+        checkNameValid.innerHTML = "";
+        break;
+    }
   }
 
   setUserName() {
@@ -153,22 +155,22 @@ class SignUp extends React.Component {
     });
     const checkUsernameValid = document.querySelector("#checkUsernameValid");
     switch (this.checkUsername(usernameInput.value)) {
-        case 0:
-          checkUsernameValid.innerHTML =
-            '<span style="color:red">Please enter username</span>';
-          break;
-        case 1:
-          checkUsernameValid.innerHTML =
-            '<span style="color:red">Your username is too short</span>';
-          break;
-        case 2:
-          checkUsernameValid.innerHTML =
-            '<span style="color:red">Your username is too long</span>';
-          break;
-        default:
-          checkUsernameValid.innerHTML = "";
-          break;
-      }
+      case 0:
+        checkUsernameValid.innerHTML =
+          '<span style="color:red">Please enter username</span>';
+        break;
+      case 1:
+        checkUsernameValid.innerHTML =
+          '<span style="color:red">Your username is too short</span>';
+        break;
+      case 2:
+        checkUsernameValid.innerHTML =
+          '<span style="color:red">Your username is too long</span>';
+        break;
+      default:
+        checkUsernameValid.innerHTML = "";
+        break;
+    }
   }
   setAddress() {
     const addressInput = document.querySelector("#address");
@@ -178,30 +180,31 @@ class SignUp extends React.Component {
   }
   setPhoneNumber() {
     const phoneNumberInput = document.querySelector("#phoneNumber");
-    const checkPhoneNumberValid = document.querySelector("#checkPhoneNumberValid");
+    const checkPhoneNumberValid = document.querySelector(
+      "#checkPhoneNumberValid"
+    );
     this.setState({
       phoneNumber: phoneNumberInput.value,
     });
-    
+
     switch (this.checkPhoneNumber(phoneNumberInput.value)) {
-        case 0:
-          checkPhoneNumberValid.innerHTML =
-            '<span style="color:red">Please enter your phone number</span>';
-          break;
-        case 1:
-          checkPhoneNumberValid.innerHTML =
-            '<span style="color:red">Please enter only number</span>';
-          break;
-        case 2:
-          checkPhoneNumberValid.innerHTML =
-            '<span style="color:red">Please enter valid phone number</span>';
-          break;
-        default:
-          checkPhoneNumberValid.innerHTML = "";
-          break;
-      }
+      case 0:
+        checkPhoneNumberValid.innerHTML =
+          '<span style="color:red">Please enter your phone number</span>';
+        break;
+      case 1:
+        checkPhoneNumberValid.innerHTML =
+          '<span style="color:red">Please enter only number</span>';
+        break;
+      case 2:
+        checkPhoneNumberValid.innerHTML =
+          '<span style="color:red">Please enter valid phone number</span>';
+        break;
+      default:
+        checkPhoneNumberValid.innerHTML = "";
+        break;
+    }
   }
-  
 
   async fetRegister(e) {
     e.preventDefault();
@@ -236,7 +239,13 @@ class SignUp extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="title">Sign up</div>
+        <div className="title">
+        <Link className="home_icon" to="/">
+            <HomeOutlined />
+          </Link>
+          <br />
+          <div> SignUp</div>
+        </div>
         <div className="social_media">
           <div className="item">
             <i className="fab fa-facebook-f"></i>
@@ -266,7 +275,7 @@ class SignUp extends React.Component {
             <i className="fas fa-user"></i>
           </div>
           <div id="checkNameValid"></div>
-          
+
           <div className="input_field">
             <input
               id="username"
@@ -302,6 +311,7 @@ class SignUp extends React.Component {
               className="input"
               onInput={this.setAddress}
             />
+            <i><HomeOutlined /></i>
           </div>
           <div className="input_field">
             <input
@@ -313,12 +323,13 @@ class SignUp extends React.Component {
               onInput={this.setPhoneNumber}
             />
             <div id="checkPhoneNumberValid"></div>
-            <i class="fas fa-phone-square-alt"></i>{" "}
+            <i>
+              <WhatsAppOutlined />
+            </i>
           </div>
           <h6 id="error"></h6>
           <Link className="linksignin" to="/signin">
-            {" "}
-            You had an account, go to login page{" "}
+            Login here
           </Link>
           <button className="btn" type="submit" onClick={this.fetRegister}>
             Register
@@ -330,38 +341,3 @@ class SignUp extends React.Component {
 }
 
 export default withRouter(SignUp);
-
-// export default class SignUp extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <Divider orientation="center"> SignUp Form</Divider>
-
-//         <Row justify="center" style={{ padding: "5px"}}>
-//           <Form>
-//           <Form.Item label="Name">
-//               <Input />
-//             </Form.Item>
-//             <Form.Item label="UserName">
-//               <Input />
-//             </Form.Item>
-//             <Form.Item label="Password">
-//               <Input.Password />
-//             </Form.Item>
-//             <Form.Item label="Address">
-//             <input type = "text" />
-//             </Form.Item>
-//             <Form.Item label="PhoneNumber">
-//             <input type = "number"/>
-//             </Form.Item>
-//             <Form.Item>
-//               <Button type="primary">SignUp</Button>
-//             </Form.Item>
-
-//             <Link to ='/signin' style={{textDecoration: 'none', color: 'blue'}}>I already have an account</Link>
-//           </Form>
-//         </Row>
-//       </div>
-//     );
-//   }
-// }

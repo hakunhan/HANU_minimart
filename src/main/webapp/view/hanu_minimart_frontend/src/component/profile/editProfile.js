@@ -2,111 +2,103 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 
-import "./userDetail.css";
-class UserDetail extends React.Component {
+import "../../admin/Manageuser/userDetail.css";
+import user from "../../admin/Manageuser/user";
+class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.match.params.id,
+      id: "",
       Authentication: this.props.Authentication,
       user: {},
       name: "",
       username: "",
       phoneNumber: "",
       address: "",
+      roles: []
     };
-    this.setUserName = this.setUserName.bind(this);
-    this.setName = this.setName.bind(this);
 
-    this.setPhoneNumber = this.setPhoneNumber.bind(this);
-    this.setAddress = this.setAddress.bind(this);
-    // this.showData = this.showData.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.fetchDataUpdate = this.fetchDataUpdate.bind(this);
-    this.fetDataDelete = this.fetDataDelete.bind(this);
+    this.handleChangeInput= this.handleChangeInput.bind(this);
   }
   handleClick() {
-    this.props.history.push("/admin/manageuser");
+    this.props.history.push("/profile");
   }
 
-  setName(event) {
+handleChangeInput(e) {
+    const { name, value } = e.target;
     this.setState({
-      name: event.target.value,
+      [name]: value,
     });
   }
-
-  setUserName(event) {
-    this.setState({
-      username: event.target.value,
-    });
-  }
-  setPhoneNumber(event) {
-    this.setState({
-      phoneNumber: event.target.value,
-    });
-  }
-  setAddress(event) {
-    this.setState({
-      address: event.target.value,
-    });
-  }
-  async fetDataDelete(event) {
-    event.preventDefault();
-
-    console.log("delete>>>>>>>>>>>", this.props);
-    const urlDelete = `http://localhost:8085/api/account/delete?id=${this.state.user.id}`;
-    const deleteUser = await axios.get(urlDelete);
-
-    this.props.history.push("/admin/manageuser");
-  }
+ 
 
   async fetchDataUpdate(event) {
     event.preventDefault();
     console.log("update.......................");
-    const { name, username, phoneNumber, address } = this.state;
+    const { name, username, phoneNumber, address,id } = this.state;
+
 
     const body = {
       name: name,
       username: username,
       phoneNumber: phoneNumber,
       address: address,
-    };
-    const urlUpdate = `http://localhost:8085/api/account/update?id=${this.state.user.id}`;
+      role: "ROLE_CUSTOMER"
+    }
+    console.log(body);
+    console.log("role",typeof this.state.roles[0].name);
+    const urlUpdate = `http://localhost:8085/api/account/update?id=${id}`;
     const postDataUser = await axios.post(urlUpdate, body);
     const userAfterUpdate = postDataUser.data;
     console.log("data sau update ne", postDataUser.data);
 
     if (userAfterUpdate) {
-      this.props.history.push("/admin/manageuser");
+      this.props.history.push("/profile");
     }
     console.log(name);
   }
 
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
   async componentDidMount() {
-    console.log(this.props.match);
+    const userId = this.getCookie("uid");
+    if(userId){
+      this.setState({
+        // isLogin: true,
+        id: Number(userId)
+      })
+    }
     const url = "http://localhost:8085/api/account/getAll";
-    //    const postAuthen = await axios({method: "POST", url, headers:{authorization: this.state.Authentication}})
     const getData = await axios({
       method: "GET",
       url,
       headers: { authorization: this.state.Authentication },
     });
-    const data_user = getData.data.content.find(
-      (user) => user.id === Number(this.state.id)
-    );
-    console.log("---------------hhhhhhhhhh", data_user);
+
+    const user = getData.data.content.find(item => 
+      (item.id === Number(userId))
+      );
+  
+
     this.setState({
-      name: data_user.name,
-      phoneNumber: data_user.phoneNumber,
-      username: data_user.username,
-      address: data_user.address,
-      user: data_user,
+      name: user.name,
+      phoneNumber: user.phoneNumber,
+      username: user.username,
+      address: user.address,
+      roles: user.roles,
+      user: user
     });
   }
 
   render() {
-    const { user } = this.state;
-    // const a = this.props.match;
+    const {user}  = this.state;
+    console.log(this.props.isLogin);
     return (
       <div>
         {user !== null ? (
@@ -140,11 +132,13 @@ class UserDetail extends React.Component {
                         <div className="form-group">
                           <label for="fullName">Full Name</label>
                           <input
+                          name="name"
                             type="text"
                             className="form-control"
                             id="fullName"
                             defaultValue={user.name}
-                            onInput={this.setName}
+                            // onInput={this.setName}
+                            onChange={this.handleChangeInput}
                           />
                         </div>
                       </div>
@@ -152,11 +146,14 @@ class UserDetail extends React.Component {
                         <div className="form-group">
                           <label for="eMail">Username</label>
                           <input
-                            type="email"
+                          name ="username"
+                            type="text"
                             className="form-control"
                             id="eMail"
                             defaultValue={user.username}
-                            onInput={this.setUserName}
+                            // onInput={this.setUserName}
+                            onChange={this.handleChangeInput}
+
                           />
                         </div>
                       </div>
@@ -164,11 +161,14 @@ class UserDetail extends React.Component {
                         <div class="form-group">
                           <label for="phone">PhoneNumber</label>
                           <input
+                          name="phoneNumber"
                             type="text"
                             class="form-control"
                             id="phone"
                             defaultValue={user.phoneNumber}
-                            onInput={this.setPhoneNumber}
+                            // onInput={this.setPhoneNumber}
+                            onChange={this.handleChangeInput}
+
                           />
                         </div>
                       </div>
@@ -176,11 +176,14 @@ class UserDetail extends React.Component {
                         <div class="form-group">
                           <label for="website">Address</label>
                           <input
+                          name="address"
                             type="url"
                             class="form-control"
                             id="website"
                             defaultValue={user.address}
-                            onInput={this.setAddress}
+                            // onInput={this.setAddress}
+                            onChange={this.handleChangeInput}
+
                           />
                         </div>
                       </div>
@@ -206,15 +209,6 @@ class UserDetail extends React.Component {
                           >
                             Update
                           </button>
-                          <button
-                            type="button"
-                            id="submit"
-                            name="submit"
-                            className="btn btn-danger"
-                            onClick={this.fetDataDelete}
-                          >
-                            Delete
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -231,4 +225,4 @@ class UserDetail extends React.Component {
   }
 }
 
-export default withRouter(UserDetail);
+export default withRouter(EditProfile);

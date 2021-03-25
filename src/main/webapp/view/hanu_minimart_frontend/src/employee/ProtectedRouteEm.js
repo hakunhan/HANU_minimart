@@ -3,16 +3,16 @@ import { BrowserRouter as Router, withRouter, Link, Route, Redirect } from 'reac
 
 
 
-class ProtectedRouteAdmin extends React.Component{
+class ProtectedRouteEm extends React.Component{
 
     render(){
         const {isLogin,children, path, exact} = this.props;
         
 
         return <Route {...this.props} exact ={exact} to = {path} >
-            {isLogin ? children : <Redirect push to ="/signin"/>}
+            {(isLogin === true) ? children : <Redirect push to ="/signin"/>}
         </Route>
     }
 }
 
-export default withRouter(ProtectedRouteAdmin);
+export default withRouter(ProtectedRouteEm);

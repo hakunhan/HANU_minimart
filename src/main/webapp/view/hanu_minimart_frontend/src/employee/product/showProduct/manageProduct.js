@@ -139,7 +139,7 @@ class ManageProduct extends React.Component {
                           <Button>
                           <Link
                               style={{ color: "#fff" }}
-                              to={`/admin/manageproduct/edit/${product.id}`}
+                              to={`/employee/manageproduct/edit/${product.id}`}
                             >
                               Edit
                             </Link>

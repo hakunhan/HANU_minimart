@@ -1,0 +1,20 @@
+.informOrder{
+    display: block;
+    /* justify-content: space-between;
+    align-items: center;
+    flex-direction: row; */
+}
+.quantity{
+    margin-top: -4px;
+    text-decoration: none;
+    border: none;
+    margin-top: 15px;
+    /* border: 0.5 solid rgb(8, 16, 83)  */
+    border-radius: 5px;
+    background-color: #b9cafa;
+    align-items: center;
+
+}
+.nameProduct{
+    border: none;
+}

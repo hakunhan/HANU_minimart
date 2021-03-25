@@ -8,6 +8,8 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       username: " ",
+      isLogin: ""
+
     };
     this.getUserName = this.getUserName.bind(this);
   }
@@ -19,7 +21,7 @@ class Navbar extends React.Component {
       this.setState({
         username: username,
       });
-      console.log(username);
+      console.log("Name at naveeeeeeeee",username);
     }
   }
   getCookie(name) {
@@ -28,8 +30,16 @@ class Navbar extends React.Component {
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
   componentDidMount() {
+   
     console.log("udhufhduhf");
     this.getUserName();
+
+    // if(this.getCookie("uid")){
+    //   this.setState({
+    //     isLogin: true
+
+    //   })
+    //     }
     console.log(this.props.isLogin);
   }
   deleteCookie(name) {
@@ -37,12 +47,13 @@ class Navbar extends React.Component {
       name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
   }
   render() {
-    const { isLogin } = this.props;
+    const {isLogin} = this.props;
+
+    console.log(isLogin , "navvvvvvvvvvvvvvvv");
     return (
       <div>
-        {isLogin ? (
+        {(isLogin) ? (
           <div className="authen">
-            <h5 style={{color: "#fff"}}>{this.state.username}</h5>
             <div className="signIn" to="/user/profile">
               <ProfileOutlined />
             </div>
@@ -51,6 +62,7 @@ class Navbar extends React.Component {
                 this.deleteCookie("uid");
                 this.deleteCookie("username");
                 window.location.reload();
+                // this.props.history.push('/')
               }}
             >
               <LogoutOutlined />
@@ -60,11 +72,11 @@ class Navbar extends React.Component {
           <div className="authen">
             <div>
               <Link className="signIn" to="/signin">
-                Sign In
+                Login
               </Link>
             </div>
             <div>
-              <Link className="signUp" to="/signup">Sign Up</Link>
+              <Link className="signUp" to="/signup">Register</Link>
             </div>
           </div>
         )}
