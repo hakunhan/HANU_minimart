@@ -37,7 +37,7 @@ class NewProduct extends React.Component {
     } = this.state;
   
         const body ={
-          name: name.strim(),
+          name: name.trim(),
           price: price,
           quantity: quantity,
           description: description,
@@ -176,7 +176,7 @@ class NewProduct extends React.Component {
                         <label className ="new" for="website">expireDate</label>
                         <input
                         name ="expireDate"
-                          type="text"
+                          type="date"
                           class="form-control"
                           id="website"
                           onChange={this.handleChangeInput}
