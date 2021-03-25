@@ -63,13 +63,18 @@ class ViewDetailHistory extends React.Component {
  async checkStorageAccepted(){
     console.log("Aceeeeeeeeeeeeeeeeeeee")
     
-    const urlStatus = `http://localhost:8085/api/order/updateStatus/${this.props.match.params.id}?status=ACCEPTED`;
-    const updateStatus = await axios.put(urlStatus);
+    try{
+      const urlStatus = `http://localhost:8085/api/order/updateStatus/${this.props.match.params.id}?status=ACCEPTED`;
+      const updateStatus = await axios.put(urlStatus);
+    }catch(e){
+      alert("the product is not enough");
+    }
+   
 
     this.setState({
       open: false,
     });
-
+    this.props.history.push('/orderhistory')
   }
 
   async checkStorageCancel(){

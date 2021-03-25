@@ -351,7 +351,51 @@ class ProductList extends React.Component {
         ) : (
           <div> ko có dữ liệu</div>
         )}
+
+
+        {product && product.length > 0 ? (
+                    <div className="content_Cart">
+                      <Card>
+                      <div>
+                      <Button variant="outline-primary">NEW</Button>
+
+                      </div>
+                        {product.map((product, index) => {
+                          if (index < steps) {
+                            return (
+                              <div>
+                                <Card.Grid style={{ width: 350 }} key={index}>
+                                  <Product
+                                    key={index}
+                                    key={product.id}
+                                    product={product}
+                                    getItem={this.getItem}
+                                    handleDetails={this.handleDetails}
+                                  />
+                                </Card.Grid>
+                              </div>
+                            );
+                          }
+                        })}
+                      </Card>
+
+                      <div className="load-more-div">
+                        <Button
+                          variant="success"
+                          size="sm"
+                          onClick={this.handleLoadMore}
+                        >
+                          <ReloadOutlined />
+                          Load more
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div> ko có dữ liệu</div>
+                  )}
       </div>
+
+
     );
   }
 }

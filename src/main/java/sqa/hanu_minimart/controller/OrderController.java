@@ -26,8 +26,8 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
-    @GetMapping("/getByUserId/{id}")
-    public List<Order> getByUserId(@PathVariable Long userId){
+    @GetMapping("/getByUserId")
+    public List<Order> getByUserId(@RequestParam Long userId){
         return orderService.getOrderByUserId(userId);
     }
 
@@ -36,8 +36,8 @@ public class OrderController {
         return orderService.addNewOrder(orderPayload);
     }
 
-    @DeleteMapping(path = {"/delete{orderID}"})
-    public void deleteOrder(@PathVariable("id") Long orderID){
+    @DeleteMapping(path = {"/delete/{orderID}"})
+    public void deleteOrder(@PathVariable Long orderID){
         orderService.deleteOrder(orderID);
     }
 

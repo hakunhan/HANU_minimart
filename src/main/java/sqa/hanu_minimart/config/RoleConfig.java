@@ -25,7 +25,11 @@ public class RoleConfig {
             list.add(r1);
             list.add(r2);
             list.add(r3);
-            roleRepository.saveAll(list);
+            try {
+                roleRepository.saveAll(list);
+            }catch (Exception e){
+                System.out.println("Already have admin role!");;
+            }
         };
     }
 }

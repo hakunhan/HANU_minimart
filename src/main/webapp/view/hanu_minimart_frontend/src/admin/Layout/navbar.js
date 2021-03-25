@@ -48,6 +48,7 @@ getCookie(name) {
                   <div onClick ={ ()=>{
                     this.deleteCookie("uid")
                     this.deleteCookie("username");
+                    this.deleteCookie("admin") ;
                     window.location.reload();
                   } } >
                     <LogoutOutlined/>
