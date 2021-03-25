@@ -154,6 +154,9 @@ public class OrderService {
                 return;
             }
         }else if(status.equalsIgnoreCase("cancel")){
+            if (currentOrder.getStatus() == OrderStatus.ACCEPTED)
+                return;
+
             currentOrder.setStatus(OrderStatus.CANCEL);
             orderRepository.save(currentOrder);
         }else{
