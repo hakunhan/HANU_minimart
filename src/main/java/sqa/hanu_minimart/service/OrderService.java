@@ -8,6 +8,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import sqa.hanu_minimart.exception.AppException;
 import sqa.hanu_minimart.model.*;
 import sqa.hanu_minimart.payload.OrderPayload;
+import sqa.hanu_minimart.repository.CartRepository;
 import sqa.hanu_minimart.repository.OrderRepository;
 
 import java.util.*;
@@ -23,18 +24,21 @@ public class OrderService {
     @Autowired
     private ProductService productService;
     @Autowired
+    private CartRepository cartRepository;
+    @Autowired
     private final AccountService accountService;
     @Autowired
     private final CartItemService cartItemSevice;
     @Autowired
     private final CartService cartService;
 
-    public OrderService(OrderRepository orderRepository, OrderLineService orderLineService, AccountService accountService, CartItemService cartItemSevice, CartService cartService) {
+    public OrderService(OrderRepository orderRepository, OrderLineService orderLineService, AccountService accountService,CartRepository cartRepository, CartItemService cartItemSevice, CartService cartService) {
         this.orderRepository = orderRepository;
         this.orderLineService = orderLineService;
         this.accountService = accountService;
         this.cartItemSevice = cartItemSevice;
         this.cartService = cartService;
+        this.cartRepository = cartRepository;
     }
 
     public List<Order> getAllOrders(){
@@ -78,6 +82,8 @@ public class OrderService {
 
             orderLines.add(orderLine);
         }
+        cart.setTotalPrice(0.0);
+        cartRepository.save(cart);
         cartItemSevice.deleteByCartId(cart.getId());
         order.setTotal(total);
         order.setOrderLine(orderLines);

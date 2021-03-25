@@ -357,7 +357,7 @@ class ProductList extends React.Component {
                     <div className="content_Cart">
                       <Card>
                       <div>
-                      <Button variant="outline-primary">NEW</Button>
+                      <Button variant="outline-primary">ALL PRODUCT</Button>
 
                       </div>
                         {product.map((product, index) => {
