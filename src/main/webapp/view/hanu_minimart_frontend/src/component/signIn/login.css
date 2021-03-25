@@ -13,6 +13,11 @@ body{
   background: #7498e6;
 }
 
+.home_icon{
+  text-decoration: none;
+  color: #0d179b;
+}
+
 .wrapper{
   max-width: 350px;
   width: 100%;
@@ -28,7 +33,8 @@ body{
 .linksignup{
   text-decoration: none;
   color: #7498e6;
-  font-size: 12px;
+  font-size: 16px;
+  border-bottom: 1px solid #7498e6;
 }
 .wrapper .title{
   margin-bottom: 20px;

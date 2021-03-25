@@ -36,8 +36,9 @@ public class OrderController {
         return orderService.addNewOrder(orderPayload);
     }
 
-    @DeleteMapping(path = {"/delete/{id}"})
-    public void deleteOrder(@PathVariable("id") Long orderID){
+
+    @DeleteMapping(path = {"/delete/{orderID}"})
+    public void deleteOrder(@PathVariable Long orderID){
         orderService.deleteOrder(orderID);
     }
 

@@ -42,13 +42,13 @@ getCookie(name) {
             <div>
               {(isLogin)?(
                 <div className="authen">
-                  <h5 style={{color: "#fff"}}>{this.state.username}</h5>
                   <div className="signIn" to="/user/profile">
                     <ProfileOutlined />
                   </div>
                   <div onClick ={ ()=>{
                     this.deleteCookie("uid")
                     this.deleteCookie("username");
+                    this.deleteCookie("admin") ;
                     window.location.reload();
                   } } >
                     <LogoutOutlined/>
@@ -57,9 +57,9 @@ getCookie(name) {
               ) : (
                 <div className="authen">
                   <Link  className="signIn" to="/signin">
-                    SignIn
+                  Login
                   </Link>
-                  <Link to="/signup">SignUp</Link>
+                  <Link to="/signup">Register</Link>
                 </div>
                 
               )}

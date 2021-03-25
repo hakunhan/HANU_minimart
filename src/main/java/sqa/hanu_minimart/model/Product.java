@@ -31,7 +31,7 @@ public class Product {
     private Integer sale = 0;
     @Enumerated(EnumType.STRING)
     @Column(length = 3)
-    private ProductStatus status;
+    private ProductStatus productStatus;
     @Column(nullable = false, updatable = false, insertable = false,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime importDate;
@@ -79,7 +79,7 @@ public class Product {
     }
 
     public Product(String name, double price, int quantity, String category,
-                   LocalDate expireDate, String picture_URL, String description, String status) {
+                   LocalDate expireDate, String picture_URL, String description, String productStatus) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -88,14 +88,14 @@ public class Product {
         this.picture_URL = picture_URL;
         this.description = description;
 
-        if (status.equalsIgnoreCase("new"))
-            this.status = ProductStatus.NEW;
-        else if (status.equalsIgnoreCase("hot"))
-            this.status = ProductStatus.HOT;
+        if (productStatus.equalsIgnoreCase("new"))
+            this.productStatus = ProductStatus.NEW;
+        else if (productStatus.equalsIgnoreCase("hot"))
+            this.productStatus = ProductStatus.HOT;
     }
 
     public Product(String name, double price, int quantity, String category,
-                   LocalDate expireDate, String picture_URL, String description, Integer sale, String status) {
+                   LocalDate expireDate, String picture_URL, String description, Integer sale, String productStatus) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -105,10 +105,10 @@ public class Product {
         this.description = description;
         this.sale = sale;
 
-        if (status.equalsIgnoreCase("new"))
-            this.status = ProductStatus.NEW;
-        else if (status.equalsIgnoreCase("hot"))
-            this.status = ProductStatus.HOT;
+        if (productStatus.equalsIgnoreCase("new"))
+            this.productStatus = ProductStatus.NEW;
+        else if (productStatus.equalsIgnoreCase("hot"))
+            this.productStatus = ProductStatus.HOT;
     }
 
     public Product() {
@@ -184,11 +184,11 @@ public class Product {
     }
 
     public ProductStatus getProductStatus() {
-        return status;
+        return productStatus;
     }
 
-    public void setProductStatus(ProductStatus status) {
-        this.status = status;
+    public void setProductStatus(ProductStatus productStatus) {
+        this.productStatus = productStatus;
     }
 
     public LocalDateTime getImportDate() {
@@ -212,11 +212,11 @@ public class Product {
     }
 
     public ProductStatus getStatus() {
-        return status;
+        return productStatus;
     }
 
-    public void setStatus(ProductStatus status) {
-        this.status = status;
+    public void setStatus(ProductStatus productStatus) {
+        this.productStatus = productStatus;
     }
 
     public void setImportDate(LocalDateTime importDate) {
@@ -242,7 +242,7 @@ public class Product {
                 ", picture_URL='" + picture_URL + '\'' +
                 ", description='" + description + '\'' +
                 ", sale=" + sale +
-                ", status=" + status +
+                ", productStatus=" + productStatus +
                 ", importDate=" + importDate +
                 ", updateAt=" + updateAt +
                 ", expireDate=" + expireDate +

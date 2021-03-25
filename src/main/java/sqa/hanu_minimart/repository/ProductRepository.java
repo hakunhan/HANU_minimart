@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByCategory(String category);
 
-    List<Product> findByStatus(String status);
+    List<Product> findByProductStatus(String status);
 
     @Query(value = "SELECT * FROM product WHERE expire_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 90 DAY) ORDER BY import_date ASC", nativeQuery = true)
     List<Product> findNearlyExpireProduct();

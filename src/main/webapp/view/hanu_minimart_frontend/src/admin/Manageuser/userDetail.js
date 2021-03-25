@@ -119,7 +119,7 @@ class UserDetail extends React.Component {
                       <div className="user-profile">
                         <div className="user-avatar">
                           <img
-                            src="https://www.flaticon.com/premium-icon/icons/svg/924/924915.svg"
+                            src="https://i0.wp.com/sheenhousing.org/wp-content/uploads/2015/04/GenericProfilePhoto-Blue-Round.png?fit=1500%2C1500&ssl=1"
                             alt="Maxwell Admin"
                           />
                         </div>

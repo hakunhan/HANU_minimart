@@ -78,7 +78,7 @@ public class OrderService {
 
             orderLines.add(orderLine);
         }
-        cartItemSevice.deleteAll();
+        cartItemSevice.deleteByCartId(cart.getId());
         order.setTotal(total);
         order.setOrderLine(orderLines);
         order = orderRepository.save(order);

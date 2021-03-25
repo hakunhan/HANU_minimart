@@ -1,12 +1,11 @@
 import React from "react";
 import "./index.css";
 import "antd/dist/antd.css";
-import { Layout, Avatar, Menu, Breadcrumb, Input } from "antd";
+import { Layout } from "antd";
 import Title from "antd/lib/typography/Title";
 import { Link } from "react-router-dom";
 import SiderMenu from "./SiderMenu";
 import Navbar from "./navbar";
-// import Product from '../product/productList';
 import Footer1 from './footer'
 
 const { Header, Footer, Content } = Layout;
@@ -17,7 +16,7 @@ class AppRoute extends React.Component {
     super();
   }
   render() {
-    const { children, isLogin } = this.props;
+    const { children, isLogin, cart } = this.props;
     return (
       <Layout style={{ backgroundColor: "red" }}>
         <Header style={{ padding: 10 }}>
@@ -29,7 +28,7 @@ class AppRoute extends React.Component {
         </Header>
         <Layout>
         
-          <SiderMenu />
+          <SiderMenu cart={cart} />
          
           <Layout>
             <Content style={{ padding: "0 50px" }}>

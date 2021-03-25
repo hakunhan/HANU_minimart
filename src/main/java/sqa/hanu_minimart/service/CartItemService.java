@@ -42,7 +42,7 @@ public class CartItemService {
 		Double price = product.getPrice() * cartItemPayLoad.getQuantity();
 
 		CartItem cartItem = new CartItem(cart, cartItemPayLoad.getProductName(), cartItemPayLoad.getQuantity(), cartItemPayLoad.getContent());
-		cartItem.setPrice(price);
+		cartItem.setPrice(product.getPrice());
 		cart.getCartItem().add(cartItem);
                 if(cart.getTotalPrice() == null)
                     cart.setTotalPrice(0.0);
@@ -61,6 +61,7 @@ public class CartItemService {
 		cartItemRepository.deleteAll();
 	}
 
+	@Transactional
 	public void deleteByCartId(Long cartId) {
 		cartItemRepository.deleteAllByCart_Id(cartId);
 	}

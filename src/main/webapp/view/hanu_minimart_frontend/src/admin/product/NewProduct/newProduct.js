@@ -13,7 +13,8 @@ class NewProduct extends React.Component {
       description: " ",
       category: " ",
       expireDate: " ",
-      picture_URL:""
+      picture_URL:"",
+      status: ""
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -31,19 +32,21 @@ class NewProduct extends React.Component {
   }
   async fetchDataAdd(){
 
-    console.log("Clickkkkkkk")
-    const {name, price, quantity,description, sale, category, picture_URL,expireDate
+    console.log("Clickkkkkkkkkkkk");
+    const {name, price, quantity,description, status, sale, category, picture_URL,expireDate
     } = this.state;
   
         const body ={
-          name: name,
+          name: name.strim(),
           price: price,
           quantity: quantity,
           description: description,
           expireDate: expireDate,
           category: category,
           picture_URL: picture_URL,
+          status: status
       }
+      
       const url = "http://localhost:8085/api/product/add";
       const postNew = await axios.post(url, body);
       console.log("neww Product>>>>>>>>>>>>");
@@ -183,11 +186,11 @@ class NewProduct extends React.Component {
                         />
                       </div>
                     </div>
-                    {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="sale">Sale</label>
+                        <label className ="new" for="status">Status</label>
                         <input
-                        name="sale"
+                        name="status"
                           type="text"
                           class="form-control"
                           id="sale"
@@ -197,7 +200,7 @@ class NewProduct extends React.Component {
                           // onInput = {this.setAddress}
                         />
                       </div>
-                    </div> */}
+                    </div>
                   </div>
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

@@ -32,7 +32,8 @@ const SiderMenu = () => {
                <Link to ="/admin/manageproduct">Manage Product </Link> 
                </Menu.Item>
                <Menu.Item>
-               <ContainerOutlined />  Manage Order
+               <ContainerOutlined />
+               <Link to ='/admin/manageorder'>Manage Order</Link>  
                </Menu.Item>
               </Menu>
               

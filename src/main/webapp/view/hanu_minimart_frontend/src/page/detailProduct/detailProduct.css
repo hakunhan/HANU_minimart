@@ -86,7 +86,9 @@
     padding: 10px 25px;
     margin-top: 15px;
   }
-  
+  /* .box .cart :hover{
+    background-color: cornflowerblue;
+  } */
   @media (max-width: 500px){
     .thumb{
       height: 50px;

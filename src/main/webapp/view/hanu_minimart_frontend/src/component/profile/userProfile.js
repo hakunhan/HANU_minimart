@@ -1,16 +1,54 @@
 import React from "react";
-import { withRouter } from "react-router";
+import { Link, withRouter } from "react-router-dom";
 import "./userProfile.css";
+import axios from 'axios'
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
-  }
+    this.state={
+      user: {},
+      isLogin: false,
+      Authentication: this.props.Authentication,
 
+    }
+  //  this.handleClick = this.handleClick.bind(this);
+  }
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+  async componentDidMount(){
+    const userId = this.getCookie("uid");
+    if(userId){
+      this.setState({
+        isLogin: true,
+      })
+    }
+    const url = "http://localhost:8085/api/account/getAll";
+    const getData = await axios({
+      method: "GET",
+      url,
+      headers: { authorization: this.state.Authentication },
+    });
+
+    const findUser = getData.data.content.find(item => 
+      (item.id === Number(userId))
+
+      
+      );
+      this.setState({
+        user: findUser
+      })
+    console.log(findUser);
+
+  }
   render() {
-    const { user } = this.props;
+    const { user, isLogin } = this.state;
     return (
       <div class="">
-        <div class="main-body">
+      {
+        (isLogin) ? ( <div class="main-body">
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb"></ol>
           </nav>
@@ -21,16 +59,15 @@ class UserProfile extends React.Component {
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
                     <img
-                      src="https://www.flaticon.com/premium-icon/icons/svg/924/924915.svg"
+                      src="https://i0.wp.com/sheenhousing.org/wp-content/uploads/2015/04/GenericProfilePhoto-Blue-Round.png?fit=1500%2C1500&ssl=1"
                       alt="Admin"
                       class="rounded-circle"
                       width="150"
                     />
                     <div class="mt-3">
                       <h4>{user.username}</h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
                       <p class="text-muted font-size-sm">{user.address}</p>
-                      <button class="btn btn-primary">Edit</button>
+                      <button class="btn btn-primary"> <Link to ={`/profile/${user.id}`}>Edit</Link> </button>
                       {/* <button class="btn btn-outline-primary"></button> */}
                     </div>
                   </div>
@@ -74,7 +111,9 @@ class UserProfile extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+        </div>) : "sdsdsd"
+      }
+       
       </div>
     );
   }

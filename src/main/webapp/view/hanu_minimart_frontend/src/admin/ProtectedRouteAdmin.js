@@ -10,7 +10,7 @@ class ProtectedRouteAdmin extends React.Component{
         
 
         return <Route {...this.props} exact ={exact} to = {path} >
-            {isLogin ? children : <Redirect push to ="/admin/signin"/>}
+            {isLogin ? children : <Redirect push to ="/signin"/>}
         </Route>
     }
 }

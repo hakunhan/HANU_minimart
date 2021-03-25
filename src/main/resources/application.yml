@@ -8,6 +8,7 @@ spring:
     username: root
     password: Nghiem00@
 
+
     initialization-mode: always
 
   jpa:

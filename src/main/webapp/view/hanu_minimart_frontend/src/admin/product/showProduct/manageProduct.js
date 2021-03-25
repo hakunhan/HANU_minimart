@@ -83,11 +83,11 @@ class ManageProduct extends React.Component {
           <form className="Search">
             <SearchOutlined />
             <Input name = "search" key="search" placeholder="Search" onChange={this.handleChange} />
-            <Button type= "submit" onClick ={this.fetchDataSearch}>Submit</Button>
+            <Button type= "submit" key ="button" onClick ={this.fetchDataSearch}>Submit</Button>
           </form>
 
           <div className="ViewAll">
-            <Button variant="primary" size="sm">
+            <Button key ="button" variant="primary" size="sm">
               View All
             </Button>
           </div>
@@ -115,8 +115,8 @@ class ManageProduct extends React.Component {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {this.state.product.map((product) => (
-                        <TableRow key={product.id}>
+                      {this.state.product.map((product, index) => (
+                        <TableRow key={index}>
                           <TableCell component="th" scope="row">
                             {product.id}
                           </TableCell>
@@ -136,12 +136,15 @@ class ManageProduct extends React.Component {
                           </TableCell>
 
                           <TableCell align="right">
-                            <Link
-                              style={{ color: "blue" }}
+                          <Button>
+                          <Link
+                              style={{ color: "#fff" }}
                               to={`/admin/manageproduct/edit/${product.id}`}
                             >
                               Edit
                             </Link>
+                          </Button>
+                            
                           </TableCell>
                         </TableRow>
                       ))}
