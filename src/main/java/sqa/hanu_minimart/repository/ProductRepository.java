@@ -19,9 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByStatus(String status);
 
-    @Query(value = "SELECT * FROM product GROUP BY name ORDER BY import_date DESC ", nativeQuery = true)
-    List<Product> findNewestImportProduct();
-
     @Query(value = "SELECT * FROM product WHERE expire_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 90 DAY) ORDER BY import_date ASC", nativeQuery = true)
     List<Product> findNearlyExpireProduct();
 
@@ -30,6 +27,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductsByPrice(Double price);
 
     List<Product> findProductsByQuantity(Integer quantity);
+
+    @Query(value = "SELECT SUM(quantity) from product WHERE name = ?", nativeQuery = true)
+    Integer getProductQuantity(String name);
 
     @Query(value = "SELECT * FROM product where DATE(import_date) = ?", nativeQuery = true)
     List<Product> findByImportDate(LocalDate importDate);

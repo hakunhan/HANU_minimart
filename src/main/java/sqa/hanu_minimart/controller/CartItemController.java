@@ -45,6 +45,7 @@ public class CartItemController {
 	CartItem addNewItem(@RequestBody CartItemPayLoad newItem) {
 		return cartItemService.addNewItem(newItem);
 	}
+
 	@PutMapping("/update/{id}")
 	void updateCartItem(@PathVariable Long id, @RequestParam int quantity) {
 		cartItemService.updateItem(id, quantity);

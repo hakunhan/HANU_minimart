@@ -1,6 +1,7 @@
 package sqa.hanu_minimart.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 import sqa.hanu_minimart.model.Product;
 import sqa.hanu_minimart.model.ProductStatus;
@@ -112,6 +113,10 @@ public class ProductService {
         return productRepository.findByNameContaining(name);
     }
 
+    public Integer getProductsQuantity(String name) {
+        return productRepository.getProductQuantity(name);
+    }
+
     public void addNewProduct(Product product) {
         productRepository.save(product);
     }
@@ -199,5 +204,4 @@ public class ProductService {
         product.setQuantity(quantity);
         productRepository.save(product);
     }
-
 }

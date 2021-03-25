@@ -26,8 +26,8 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
-    @GetMapping("/getByUserId/{id}")
-    public List<Order> getByUserId(@PathVariable Long userId){
+    @GetMapping("/getByUserId")
+    public List<Order> getByUserId(@RequestParam Long userId){
         return orderService.getOrderByUserId(userId);
     }
 
@@ -36,7 +36,7 @@ public class OrderController {
         return orderService.addNewOrder(orderPayload);
     }
 
-    @DeleteMapping(path = {"/delete{orderID}"})
+    @DeleteMapping(path = {"/delete/{id}"})
     public void deleteOrder(@PathVariable("id") Long orderID){
         orderService.deleteOrder(orderID);
     }
@@ -50,6 +50,7 @@ public class OrderController {
         orderService.updateOrder(order, id);
     }
 
+    // order/updateStatus/1?status=Accepted (hoac Cancel)
     @PutMapping(path = "/updateStatus/{id}")
     public void updateOrderStatus(@PathVariable Long id,
                                   @RequestParam String status){

@@ -79,6 +79,15 @@ public class ProductController {
         }
     }
 
+    @GetMapping(path = "/checkStorage/{name}")
+    public ResponseEntity<?> getProductsQuantity(@PathVariable String name){
+        try{
+            return new ResponseEntity<>(productService.getProductsQuantity(name), HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping(path = "/add")
     public ResponseEntity<?> addNewProduct(@RequestBody Product product){
         try{
