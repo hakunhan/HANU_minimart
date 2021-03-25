@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByCategory(String category);
 
-    List<Product> findByProductStatus(String status);
+    List<Product> findByStatus(String status);
 
     @Query(value = "SELECT * FROM product GROUP BY name ORDER BY import_date DESC ", nativeQuery = true)
     List<Product> findNewestImportProduct();
