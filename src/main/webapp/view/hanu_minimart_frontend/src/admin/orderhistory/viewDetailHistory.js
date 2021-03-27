@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { withRouter } from "react-router";
+import { withRouter,Link } from "react-router-dom";
 import {ImportOutlined} from "@ant-design/icons";
 class ViewDetailHistory extends React.Component{
     constructor(props){
@@ -30,7 +30,7 @@ class ViewDetailHistory extends React.Component{
         return (
             <div>
 <div className="container_cart">
-<button className="btn btn-primary" onClick ={this.handleOrderNow}><ImportOutlined /></button>
+<Link to ="/admin/manageorder/"> <button className="btn btn-primary" onClick ={this.handleOrderNow}><ImportOutlined /></button></Link>
 
         <div className="card shopping-cart">
           { (orderDetail.map((product,index) => (

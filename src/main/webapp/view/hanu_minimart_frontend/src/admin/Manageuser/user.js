@@ -118,14 +118,13 @@ class ManageUser extends React.Component {
                       <TableCell align="right">{user.address}</TableCell>
                       <TableCell align="right">{user.phoneNumber}</TableCell>
                       <TableCell align="right">
-                      <Button>
+                      
                       <Link
                           style={{ color: "#fff" }}
                           to={`/admin/manageuser/${user.id}`}
                         >
-                          Edit
+                         <Button>Edit</Button> 
                         </Link>
-                      </Button>
                         
                       </TableCell>
                     </TableRow>

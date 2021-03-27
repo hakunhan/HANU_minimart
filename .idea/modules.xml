@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/HANU_minimart.iml" filepath="$PROJECT_DIR$/.idea/HANU_minimart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hanu_minimart.iml" filepath="$PROJECT_DIR$/hanu_minimart.iml" />
     </modules>
   </component>
 </project>

@@ -136,14 +136,13 @@ class ManageProduct extends React.Component {
                           </TableCell>
 
                           <TableCell align="right">
-                          <Button>
+                          
                           <Link
                               style={{ color: "#fff" }}
                               to={`/admin/manageproduct/edit/${product.id}`}
                             >
-                              Edit
+                             <Button>Edit</Button> 
                             </Link>
-                          </Button>
                             
                           </TableCell>
                         </TableRow>

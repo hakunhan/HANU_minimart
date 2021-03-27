@@ -51,10 +51,19 @@ public class CartItemService {
 		return cartItemRepository.save(cartItem);
 	}
 
+	@Transactional
 	public void deleteItem(Long id) {
 		if(!cartItemRepository.existsById(id)) {
 			throw new IllegalStateException("Item is not exits");
 		}
+		CartItem cartItem = cartItemRepository.findById(id).get();
+		Cart cart = cartItem.getCart();
+
+		if (cart.getTotalPrice() != null){
+			cart.setTotalPrice(cart.getTotalPrice() - cartItem.getPrice() * cartItem.getQuantity());
+		}
+		cartRepository.save(cart);
+
 		cartItemRepository.deleteById(id);
 	}
 	public void deleteAll() {

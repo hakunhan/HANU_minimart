@@ -73,12 +73,12 @@ class ManageProduct extends React.Component {
       <div>
         <div className="Header">
           <div className="newProduct">
-            <Link to="/admin/manageproduct/newproduct" className="linkNewP">
+            {/* <Link to="" className="linkNewP"> */}
               <Button variant="primary" size="sm">
                 <PlusCircleOutlined />
                 New Product
               </Button>
-            </Link>
+            {/* </Link> */}
           </div>
           <form className="Search">
             <SearchOutlined />
@@ -136,14 +136,12 @@ class ManageProduct extends React.Component {
                           </TableCell>
 
                           <TableCell align="right">
-                          <Button>
                           <Link
                               style={{ color: "#fff" }}
                               to={`/employee/manageproduct/edit/${product.id}`}
                             >
-                              Edit
+                             <Button>Edit</Button> 
                             </Link>
-                          </Button>
                             
                           </TableCell>
                         </TableRow>

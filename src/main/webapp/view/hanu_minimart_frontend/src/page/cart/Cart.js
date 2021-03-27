@@ -48,7 +48,7 @@ class Cart extends React.Component {
       const getDataCart = getDataCartItem.data.cartItem;
       console.log("carrrrrrrrrrrrrrrrrrr22222222",getDataCartItem);
       this.props.handleCart(getDataCart.length);
-      console.log(getDataCart.length, "numbeeeeeeeeeeeeeee");
+      console.log(getDataCartItem.data.totalPrice, "numbeeeeeeeeeeeeeee");
       // window.location.reload()
 
       this.setState({
