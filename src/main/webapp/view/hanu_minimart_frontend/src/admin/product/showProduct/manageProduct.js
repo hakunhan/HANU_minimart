@@ -34,6 +34,8 @@ class ManageProduct extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     // this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
     this.fetchDataSearch = this.fetchDataSearch.bind(this);
+    this.fetchNearExpireProduct = this.fetchNearExpireProduct.bind(this);
+    this.fetchViewAll = this.fetchViewAll.bind(this);
   }
   handleChange(e){
     const {name, value} = e.target;
@@ -55,6 +57,28 @@ class ManageProduct extends React.Component {
     })
     console.log("")
   }
+  
+  async fetchNearExpireProduct(){
+  	console.log("get near expire product");
+  	
+  	const url = "http://localhost:8085/api/product/nearExpire";
+  	const fetData = await axios.get(url);
+  	this.setState({
+  		product: fetData.data
+	});
+	console.log("")
+  }
+  
+  async fetchViewAll() {
+    console.log("this_________________");
+    const urlProduct = "http://localhost:8085/api/product/getAll";
+    const getData = await axios.get(urlProduct);
+    const product = getData.data;
+    console.log("product_______________-", typeof product);
+    this.setState({
+      product: product,
+    });
+  }
 
   
   async componentDidMount() {
@@ -67,6 +91,8 @@ class ManageProduct extends React.Component {
       product: product,
     });
   }
+  
+  
   render() {
     const { product } = this.state;
     return (
@@ -86,13 +112,13 @@ class ManageProduct extends React.Component {
             <Button type= "submit" key ="button" onClick ={this.fetchDataSearch}>Submit</Button>
           </form>
 
-          <div className="ViewAll">
+          <div className="ViewAll" onClick={this.fetchViewAll}>
             <Button key ="button" variant="primary" size="sm">
               View All
             </Button>
           </div>
           <div className="ViewProductNear">
-            <Button variant="primary" size="sm">
+            <Button variant="primary" size="sm" onClick = {this.fetchNearExpireProduct}>
               View Product Near Expiration
             </Button>
           </div>

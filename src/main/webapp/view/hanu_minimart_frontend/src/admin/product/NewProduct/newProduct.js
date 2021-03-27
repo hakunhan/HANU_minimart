@@ -14,7 +14,8 @@ class NewProduct extends React.Component {
       category: " ",
       expireDate: " ",
       picture_URL:"",
-      status: ""
+      status: "",
+      sale: 0,
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -37,14 +38,15 @@ class NewProduct extends React.Component {
     } = this.state;
   
         const body ={
-          name: name.strim(),
+          name: name.trim(),
           price: price,
           quantity: quantity,
           description: description,
           expireDate: expireDate,
           category: category,
           picture_URL: picture_URL,
-          status: status
+          status: status,
+          sale: sale
       }
       
       const url = "http://localhost:8085/api/product/add";
@@ -176,9 +178,26 @@ class NewProduct extends React.Component {
                         <label className ="new" for="website">expireDate</label>
                         <input
                         name ="expireDate"
-                          type="text"
+                          type="date"
                           class="form-control"
                           id="website"
+                          onChange={this.handleChangeInput}
+
+                          // placeholder={user.address}
+                          // onInput = {this.setAddress}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label className="new" for="sale">
+                          Sale
+                        </label>
+                        <input
+                          name ="sale"
+                          type="Number"
+                          className="form-control"
+                          id="sale"
                           onChange={this.handleChangeInput}
 
                           // placeholder={user.address}

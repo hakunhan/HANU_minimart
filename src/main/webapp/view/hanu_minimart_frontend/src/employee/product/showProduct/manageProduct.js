@@ -34,6 +34,8 @@ class ManageProduct extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     // this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
     this.fetchDataSearch = this.fetchDataSearch.bind(this);
+        this.fetchNearExpireProduct = this.fetchNearExpireProduct.bind(this);
+        this.fetchViewAll = this.fetchViewAll.bind(this);
   }
   handleChange(e){
     const {name, value} = e.target;
@@ -55,6 +57,28 @@ class ManageProduct extends React.Component {
     })
     console.log("")
   }
+  
+    async fetchNearExpireProduct(){
+  	console.log("get near expire product");
+  	
+  	const url = "http://localhost:8085/api/product/nearExpire";
+  	const fetData = await axios.get(url);
+  	this.setState({
+  		product: fetData.data
+	});
+	console.log("")
+  }
+  
+  async fetchViewAll() {
+    console.log("this_________________");
+    const urlProduct = "http://localhost:8085/api/product/getAll";
+    const getData = await axios.get(urlProduct);
+    const product = getData.data;
+    console.log("product_______________-", typeof product);
+    this.setState({
+      product: product,
+    });
+  }
 
   
   async componentDidMount() {
@@ -72,13 +96,7 @@ class ManageProduct extends React.Component {
     return (
       <div>
         <div className="Header">
-          <div className="newProduct">
-            {/* <Link to="" className="linkNewP"> */}
-              <Button variant="primary" size="sm">
-                <PlusCircleOutlined />
-                New Product
-              </Button>
-            {/* </Link> */}
+          <div>
           </div>
           <form className="Search">
             <SearchOutlined />
@@ -86,12 +104,12 @@ class ManageProduct extends React.Component {
             <Button type= "submit" key ="button" onClick ={this.fetchDataSearch}>Submit</Button>
           </form>
 
-          <div className="ViewAll">
+          <div className="ViewAll" onClick={this.fetchViewAll}>
             <Button key ="button" variant="primary" size="sm">
               View All
             </Button>
           </div>
-          <div className="ViewProductNear">
+          <div className="ViewProductNear" onClick={this.fetchNearExpireProduct}>
             <Button variant="primary" size="sm">
               View Product Near Expiration
             </Button>
@@ -111,7 +129,6 @@ class ManageProduct extends React.Component {
                         <TableCell align="right">Category</TableCell>
                         <TableCell align="right">Sale</TableCell>
                         <TableCell align="right">Expired Date</TableCell>
-                        <TableCell align="right">Action</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -133,16 +150,6 @@ class ManageProduct extends React.Component {
                           </TableCell>
                           <TableCell align="right">
                             {product.expireDate}
-                          </TableCell>
-
-                          <TableCell align="right">
-                          <Link
-                              style={{ color: "#fff" }}
-                              to={`/employee/manageproduct/edit/${product.id}`}
-                            >
-                             <Button>Edit</Button> 
-                            </Link>
-                            
                           </TableCell>
                         </TableRow>
                       ))}

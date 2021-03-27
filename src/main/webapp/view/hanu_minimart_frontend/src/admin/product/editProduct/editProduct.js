@@ -15,7 +15,8 @@ class EditProduct extends React.Component {
       category: "",
       sale: "",
       expireDate: "",
-      picture_URL:""
+      picture_URL:"",
+      status:"",
     };
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.fetDataUpdate = this.fetDataUpdate.bind(this);
@@ -45,7 +46,7 @@ class EditProduct extends React.Component {
     event.preventDefault();
     
       console.log("update product //////////////")
-      const {id,name, price, quantity, description,expireDate, sale, category, picture_URL} = this.state;
+      const {id,name, price, quantity, description,expireDate, sale, category, picture_URL, status} = this.state;
       const id1 = Number(id);
 
     //   const body ={
@@ -64,7 +65,7 @@ class EditProduct extends React.Component {
     //   console.log(body);
 
       try{
-          const url =`http://localhost:8085/api/product/update/${id1}?name=${name}&price=${price}&quantity=${quantity}&description=${description}&category=${category}&picture_URL=${picture_URL}&sale=${sale}&expireDate=${expireDate}`;
+          const url =`http://localhost:8085/api/product/update/${id1}?name=${name}&price=${price}&quantity=${quantity}&description=${description}&category=${category}&picture_URL=${picture_URL}&sale=${sale}&expireDate=${expireDate}&status=${status}`;
           console.log("link kkkkkkkkkkkkkk",url);
           const sendData = await axios.put(url);
           console.log(sendData.data);
@@ -291,6 +292,22 @@ class EditProduct extends React.Component {
                           className="form-control"
                           id="sale"
                           defaultValue={product.sale}
+                          onChange={this.handleChangeInput}
+
+                          // placeholder={user.address}
+                          // onInput = {this.setAddress}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label className ="new" for="status">Status</label>
+                        <input
+                        name="status"
+                          type="text"
+                          class="form-control"
+                          id="sale"
+                          defaultValue={product.status}
                           onChange={this.handleChangeInput}
 
                           // placeholder={user.address}
