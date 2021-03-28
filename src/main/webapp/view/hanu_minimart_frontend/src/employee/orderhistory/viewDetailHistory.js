@@ -312,16 +312,14 @@ class ViewDetailHistory extends React.Component {
                       Accept
                     </button>
                     <button
-                      onClick={this.checkStorageCancel}
-                      className="btn btn-danger"
+                      className="btn btn-danger" onClick={this.handleClose}
                     >
                       Cancel
                     </button>
                   </DialogActions>
                 </Dialog>
               </React.Fragment>
-
-              {/* <button className="btn btn-danger">Cancel Order</button> */}
+              <button className="btn btn-danger" onClick={() => { if (window.confirm('Are you sure you wish to cancel this order?')) this.checkStorageCancel() } }>Cancel Order</button>
               <div className="" style={{ margin: 17 }}>
                 Total price: <b>{totalPrice}</b>
               </div>
