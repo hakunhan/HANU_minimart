@@ -47,4 +47,4 @@ A project of Software Quality Assurance course:
   - ER diagram
 
 https://online.visual-paradigm.com/community/share/getproduct
-  
+https://online.visual-paradigm.com/community/share/sign-in-vpd-hzzfk0stl
