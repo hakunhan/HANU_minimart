@@ -45,4 +45,6 @@ A project of Software Quality Assurance course:
   - Use cases diagrams and spec (template : book Software Req (page 150) without 5 last line)
   - Activites Diagram
   - ER diagram
+
+https://online.visual-paradigm.com/community/share/getproduct
   
