@@ -17,6 +17,7 @@ Link for Activity Report: https://docs.google.com/document/d/1eK8ZXBSCzxIFZFaYQt
 
 Link for Project Assessment: https://drive.google.com/file/d/1LsTg2pl9yr6d_Yqm-81PIc5qyGCY2eJj/view?usp=sharing
 
+
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
 Database azure: 
@@ -48,5 +49,8 @@ A project of Software Quality Assurance course:
   - Activites Diagram
   - ER diagram
 
+How to inspec code: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiemM7O2eTvAhUDHaYKHQqfC5MQFjAOegQIGBAD&url=http%3A%2F%2Fwww.cs.toronto.edu%2F~sme%2FCSC444F%2Fhandouts%2Fjava_checklist.pdf&usg=AOvVaw3-GEQpg88LYF8RcauQ0SKg
+
 https://online.visual-paradigm.com/community/share/getproduct
+
 https://online.visual-paradigm.com/community/share/sign-in-vpd-hzzfk0stl
