@@ -17,13 +17,15 @@ Link for Activity Report: https://docs.google.com/document/d/1eK8ZXBSCzxIFZFaYQt
 
 Link for Project Assessment: https://drive.google.com/file/d/1LsTg2pl9yr6d_Yqm-81PIc5qyGCY2eJj/view?usp=sharing
 
+Link for Azure backend: http://hanuminimart.azurewebsites.net/{api_address}
+
 
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
 Database azure: 
-- servername: hanuminimartrt.mysql.database.azure.com
-- database: minimart
-- username: hanuadmin@hanuminimartrt
+- servername: hanuminimart.mysql.database.azure.com
+- database: hanu_minimart
+- username: hanuminimart@hanuminimart
 - password: hanu4C18
 
 A project of Software Quality Assurance course: 
