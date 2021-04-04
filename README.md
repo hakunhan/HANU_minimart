@@ -15,6 +15,8 @@ Link for Requirement Description: https://docs.google.com/document/d/16q_ZZo94Ts
 
 Link for Activity Report: https://docs.google.com/document/d/1eK8ZXBSCzxIFZFaYQt9ay1usiHQa7yXsug1mlx5OKEM/edit?usp=sharing
 
+Link for Project Assessment: https://drive.google.com/file/d/1LsTg2pl9yr6d_Yqm-81PIc5qyGCY2eJj/view?usp=sharing
+
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
 Database azure: 
