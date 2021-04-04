@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-04-04T14:42:40.563Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="i023bFxNtFIDoxm2IZuk" version="14.4.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-04T14:43:00.027Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="-9THJ2KK825kq8X0dntT" version="14.4.8" type="github">
   <diagram id="yp7Leg4UNXgGJCauUP3w" name="Page-1">
     <mxGraphModel dx="-454" dy="677" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -22,7 +22,7 @@
         <mxCell id="gKbwiVIr-9D4iEGDyd9_-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gKbwiVIr-9D4iEGDyd9_-6" target="gKbwiVIr-9D4iEGDyd9_-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gKbwiVIr-9D4iEGDyd9_-6" value="Enter the sals percentage with the corresponding field" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="gKbwiVIr-9D4iEGDyd9_-6" value="Enter the sales percentage with the corresponding field" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="1303" y="233" width="131" height="68" as="geometry" />
         </mxCell>
         <mxCell id="gKbwiVIr-9D4iEGDyd9_-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gKbwiVIr-9D4iEGDyd9_-8" target="gKbwiVIr-9D4iEGDyd9_-12">
