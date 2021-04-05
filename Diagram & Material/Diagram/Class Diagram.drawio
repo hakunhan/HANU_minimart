@@ -1,20 +1,122 @@
-<mxfile host="app.diagrams.net" modified="2021-04-04T16:09:30.111Z" agent="5.0 (X11)" etag="BncEHijlkIBb1Tn0x35D" version="14.5.7" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-05T03:16:37.804Z" agent="5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="4geq3bLIZgu0bQrk2l0r" version="14.2.7" type="github">
   <diagram id="uzqernyKfh6pWcLg8lgZ" name="Page-1">
-    <mxGraphModel dx="1422" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="6482" dy="6527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="qUvDU30d2znPsJFL0WZq-1" value="Account Controller" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="210" y="200" width="390" height="130" as="geometry" />
+        <mxCell id="qUvDU30d2znPsJFL0WZq-1" value="Account Controller" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="-1000" y="-1020" width="390" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="qUvDU30d2znPsJFL0WZq-2" value="- accountService: AccountService&#xa;- userRepository: UserRepository&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qUvDU30d2znPsJFL0WZq-1">
+        <mxCell id="qUvDU30d2znPsJFL0WZq-2" value="- accountService: AccountService&#xa;- userRepository: UserRepository&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qUvDU30d2znPsJFL0WZq-1" vertex="1">
           <mxGeometry y="26" width="390" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="qUvDU30d2znPsJFL0WZq-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="qUvDU30d2znPsJFL0WZq-1">
+        <mxCell id="qUvDU30d2znPsJFL0WZq-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="qUvDU30d2znPsJFL0WZq-1" vertex="1">
           <mxGeometry y="70" width="390" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="qUvDU30d2znPsJFL0WZq-4" value="+ getAllAccount(): ResponseEntity&#xa;+ updateAccount(id: Long, request: UserPayLoad): ResponseEntity&#xa;+ deleteAccount(id: Long): ResponseEntity&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qUvDU30d2znPsJFL0WZq-1">
+        <mxCell id="qUvDU30d2znPsJFL0WZq-4" value="+ getAllAccount(): ResponseEntity&#xa;+ updateAccount(id: Long, request: UserPayLoad): ResponseEntity&#xa;+ deleteAccount(id: Long): ResponseEntity&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="qUvDU30d2znPsJFL0WZq-1" vertex="1">
           <mxGeometry y="78" width="390" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-2" value="ProductController" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="80" width="310" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-3" value="- productService: ProductService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-2">
+          <mxGeometry y="26" width="310" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-2">
+          <mxGeometry y="52" width="310" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-5" value="+ getHomepageProducts(): ResponseEntity&#xa;+ getProducts(): ResponseEntity&#xa;+ getCategorys(): ResponseEntity&#xa;+ getProductNearExpireDate(): ResponseEntity&#xa;+ getProductQuantity(): ResponseEntity&#xa;+ addNewProduct(product: Product): ResponseEntity&#xa;+ updateProduct(id: Long, name: String, price: Double, &#xa;                           quantity: Integer, category: String,&#xa;                           picture_URL: String, description: String,&#xa;                           sale: String, status: String,&#xa;                           expireDate: String): ResponseEntity&#xa;+ deleteProduct(id: Long): ResponseEntity" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-2">
+          <mxGeometry y="60" width="310" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-6" value="ProductService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="490" width="490" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-7" value="- productRespository: ProductRespository&#xa;- cartItemRespository: CartItemRespository&#xa;- orderLineService: OrderLineService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-6">
+          <mxGeometry y="26" width="490" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-6">
+          <mxGeometry y="90" width="490" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-9" value="+ ProductService(productRespository: ProductRespository,&#xa;                             cartItemRespository: CartItemRespository,&#xa;                             orderLineService: OrderLineService)&#xa;+ getHomepageProducts(): List&lt;Product&gt;&#xa;- &lt;statis&gt; distinctByKey(keyExtractor: Function&lt;? super T, ?&gt;: Predicate&lt;T&gt;&#xa;+ getCategory(): List&lt;String&gt;&#xa;+ getProducts(): List&lt;Product&gt;&#xa;+ getProductByName(name: String): List&lt;Product&gt;&#xa;+ getProductsQuantity(name: String): Integer&#xa;+ addNewProduct(product: Product): void&#xa;+ deleteProduct(id: Long): void&#xa;+ deleteProduct(name: String, expireDate: LocalDate, importDate: LocalDateTime): void&#xa;+ getProductNearExpireDate(): List&lt;Product&gt;&#xa;+ findProductByNameSortedByExpAndImportDate(name: String): List&lt;Product&gt;&#xa;+ updateProduct(id: Long, name: String, price: Double,&#xa;                           quantity: Integer, category: String,&#xa;                           picture_URL: String, description: String,&#xa;                           sale: String, status: String,&#xa;                           expireDate: String): void&#xa;+ updateProductQuantity(id: Long, quantity: int): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-6">
+          <mxGeometry y="98" width="490" height="302" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-10" value="&lt;&lt;Interface&gt;&gt;&#xa;ProductRespository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="860" y="80" width="520" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-10">
+          <mxGeometry y="40" width="520" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-13" value="+ findByNameContaining(name: String): List&lt;Product&gt;&#xa;+ findByCategory(category: String): List&lt;Product&gt;&#xa;+ findByStatus(status: String): List&lt;Product&gt;&#xa;+ findNearlyExpireProduct(): List&lt;Product&gt; &#xa;+ findProductsById(id: Long): List&lt;Product&gt;&#xa;+ findProductsByPrice(price: Double): List&lt;Product&gt;&#xa;+ findProductsByQuantity(quantity: Integer): List&lt;Product&gt;&#xa;+ findByExpireDate(expireDate: LocalDate): List&lt;Product&gt;&#xa;+ findDistictCategory(): List&lt;String&gt;&#xa;+ findProductByNameSortedByExpAndImportDate(name: String): List&lt;Product&gt;&#xa;+ getProductQuantity(name: String): Integer&#xa;+ updateCategory(name: String, category: String): void&#xa;+ updatePrice(name: String, price: double): void&#xa;+ updateDescription(name: String, description: String): void&#xa;+ updatePictureURL(name: String, picture_URL: String): void&#xa;+ updateSale(name: String, sale: Integer): void&#xa;+ updateStatus(name: String, status: String): void&#xa;+ updateName(oldName: String, newName: String): void&#xa;+ deleteByNameAndExp(name: String, exp: LocalDate: exp, importDate: LocalDateTime): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-10">
+          <mxGeometry y="48" width="520" height="292" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-20" value="JpaRepository&lt;?, ?&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="-60" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-22" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-20">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-24" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="0BFNx-fd1TaQjqffZDhe-10" target="0BFNx-fd1TaQjqffZDhe-20">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1120" y="70" as="sourcePoint" />
+            <mxPoint x="1220" y="10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-30" value="Product" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="960" y="480" width="290" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-31" value="- id: Long&#xa;- name: String&#xa;- price: Double&#xa;- quantity: int&#xa;- category: String&#xa;- picture_URL: String&#xa;- description: String&#xa;- sale: Integer&#xa;- status: ProductStatus&#xa;- importDate: LocalDateTime&#xa;- updateAt: LocalDateTime&#xa;- expireDate: LocalDate&#xa;- orderLine: Set&lt;OrderLine&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-30">
+          <mxGeometry y="26" width="290" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-32" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-30">
+          <mxGeometry y="220" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-33" value="+ Product()&#xa;+ Product(name: String, price: double, quantity: int,&#xa;                category: String, expireDate: LocalDate)&#xa;+ Product(name: String, price: double, quantity: int,&#xa;                category: String, expireDate: LocalDate,&#xa;                description: String)&#xa;+ Product(name: String, price: double, quantity: int,&#xa;                category: String, expireDate: LocalDate,&#xa;                picture_URL: String, description: String,&#xa;                status: String)&#xa;+ Product(name: String, price: double, quantity: int,&#xa;                category: String, expireDate: LocalDate,&#xa;                picture_URL: String, description: String,&#xa;                sale: Integer ,status: String)&#xa;+ getter&#xa;+ setter&#xa;+ toString()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-30">
+          <mxGeometry y="228" width="290" height="252" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-38" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="0BFNx-fd1TaQjqffZDhe-9" target="0BFNx-fd1TaQjqffZDhe-31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="790" y="620" as="sourcePoint" />
+            <mxPoint x="950" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-39" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-38">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-40" value="1..*" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-38">
+          <mxGeometry x="1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-41" value="" style="endArrow=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="0BFNx-fd1TaQjqffZDhe-6" target="0BFNx-fd1TaQjqffZDhe-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="420.00210526315794" as="sourcePoint" />
+            <mxPoint x="650" y="380.21263157894754" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-42" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-41">
+          <mxGeometry x="-1" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-43" value="1" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-41">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="12.440000000000001" y="27.22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-45" value="" style="endArrow=none;html=1;exitX=0.845;exitY=-0.002;exitDx=0;exitDy=0;entryX=-0.003;entryY=0.789;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="0BFNx-fd1TaQjqffZDhe-6" target="0BFNx-fd1TaQjqffZDhe-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="545" y="490.0000000000002" as="sourcePoint" />
+            <mxPoint x="551.4000000000001" y="330.0000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-46" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-45">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint y="-9.2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-47" value="1" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="0BFNx-fd1TaQjqffZDhe-45">
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="-22.23" y="8.739999999999998" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0BFNx-fd1TaQjqffZDhe-48" value="Product" style="shape=umlFrame;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="10" width="1160" height="1040" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
