@@ -3,6 +3,8 @@ package sqa.hanu_minimart.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,31 +34,59 @@ public class CartItemController {
 	}
 
 	@GetMapping("/getAll")
-	List<CartItem> getAll() {
-		return cartItemService.getAllItem();
+	public ResponseEntity<?> getAll() {
+		try{
+			return new ResponseEntity<>(cartItemService.getAllItem(), HttpStatus.OK);
+		}catch (Exception e){
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping("/{id}")
-	CartItem getById(@PathVariable Long id) {
-		return cartItemService.getById(id);
+	public ResponseEntity<?> getById(@PathVariable Long id) {
+		try{
+			return new ResponseEntity<>(cartItemService.getById(id), HttpStatus.OK);
+		}catch (Exception e){
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PostMapping("/add")
-	CartItem addNewItem(@RequestBody CartItemPayLoad newItem) {
-		return cartItemService.addNewItem(newItem);
+	public ResponseEntity<?> addNewItem(@RequestBody CartItemPayLoad newItem) {
+		try{
+			return new ResponseEntity<>(cartItemService.addNewItem(newItem), HttpStatus.OK);
+		}catch (Exception e){
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PutMapping("/update/{id}")
-	void updateCartItem(@PathVariable Long id, @RequestParam int quantity) {
-		cartItemService.updateItem(id, quantity);
+	public ResponseEntity<?> updateCartItem(@PathVariable Long id, @RequestParam int quantity) {
+		try{
+			cartItemService.updateItem(id, quantity);
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}catch (Exception e){
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@DeleteMapping("/delete")
-	void deleteAllCartItem() {
-		cartItemService.deleteAll();
+	public ResponseEntity<?> deleteAllCartItem() {
+		try{
+			cartItemService.deleteAll();
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
+
 	@DeleteMapping("/delete/{id}")
-	void deleteCartItem(@PathVariable Long id) {
-		cartItemService.deleteItem(id);
+	public ResponseEntity<?> deleteCartItem(@PathVariable Long id) {
+		try{
+			cartItemService.deleteItem(id);
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}catch (Exception e){
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }

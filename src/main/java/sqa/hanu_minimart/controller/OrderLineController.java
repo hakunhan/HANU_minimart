@@ -1,6 +1,8 @@
 package sqa.hanu_minimart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sqa.hanu_minimart.service.OrderLineService;
 import sqa.hanu_minimart.model.OrderLine;
@@ -11,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = {"api/orderline"})
 public class OrderLineController {
-    private OrderLineService orderLineService;
+    private final OrderLineService orderLineService;
 
     @Autowired
     public OrderLineController(OrderLineService orderLineService) {
@@ -19,33 +21,60 @@ public class OrderLineController {
     }
 
     @GetMapping(path = {"/all"})
-    public List<OrderLine> getAllOrderLine(){ return orderLineService.getAllOrderLine();}
+    public ResponseEntity<?> getAllOrderLine(){
+        try{
+            return new ResponseEntity<>(orderLineService.getAllOrderLine(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/{id}")
-    public OrderLine getById(@PathVariable Long id) {
-        return orderLineService.getById(id);
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        try{
+            return new ResponseEntity<>(orderLineService.getById(id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(path = "/newOrderLine")
-    public void createNewOrderLine(@RequestBody OrderLine orderItem){
-        orderLineService.addNewOrderLine(orderItem);
+    public ResponseEntity<?> createNewOrderLine(@RequestBody OrderLine orderItem){
+        try{
+            orderLineService.addNewOrderLine(orderItem);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody OrderLine orderItem, @PathVariable Long id) {
-        orderLineService.update(orderItem, id);
-    }
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id) {
-        orderLineService.deleteById(id);
-    }
-    @DeleteMapping
-    public void deleteAll() {
-        orderLineService.deleteAll();
+    public ResponseEntity<?> update(@RequestBody OrderLine orderItem, @PathVariable Long id) {
+        try{
+            orderLineService.update(orderItem, id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-//    @GetMapping(path = {"/bill"})
-//    public double getTotalBill(Long orderID){
-//         return orderLineService.getTotalBill(orderID);
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        try{
+            orderLineService.deleteById(id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteAll() {
+        try{
+            orderLineService.deleteAll();
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

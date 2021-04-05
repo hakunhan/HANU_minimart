@@ -1,6 +1,8 @@
 package sqa.hanu_minimart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sqa.hanu_minimart.model.Cart;
 import sqa.hanu_minimart.payload.OrderPayload;
@@ -19,42 +21,72 @@ public class OrderController {
     public OrderController(OrderService orderService) {this.orderService = orderService;}
 
     @GetMapping(path = {"/getAll"})
-    public List<Order> getAllOrder() { return orderService.getAllOrders();}
+    public ResponseEntity<?> getAllOrder() {
+        try{
+            return new ResponseEntity<>(orderService.getAllOrders(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/{id}")
-    public Order getById(@PathVariable Long id) {
-        return orderService.getOrderById(id);
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        try{
+            return new ResponseEntity<>(orderService.getOrderById(id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/getByUserId")
-    public List<Order> getByUserId(@RequestParam Long userId){
-        return orderService.getOrderByUserId(userId);
+    public ResponseEntity<?> getByUserId(@RequestParam Long userId){
+        try{
+            return new ResponseEntity<>(orderService.getOrderByUserId(userId), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(path = "/add")
-    public Order newOrder(@RequestBody OrderPayload orderPayload) {
-        return orderService.addNewOrder(orderPayload);
+    public ResponseEntity<?> newOrder(@RequestBody OrderPayload orderPayload) {
+        try{
+            orderService.addNewOrder(orderPayload);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
     @DeleteMapping(path = {"/delete/{orderID}"})
-    public void deleteOrder(@PathVariable Long orderID){
-        orderService.deleteOrder(orderID);
+    public ResponseEntity<?> deleteOrder(@PathVariable Long orderID){
+        try{
+            orderService.deleteOrder(orderID);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-//    @PutMapping(path = {"/process/{orderID}"})
-//    public void processOrder(@PathVariable("orderID")Long orderID){
-//        orderService.processOrder(orderID);
-//    }
     @PutMapping("/update/{id}")
-    public void updateOrder(@RequestBody Order order, @PathVariable Long id) {
-        orderService.updateOrder(order, id);
+    public ResponseEntity<?> updateOrder(@RequestBody Order order, @PathVariable Long id) {
+        try{
+            orderService.updateOrder(order, id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // order/updateStatus/1?status=Accepted (hoac Cancel)
     @PutMapping(path = "/updateStatus/{id}")
-    public void updateOrderStatus(@PathVariable Long id,
+    public ResponseEntity updateOrderStatus(@PathVariable Long id,
                                   @RequestParam String status){
-        orderService.updateOrderStatus(id, status);
+        try{
+            orderService.updateOrderStatus(id, status);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

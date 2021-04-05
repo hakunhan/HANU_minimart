@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", columnDefinition = "INT(6) UNSIGNED ", precision = 4, updatable = false)
 	private Long id;
 
 	private String productName;

@@ -43,14 +43,14 @@ public class CartService {
 		return  cartRepository.findById(id).get();
 	}
 
-	@Transactional
-	public void update(Long id) {
-		Cart cart = cartRepository.findById(id)
-				.orElseThrow(() -> new IllegalStateException("Cart does not exist!"));
-		cartRepository.save(cart);
-	}
-
 	public Cart getByUserId(Long userId){
 		return cartRepository.findByUser_Id(userId);
 	}
+
+	@Transactional
+    public void updateCart(Long id, Cart newCart) {
+		cartRepository.findById(id)
+				.orElseThrow(() -> new IllegalStateException("Cart does not exist!"));
+		cartRepository.save(newCart);
+    }
 }
