@@ -19,6 +19,9 @@ Link for Project Assessment: https://drive.google.com/file/d/1LsTg2pl9yr6d_Yqm-8
 
 Link for Azure backend: http://hanuminimart.azurewebsites.net/{api_address}
 
+Link for Code Inspection Report: https://docs.google.com/document/d/1QGcET0q5_at7BulWahUcIj2w85zvjafBR_yKSWWgDsM/edit?usp=sharing
+
+Link for Test Report: https://docs.google.com/document/d/1Y2oaBO1DdBSiP8kFi9l3-_eXh5fF3DC5nVceXMwIMmQ/edit?usp=sharing
 
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
