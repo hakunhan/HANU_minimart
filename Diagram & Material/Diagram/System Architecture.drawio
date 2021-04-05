@@ -1,0 +1,86 @@
+<mxfile host="app.diagrams.net" modified="2021-04-04T12:46:17.560Z" agent="5.0 (X11)" etag="Npjg2AHPfZbm1BOoxXcE" version="14.5.7" type="github">
+  <diagram id="mhgqJG993w23OeGKdTeU" name="Page-1">
+    <mxGraphModel dx="1422" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="yuhQMI-zMf_nj3-LRKAn-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="210" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="400" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-7" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="130" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yuhQMI-zMf_nj3-LRKAn-8" target="yuhQMI-zMf_nj3-LRKAn-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="350" />
+              <mxPoint x="400" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-8" value="&lt;div&gt;Web application&lt;/div&gt;&lt;div&gt;(React JS)&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-12" value="&lt;div&gt;Access to&lt;/div&gt;&lt;div&gt;Hanu minimart website&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="425" y="220" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-14" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="372" y="269" as="sourcePoint" />
+            <mxPoint x="372" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-15" value="Display website component" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="210" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yuhQMI-zMf_nj3-LRKAn-17" target="yuhQMI-zMf_nj3-LRKAn-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="350" />
+              <mxPoint x="370" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yuhQMI-zMf_nj3-LRKAn-17" target="yuhQMI-zMf_nj3-LRKAn-23">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="530" />
+              <mxPoint x="400" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-17" value="&lt;div&gt;API application&lt;/div&gt;&lt;div&gt;(Spring Boot)&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-20" value="Send HTTP to API base on user request" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="432.5" y="370" width="87.5" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-21" value="Return JSON data or HTTP respone" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="370" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yuhQMI-zMf_nj3-LRKAn-23" target="yuhQMI-zMf_nj3-LRKAn-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="540" />
+              <mxPoint x="370" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-23" value="&lt;div&gt;Database&lt;/div&gt;&lt;div&gt;(MySQL)&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-26" value="JDBC query" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="445" y="520" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yuhQMI-zMf_nj3-LRKAn-27" value="Return data" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="290" y="520" width="60" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

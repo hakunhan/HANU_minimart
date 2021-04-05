@@ -15,12 +15,20 @@ Link for Requirement Description: https://docs.google.com/document/d/16q_ZZo94Ts
 
 Link for Activity Report: https://docs.google.com/document/d/1eK8ZXBSCzxIFZFaYQt9ay1usiHQa7yXsug1mlx5OKEM/edit?usp=sharing
 
+Link for Project Assessment: https://drive.google.com/file/d/1LsTg2pl9yr6d_Yqm-81PIc5qyGCY2eJj/view?usp=sharing
+
+Link for Azure backend: http://hanuminimart.azurewebsites.net/{api_address}
+
+Link for Code Inspection Report: https://docs.google.com/document/d/1QGcET0q5_at7BulWahUcIj2w85zvjafBR_yKSWWgDsM/edit?usp=sharing
+
+Link for Test Report: https://docs.google.com/document/d/1Y2oaBO1DdBSiP8kFi9l3-_eXh5fF3DC5nVceXMwIMmQ/edit?usp=sharing
+
 Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
 
 Database azure: 
-- servername: hanuminimartrt.mysql.database.azure.com
-- database: minimart
-- username: hanuadmin@hanuminimartrt
+- servername: hanuminimart.mysql.database.azure.com
+- database: hanu_minimart
+- username: hanuminimart@hanuminimart
 - password: hanu4C18
 
 A project of Software Quality Assurance course: 
@@ -46,5 +54,8 @@ A project of Software Quality Assurance course:
   - Activites Diagram
   - ER diagram
 
+How to inspec code: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiemM7O2eTvAhUDHaYKHQqfC5MQFjAOegQIGBAD&url=http%3A%2F%2Fwww.cs.toronto.edu%2F~sme%2FCSC444F%2Fhandouts%2Fjava_checklist.pdf&usg=AOvVaw3-GEQpg88LYF8RcauQ0SKg
+
 https://online.visual-paradigm.com/community/share/getproduct
+
 https://online.visual-paradigm.com/community/share/sign-in-vpd-hzzfk0stl
