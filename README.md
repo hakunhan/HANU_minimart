@@ -57,3 +57,5 @@ How to inspec code: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&c
 https://online.visual-paradigm.com/community/share/getproduct
 
 https://online.visual-paradigm.com/community/share/sign-in-vpd-hzzfk0stl
+
+Sửa frontend: https://docs.google.com/document/d/1G2lK_RVfuaiiKbSnmUCFEd5GUhMav3WSSfAs8maJt5M/edit?usp=sharing
