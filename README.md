@@ -23,6 +23,8 @@ Link for Code Inspection Report: https://docs.google.com/document/d/1QGcET0q5_at
 
 Link for Test Report: https://docs.google.com/document/d/1Y2oaBO1DdBSiP8kFi9l3-_eXh5fF3DC5nVceXMwIMmQ/edit?usp=sharing
 
+Link for Test Report screenshots & data: https://drive.google.com/drive/folders/1t6N1HFvQ5RXV81icgko4uIUFm06WIGQg?usp=sharing
+
 Database azure: 
 - servername: hanuminimart.mysql.database.azure.com
 - database: hanu_minimart
