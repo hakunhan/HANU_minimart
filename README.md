@@ -1,4 +1,4 @@
-# HANU_minimart 
+# HANU_minimart ver 1.0.0
 Link for SQA presentation slides: https://docs.google.com/presentation/d/1THxwb0td3FNAK2tzAo4FM2kIYfbOAhY9F7FUqmlLbpg/edit?usp=sharing
 
 Link for online meeting: https://discord.gg/y9fpU3YZ
@@ -23,7 +23,7 @@ Link for Code Inspection Report: https://docs.google.com/document/d/1QGcET0q5_at
 
 Link for Test Report: https://docs.google.com/document/d/1Y2oaBO1DdBSiP8kFi9l3-_eXh5fF3DC5nVceXMwIMmQ/edit?usp=sharing
 
-Heroku account: coupdefart@gmail.com | pass: Hanuminimart123@
+Link for Test Report screenshots & data: https://drive.google.com/drive/folders/1t6N1HFvQ5RXV81icgko4uIUFm06WIGQg?usp=sharing
 
 Database azure: 
 - servername: hanuminimart.mysql.database.azure.com
@@ -59,3 +59,5 @@ How to inspec code: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&c
 https://online.visual-paradigm.com/community/share/getproduct
 
 https://online.visual-paradigm.com/community/share/sign-in-vpd-hzzfk0stl
+
+Sửa frontend: https://docs.google.com/document/d/1G2lK_RVfuaiiKbSnmUCFEd5GUhMav3WSSfAs8maJt5M/edit?usp=sharing
