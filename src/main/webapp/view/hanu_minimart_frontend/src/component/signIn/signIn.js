@@ -137,7 +137,7 @@ class SignIn extends Component {
             <HomeOutlined />
           </Link>
           <br />
-          <div> Log In </div>
+          <div> Login </div>
         </div>
         <div className="social_media">
           <div className="item">

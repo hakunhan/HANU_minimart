@@ -245,7 +245,7 @@ class SignUp extends React.Component {
             <HomeOutlined />
           </Link>
           <br />
-          <div> Sign Up</div>
+          <div> Signup</div>
         </div>
         <div className="social_media">
           <div className="item">
