@@ -163,7 +163,7 @@ handleChangeInput(e) {
                           <input
                           name="phoneNumber"
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             id="phone"
                             defaultValue={user.phoneNumber}
                             // onInput={this.setPhoneNumber}
@@ -178,7 +178,7 @@ handleChangeInput(e) {
                           <input
                           name="address"
                             type="url"
-                            class="form-control"
+                            className="form-control"
                             id="website"
                             defaultValue={user.address}
                             // onInput={this.setAddress}
@@ -192,10 +192,11 @@ handleChangeInput(e) {
                       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="text-right">
                           <button
+                            style={{marginLeft: 10}}
                             type="button"
                             id="submit"
                             name="submit"
-                            class="btn btn-secondary"
+                            className="btn btn-secondary"
                             onClick={this.handleClick}
                           >
                             Cancel

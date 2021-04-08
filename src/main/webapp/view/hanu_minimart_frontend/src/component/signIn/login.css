@@ -17,6 +17,9 @@ body{
   text-decoration: none;
   color: #0d179b;
 }
+#icon{
+  margin-top: 3px;
+}
 
 .wrapper{
   max-width: 350px;
@@ -33,9 +36,19 @@ body{
 .linksignup{
   text-decoration: none;
   color: #7498e6;
-  font-size: 16px;
+  font-size: 13px;
   border-bottom: 1px solid #7498e6;
 }
+.input_field{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+/* .input_field{
+  display: flex;
+  flex-direction: column;
+} */
 .wrapper .title{
   margin-bottom: 20px;
   text-align: center;

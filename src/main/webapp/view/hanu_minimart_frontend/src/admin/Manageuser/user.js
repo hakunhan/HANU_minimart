@@ -81,7 +81,7 @@ class ManageUser extends React.Component {
     return (
       <div>
         <div>
-          <form>
+          <form style={{marginLeft: 790}}>
             <input
               style={{ border: "1px solid blue", width: 300, height: 37 }}
               placeholder="Search "

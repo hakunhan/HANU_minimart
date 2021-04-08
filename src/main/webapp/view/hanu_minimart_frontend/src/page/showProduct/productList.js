@@ -147,7 +147,8 @@ class ProductList extends React.Component {
             <div>
               
               <button
-                class="btn btn-md btn-success"
+                id ="searchProduct"
+                className ="btn btn-md btn-success"
                 type="submit"
                 onClick={this.handleClickOpen}
               >
@@ -245,8 +246,10 @@ class ProductList extends React.Component {
                           size="sm"
                           onClick={this.handleLoadMore}
                         >
-                          <ReloadOutlined />
-                          Load more
+                        <div className ="viewDetails"> 
+                        <ReloadOutlined />
+                          Load more</div>
+                         
                         </Button>
                       </div>
                     </div>
@@ -385,8 +388,11 @@ class ProductList extends React.Component {
                           size="sm"
                           onClick={this.handleLoadMore}
                         >
-                          <ReloadOutlined />
+                        <div className= "viewDetails">
+                        <ReloadOutlined />
                           Load more
+                        </div>
+                          
                         </Button>
                       </div>
                     </div>

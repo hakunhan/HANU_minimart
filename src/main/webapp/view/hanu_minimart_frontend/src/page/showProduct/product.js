@@ -29,7 +29,11 @@ class Product extends React.Component {
           <Card.Body>
             <Card.Title> {name}</Card.Title>
             <div className="Deal">
+            {
+              (sale < 5) ? <div></div> :
               <i className="sale">SaleOff {sale} %</i>
+
+            }
             </div>
           </Card.Body>
           <Card.Footer className="footer">
@@ -39,18 +43,14 @@ class Product extends React.Component {
                   <Button
                     variant="danger"
                     size="sm"
-                    // disabled={inCart}
-                    // onClick={ () =>{value.addToCart(id)} }
+                  
                   >
-                    {/* {inCart === true ? (
-                      <span>InCart</span>
-                    ) : (
-                      <span>
-                        {" "} */}
-                    <InfoCircleOutlined />
-                    View details
-                    {/* </span>
-                    )} */}
+                <div className ="viewDetails">
+                  <InfoCircleOutlined/>
+                   View details
+                </div>
+                    
+                   
                   </Button>
                 </Link>
               </Col>

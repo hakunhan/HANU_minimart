@@ -2,12 +2,25 @@
     background-color: #ffffff;
    
 }
+.viewDetails{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+#searchProduct{
+  margin-left: 75%;
+
+}
 .Deal{
     font-family:cursive;
     color: red;
     border: 1px solid red;
     width: 100px;
     border-radius: 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .sale{
     /* background-color: yellow; */

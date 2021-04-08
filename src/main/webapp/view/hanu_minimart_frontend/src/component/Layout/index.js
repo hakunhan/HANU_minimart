@@ -21,7 +21,7 @@ class AppRoute extends React.Component {
       <Layout style={{ backgroundColor: "red" }}>
         <Header style={{ padding: 10 }}>
           <Title style={{ color: "white" }} level={3}>
-            <Link to="/"> HANU_minimart</Link>
+            <Link style ={{textDecorationColor: "none" , color: "white"}} to="/"> HANU_minimart</Link>
           </Title>
 
           <Navbar isLogin={isLogin} />

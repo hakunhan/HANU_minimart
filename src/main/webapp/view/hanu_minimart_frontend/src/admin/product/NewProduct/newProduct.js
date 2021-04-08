@@ -3,24 +3,23 @@ import "./newProduct.css";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 class NewProduct extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state= {
+    this.state = {
       name: "",
       price: "",
       quantity: "",
       description: " ",
       category: " ",
       expireDate: " ",
-      picture_URL:"",
+      picture_URL: "",
       status: "",
       sale: 0,
-    }
+    };
     this.handleClick = this.handleClick.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.fetchDataAdd = this.fetchDataAdd.bind(this);
-
   }
   handleClick() {
     this.props.history.push("/admin/manageproduct");
@@ -31,53 +30,60 @@ class NewProduct extends React.Component {
       [name]: value,
     });
   }
-  async fetchDataAdd(){
-
+  async fetchDataAdd() {
     console.log("Clickkkkkkkkkkkk");
-    const {name, price, quantity,description, status, sale, category, picture_URL,expireDate
+    const {
+      name,
+      price,
+      quantity,
+      description,
+      status,
+      sale,
+      category,
+      picture_URL,
+      expireDate,
     } = this.state;
-  
-        const body ={
-          name: name.trim(),
-          price: price,
-          quantity: quantity,
-          description: description,
-          expireDate: expireDate,
-          category: category,
-          picture_URL: picture_URL,
-          status: status,
-          sale: sale
-      }
-      
-      const url = "http://localhost:8085/api/product/add";
-      const postNew = await axios.post(url, body);
-      console.log("neww Product>>>>>>>>>>>>");
-        this.props.history.push("/admin/manageproduct");
-      
 
-    }
+    const body = {
+      name: name,
+      // name: name.trim(),
+      price: price,
+      quantity: quantity,
+      description: description,
+      expireDate: expireDate,
+      category: category,
+      picture_URL: picture_URL,
+      status: status,
+      sale: sale,
+    };
+
+    const url = "http://localhost:8085/api/product/add";
+    const postNew = await axios.post(url, body);
+    console.log("neww Product>>>>>>>>>>>>");
+    this.props.history.push("/admin/manageproduct");
+  }
   render() {
     return (
       <div className="newProduct">
         <div className="container">
           <div className="row gutters">
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="account-settings">
-                      <div class="user-profile">
-                        <div class="user-avatar">
-                          <img
-                            src="https://www.flaticon.com/premium-icon/icons/svg/924/924915.svg"
-                            alt="Maxwell Admin"
-                          />
-                        </div>
-                        <h5 class="user-name">food</h5>
+            <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+              <div className="card h-100">
+                <div className="card-body">
+                  <div className="account-settings">
+                    <div className="user-profile">
+                      <div className="user-avatar">
+                        <img
+                          src="https://www.flaticon.com/premium-icon/icons/svg/924/924915.svg"
+                          alt="Maxwell Admin"
+                        />
                       </div>
+                      <h5 className="user-name">food</h5>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
             <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
               <div className="card h-100">
                 <div className="card-body">
@@ -87,11 +93,13 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="name">Product Name</label>
+                        <label className="new" for="name">
+                          Product Name
+                        </label>
                         <input
-                          name = "name"
+                          name="name"
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="name"
                           onChange={this.handleChangeInput}
                           // placeholder={user.name}
@@ -101,9 +109,11 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="price">Price</label>
+                        <label className="new" for="price">
+                          Price
+                        </label>
                         <input
-                          name= "price"
+                          name="price"
                           type="Number"
                           class="form-control"
                           id="price"
@@ -116,9 +126,11 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="quantity">Quantity</label>
+                        <label className="new" for="quantity">
+                          Quantity
+                        </label>
                         <input
-                        name="quantity"
+                          name="quantity"
                           type="Number"
                           className="form-control"
                           id="quantity"
@@ -131,9 +143,11 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="category">Category</label>
+                        <label className="new" for="category">
+                          Category
+                        </label>
                         <input
-                        name= "category"
+                          name="category"
                           type="text"
                           className="form-control"
                           id="category"
@@ -145,9 +159,11 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="imgUrl">Picture URL</label>
+                        <label className="new" for="imgUrl">
+                          Picture URL
+                        </label>
                         <input
-                        name = "picture_URL"
+                          name="picture_URL"
                           type="text"
                           className="form-control"
                           id="imgUrl"
@@ -160,11 +176,13 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="description">Description</label>
+                        <label className="new" for="description">
+                          Description
+                        </label>
                         <input
-                         name = "description"
+                          name="description"
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="description"
                           onChange={this.handleChangeInput}
 
@@ -175,11 +193,13 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="website">expireDate</label>
+                        <label className="new" for="website">
+                          expireDate
+                        </label>
                         <input
-                        name ="expireDate"
+                          name="expireDate"
                           type="date"
-                          class="form-control"
+                          className="form-control"
                           id="website"
                           onChange={this.handleChangeInput}
 
@@ -194,7 +214,7 @@ class NewProduct extends React.Component {
                           Sale
                         </label>
                         <input
-                          name ="sale"
+                          name="sale"
                           type="Number"
                           className="form-control"
                           id="sale"
@@ -207,11 +227,13 @@ class NewProduct extends React.Component {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label className ="new" for="status">Status</label>
+                        <label className="new" for="status">
+                          Status
+                        </label>
                         <input
-                        name="status"
+                          name="status"
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="sale"
                           onChange={this.handleChangeInput}
 
@@ -229,20 +251,20 @@ class NewProduct extends React.Component {
                           id="submit"
                           name="submit"
                           className="btn btn-secondary"
-                          onClick = {this.handleClick}
+                          onClick={this.handleClick}
                         >
                           Cancel
                         </button>
                         <button
+                          style={{ marginLeft: 10 }}
                           type="button"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          onClick= {this.fetchDataAdd}
+                          onClick={this.fetchDataAdd}
                         >
                           Add New
                         </button>
-                     
                       </div>
                     </div>
                   </div>
@@ -255,4 +277,4 @@ class NewProduct extends React.Component {
     );
   }
 }
-export default  withRouter(NewProduct);
+export default withRouter(NewProduct);

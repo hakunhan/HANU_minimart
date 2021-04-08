@@ -23,7 +23,7 @@ class UserDetail extends React.Component {
     };
     this.setUserName = this.setUserName.bind(this);
     this.setName = this.setName.bind(this);
-    this.setRoles = this.setRoles.bind(this)
+    this.setRoles = this.setRoles.bind(this);
     this.setPhoneNumber = this.setPhoneNumber.bind(this);
     this.setAddress = this.setAddress.bind(this);
     // this.showData = this.showData.bind(this);
@@ -41,7 +41,7 @@ class UserDetail extends React.Component {
     });
   }
   setRoles(event) {
-    console.log("jsjsjsjss")
+    console.log("jsjsjsjss");
     this.setState({
       role: event.target.value,
     });
@@ -119,8 +119,8 @@ class UserDetail extends React.Component {
   }
 
   render() {
-    const { user , role} = this.state;
-    console.log(role)
+    const { user, role } = this.state;
+    console.log(role);
     // const a = this.props.match;
     return (
       <div>
@@ -211,17 +211,27 @@ class UserDetail extends React.Component {
                             onInput={this.setAddress}
                           />
 
-                          <InputLabel id="demo-simple-select-label">
+                        </div>
+                      </div>
+
+                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                          
+                        <label for="website">
                             Role
-                          </InputLabel>
+                          </label>
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value = {role}
-                            onChange = {this.setRoles}
+                            value={role}
+                            onChange={this.setRoles}
                           >
-                            <MenuItem value="ROLE_CUSTOMER">ROLE_CUSTOMER</MenuItem>
-                            <MenuItem value="ROLE_EMPLOYEE">ROLE_EMPLOYEE</MenuItem>
+                            <MenuItem value="ROLE_CUSTOMER">
+                              ROLE_CUSTOMER
+                            </MenuItem>
+                            <MenuItem value="ROLE_EMPLOYEE">
+                              ROLE_EMPLOYEE
+                            </MenuItem>
                           </Select>
                         </div>
                       </div>
@@ -239,6 +249,7 @@ class UserDetail extends React.Component {
                             Cancel
                           </button>
                           <button
+                            style={{ marginLeft: 10 }}
                             type="button"
                             id="submit"
                             name="submit"
@@ -248,6 +259,7 @@ class UserDetail extends React.Component {
                             Update
                           </button>
                           <button
+                            style={{ marginLeft: 10 }}
                             type="button"
                             id="submit"
                             name="submit"

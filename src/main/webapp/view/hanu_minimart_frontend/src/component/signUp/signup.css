@@ -29,8 +29,11 @@ body{
 .linksignin{
   text-decoration: none;
   color: #7498e6;
-  font-size: 16px;
+  font-size: 13px;
   border-bottom: 1px solid #7498e6;
+}
+#icon1{
+  margin-top: -2.6px;
 }
 
 .wrapper .title{

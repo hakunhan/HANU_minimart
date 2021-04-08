@@ -226,14 +226,15 @@ class SignUp extends React.Component {
     });
     const returnMessage = await response.json();
     console.log(returnMessage);
-    if (returnMessage.success === "false") {
+    if (returnMessage.message) {
+      this.props.history.push("/signin");
+
+    } else {
       this.setState({
         status: "Wrong Input !",
       });
-    } else if (returnMessage.success === "true") {
-      this.props.history.push("/signin");
     }
-    document.querySelector("#error").textContent = `${returnMessage.message}`;
+    // document.querySelector("#error").textContent = `${returnMessage.message}`;
   }
 
   render() {
@@ -244,17 +245,17 @@ class SignUp extends React.Component {
             <HomeOutlined />
           </Link>
           <br />
-          <div> SignUp</div>
+          <div> Sign Up</div>
         </div>
         <div className="social_media">
           <div className="item">
-            <i className="fab fa-facebook-f"></i>
+            <i  id="icon" className="fab fa-facebook-f"></i>
           </div>
           <div className="item">
             <i className="fab fa-twitter"></i>
           </div>
           <div className="item">
-            <i className="fab fa-google-plus-g"></i>
+            <i  id="icon" className="fab fa-google-plus-g"></i>
           </div>
         </div>
 
@@ -272,7 +273,7 @@ class SignUp extends React.Component {
               className="input"
               onInput={this.setName}
             />
-            <i className="fas fa-user"></i>
+            <i  id="icon" className="fas fa-user"></i>
           </div>
           <div id="checkNameValid"></div>
 
@@ -285,7 +286,7 @@ class SignUp extends React.Component {
               className="input"
               onInput={this.setUserName}
             />
-            <i className="fas fa-user"></i>
+            <i  id="icon" className="fas fa-user"></i>
           </div>
           <div id="checkUsernameValid"></div>
 
@@ -298,7 +299,7 @@ class SignUp extends React.Component {
               className="input"
               onInput={this.setPassword}
             />
-            <i className="fas fa-lock"></i>
+            <i  id="icon" className="fas fa-lock"></i>
           </div>
           <div id="checkPasswordValid"></div>
 
@@ -311,7 +312,7 @@ class SignUp extends React.Component {
               className="input"
               onInput={this.setAddress}
             />
-            <i><HomeOutlined /></i>
+            <i  id="icon1" ><HomeOutlined /></i>
           </div>
           <div className="input_field">
             <input
@@ -323,13 +324,13 @@ class SignUp extends React.Component {
               onInput={this.setPhoneNumber}
             />
             <div id="checkPhoneNumberValid"></div>
-            <i>
+            <i  id="icon1">
               <WhatsAppOutlined />
             </i>
           </div>
-          <h6 id="error"></h6>
+          <h6 id = "error"></h6>
           <Link className="linksignin" to="/signin">
-            Login here
+            Already have an account? Sign in
           </Link>
           <button className="btn" type="submit" onClick={this.fetRegister}>
             Register

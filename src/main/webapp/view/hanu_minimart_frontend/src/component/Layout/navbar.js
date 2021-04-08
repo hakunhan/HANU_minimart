@@ -55,7 +55,7 @@ class Navbar extends React.Component {
         {(isLogin) ? (
           <div className="authen">
             <div className="signIn" to="/user/profile">
-              <ProfileOutlined />
+              Profile
             </div>
             <div
               onClick={() => {
@@ -68,7 +68,7 @@ class Navbar extends React.Component {
                 // this.props.history.push('/')
               }}
             >
-              <LogoutOutlined />
+              Log out
             </div>
           </div>
         ) : (

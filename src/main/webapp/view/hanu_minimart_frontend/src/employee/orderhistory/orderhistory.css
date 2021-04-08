@@ -9,12 +9,23 @@
     text-decoration: none;
     border: none;
     margin-top: 15px;
-    /* border: 0.5 solid rgb(8, 16, 83)  */
-    border-radius: 5px;
-    background-color: #b9cafa;
+    border: 2px solid rgb(8, 15, 73) ;
+    /* border-radius: 5px; */
+    background-color: #f2f3f7;
+    
+    display: flex;
+    justify-content: center;
     align-items: center;
 
 }
 .nameProduct{
     border: none;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.quantity_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }

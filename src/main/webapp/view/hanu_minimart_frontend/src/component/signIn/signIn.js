@@ -51,9 +51,10 @@ class SignIn extends Component {
       const response = await axios.post(url, body);
       const data = await response.data;
       console.log(data);
-      if(
+      if (
         data.user.status === "ACTIVATED" &&
-        data.user.roles[0].name === "ROLE_CUSTOMER"){
+        data.user.roles[0].name === "ROLE_CUSTOMER"
+      ) {
         console.log("Cussssssssssssssssssssssssss", data.user.roles[0].name);
         this.createCookie("username", `${data.user.username}`, 14.4);
         this.createCookie("uid", `${data.user.id}`, 14.4);
@@ -67,13 +68,14 @@ class SignIn extends Component {
         const Authentication = data.tokenType + " " + data.accessToken;
         console.log(Authentication);
         this.props.saveAuthentication(Authentication, data.user);
-      } else if(data.user.roles[0].name === "ROLE_EMPLOYEE" &&
-        data.user.status === "ACTIVATED"){
+      } else if (
+        data.user.roles[0].name === "ROLE_EMPLOYEE" &&
+        data.user.status === "ACTIVATED"
+      ) {
         console.log("emmmmmmmmmmmmmmmmmmmmmmmmm", data.user.roles[0].name);
         this.createCookie("username", `${data.user.username}`, 14.4);
         this.createCookie("uid", `${data.user.id}`, 14.4);
-        this.createCookie("employee", "true" , 14.4);
-
+        this.createCookie("employee", "true", 14.4);
 
         this.deleteCookie("admin");
 
@@ -83,15 +85,16 @@ class SignIn extends Component {
         const Authentication = data.tokenType + " " + data.accessToken;
         console.log(Authentication);
         this.props.saveAuthentication(Authentication, data.user);
-      }else if(data.user.roles[0].name === "ROLE_ADMIN" &&
-      data.user.status === "ACTIVATED") {
+      } else if (
+        data.user.roles[0].name === "ROLE_ADMIN" &&
+        data.user.status === "ACTIVATED"
+      ) {
         this.createCookie("username", `${data.user.username}`, 14.4);
         this.createCookie("uid", `${data.user.id}`, 14.4);
 
-        this.createCookie("admin", "true" , 14.4);
+        this.createCookie("admin", "true", 14.4);
 
         this.deleteCookie("employee");
-
 
         this.props.setStateAdminLogin(true, () => {
           this.props.history.push("/admin");
@@ -112,8 +115,9 @@ class SignIn extends Component {
   }
 
   deleteCookie(name) {
-        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
+    document.cookie =
+      name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  }
   createCookie(name, value, minutes) {
     if (minutes) {
       var date = new Date();
@@ -133,7 +137,7 @@ class SignIn extends Component {
             <HomeOutlined />
           </Link>
           <br />
-          <div> LogIn </div>
+          <div> Log In </div>
         </div>
         <div className="social_media">
           <div className="item">
@@ -161,10 +165,11 @@ class SignIn extends Component {
               className="input"
               onInput={this.setUserName}
             />
-            <i className="fas fa-user"></i>
+            <i  id="icon" className="fas fa-user"></i>
           </div>
 
           <div className="input_field">
+
             <input
               id="password"
               name="password"
@@ -172,17 +177,20 @@ class SignIn extends Component {
               placeholder="Password"
               className="input"
               onInput={this.setPassword}
+              
             />
-            <i className="fas fa-lock"></i>
-          </div>
-          <Link className="linksignup" to="/signup">
-            Register here
-          </Link>
-          <h6 style={{ color: "red" }}> {this.state.status}</h6>
+                      <i id="icon"className="fas fa-lock"></i>
 
+          </div>
+
+          <h6 style={{ color: "red" }}> {this.state.status}</h6>
+          <Link className="linksignup" to="/signup">
+            Don't have an account? Sign Up
+          </Link>
           <button className="btn" type="submit" onClick={this.fetLogin}>
             Login
           </button>
+          
         </form>
       </div>
     );

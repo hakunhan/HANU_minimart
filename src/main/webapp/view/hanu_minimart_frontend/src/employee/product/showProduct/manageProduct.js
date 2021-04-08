@@ -34,9 +34,13 @@ class ManageProduct extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     // this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
     this.fetchDataSearch = this.fetchDataSearch.bind(this);
+    this.viewProductNearExpire = this.viewProductNearExpire.bind(this);
+
+    this.viewAll = this.viewAll.bind(this);
         this.fetchNearExpireProduct = this.fetchNearExpireProduct.bind(this);
         this.fetchViewAll = this.fetchViewAll.bind(this);
   }
+
   handleChange(e){
     const {name, value} = e.target;
     this.setState({
@@ -44,6 +48,25 @@ class ManageProduct extends React.Component {
     })
   }
 
+  async viewAll(){
+    const urlProduct = "http://localhost:8085/api/product/getAll";
+    const getData = await axios.get(urlProduct);
+    const product = getData.data;
+    console.log("product_______________-", typeof product);
+    this.setState({
+      product: product,
+    });
+  }
+  async viewProductNearExpire(){
+    const url = "http://localhost:8085/api/product/nearExpire";
+
+    const fetchData = await axios.get(url);
+
+    this.setState({
+      product: fetchData.data
+    })
+    console.log("product near .....")
+  }
   async fetchDataSearch(event){
     event.preventDefault();
     console.log("aaaaaaaaaaaaaaaaaaa")
@@ -96,25 +119,41 @@ class ManageProduct extends React.Component {
     return (
       <div>
         <div className="Header">
-          <div>
+          <div className="newProduct">
+              <Button variant="primary" size="sm">
+                <PlusCircleOutlined />
+                New Product
+              </Button>
           </div>
-          <form className="Search">
+          
+
+          <div className="ViewAll">
+            <Button key ="button" variant="primary" size="sm" onClick={this.viewAll}>
+              View All
+            </Button>
+          </div>
+          <div className="ViewProductNear">
+            <Button variant="primary" size="sm" onClick={this.viewProductNearExpire}>
+            View Product Near Expiration
+            </Button>
+
+          {/* <div className="ViewAll" onClick={this.fetchViewAll}>
+            <Button key ="button" variant="primary" size="sm">
+              View All
+            </Button>
+          </div> */}
+          {/* <div className="ViewProductNear" onClick={this.fetchNearExpireProduct}>
+            <Button variant="primary" size="sm">
+            </Button>
+          </div> */}
+        </div>
+        <form className="Search">
             <SearchOutlined />
             <Input name = "search" key="search" placeholder="Search" onChange={this.handleChange} />
             <Button type= "submit" key ="button" onClick ={this.fetchDataSearch}>Submit</Button>
           </form>
-
-          <div className="ViewAll" onClick={this.fetchViewAll}>
-            <Button key ="button" variant="primary" size="sm">
-              View All
-            </Button>
-          </div>
-          <div className="ViewProductNear" onClick={this.fetchNearExpireProduct}>
-            <Button variant="primary" size="sm">
-              View Product Near Expiration
-            </Button>
-          </div>
         </div>
+
         <div>
           {product !== null ? (
             <div>
@@ -163,6 +202,7 @@ class ManageProduct extends React.Component {
           )}
         </div>
       </div>
+
     );
   }
 }
