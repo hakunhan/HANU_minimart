@@ -1,4 +1,4 @@
-# HANU_minimart ver 1.0.0
+# HANU_minimart ver 1.0.2
 Link for SQA presentation slides: https://docs.google.com/presentation/d/1THxwb0td3FNAK2tzAo4FM2kIYfbOAhY9F7FUqmlLbpg/edit?usp=sharing
 
 Link for online meeting: https://discord.gg/y9fpU3YZ
