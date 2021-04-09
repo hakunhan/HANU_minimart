@@ -101,6 +101,8 @@ body{
   text-align: center;
   padding: 12px;
   border-radius: 25px;
+  display: flex;
+  justify-content: center;
 }
 
 .wrapper .form .btn a{

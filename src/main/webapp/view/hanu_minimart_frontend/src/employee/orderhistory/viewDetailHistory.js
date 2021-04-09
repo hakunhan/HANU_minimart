@@ -195,10 +195,10 @@ class ViewDetailHistory extends React.Component {
                     <h5 className="">Id:{product.id}</h5>
                   </div>
 
-                  <div className="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                  <div className="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row" id = "order">
                     <div
                       className="col-3 col-sm-3 col-md-6 text-md-right"
-                      style={{ paddingTop: 5 }}
+                      style={{ paddingTop: 25 }}
                     >
                       <h6>
                         <strong>
@@ -209,11 +209,7 @@ class ViewDetailHistory extends React.Component {
                     </div>
                     <div className="col-4 col-sm-4 col-md-4">
                       <div className="quantity">
-                        <input
-                          type="button"
-                          defaultValue="+"
-                          className="plus"
-                        />
+                     
                         <input
                           type="Number"
                           step={1}
@@ -225,11 +221,7 @@ class ViewDetailHistory extends React.Component {
                           size={4}
                           onChange={this.handleChangeInput}
                         />
-                        <input
-                          type="button"
-                          defaultValue="-"
-                          className="minus"
-                        />
+                      
                       </div>
                     </div>
                     {/* <div className="col-2 col-sm-2 col-md-2 text-right">

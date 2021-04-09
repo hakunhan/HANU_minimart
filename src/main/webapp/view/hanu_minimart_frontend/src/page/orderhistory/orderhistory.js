@@ -43,7 +43,7 @@ class OrderHistory extends React.Component{
             <div>
             <div>
             <ScollToTop/>
-              <form>
+              <form style={{marginLeft: 790}}>
                 <input
                   style={{ border: "1px solid blue", width: 300, height: 37 }}
                   placeholder="Search "

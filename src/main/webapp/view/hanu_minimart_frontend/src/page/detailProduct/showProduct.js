@@ -1,7 +1,7 @@
 import React from "react";
 
 import axios from "axios";
-import  ScollToTop from "../../component/ScrollTotop/ScrollToTop"
+import ScollToTop from "../../component/ScrollTotop/ScrollToTop";
 import "./detailProduct.css";
 // import Colors from "./color";
 import { withRouter } from "react-router";
@@ -26,7 +26,7 @@ class DetailProduct extends React.Component {
       },
       user: this.props.user,
       uid: null,
-      inCart: false
+      inCart: false,
     };
     this.clickAddToCartItem = this.clickAddToCartItem.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -74,50 +74,45 @@ class DetailProduct extends React.Component {
   //   images[index].className = "active";
   // };
 
- 
- async clickAddToCartItem() {
+  async clickAddToCartItem() {
     console.log("enterrrrrrrrrrrrrrrrrrrr");
-   
-    try{
-      const {product_id, quantity1} = this.state;
+
+    try {
+      const { product_id, quantity1 } = this.state;
       console.log("uid", this.state.uid);
       const urlGetCart = `http://localhost:8085/api/cart/getByUser?userId=${this.state.uid}`;
       const getCartForUser = await axios.get(urlGetCart);
       console.log("lấy cart nè......", getCartForUser.data.id);
-     
-  
+
       const body = {
         cartId: getCartForUser.data.id,
-          productName: product_id.name,
-          quantity: quantity1,
-          content: ""
-      }
+        productName: product_id.name,
+        quantity: quantity1,
+        content: "",
+      };
       console.log("content cart??????", body);
-  
+
       const urlSendCardItem = "http://localhost:8085/api/cartItem/add";
       const postCartItem = await axios.post(urlSendCardItem, body);
       console.log("Sent ...........", postCartItem);
       // window.location.reload()
 
-      if(postCartItem){
+      if (postCartItem) {
         this.setState({
-          inCart: true
-        })
+          inCart: true,
+        });
       }
-
-    }catch(e){
-      alert("you must login before add product")
+    } catch (e) {
+      alert("you must login before add product");
     }
-    
   }
 
-  
   async componentDidMount() {
     // console.log("enterrrrrrrrrrrrrrrrrrrr",this.props.user.id);
 
     this.setState({
-      uid: this.getCookie('uid')
-    })
+      uid: this.getCookie("uid"),
+    });
     // console.log("okeyyyyyy");
     const urlProduct = "http://localhost:8085/api/product/getAll";
     const getDataProduct = await axios.get(urlProduct);
@@ -141,7 +136,7 @@ class DetailProduct extends React.Component {
     const { product_id, isSaved, inCart } = this.state;
     return (
       <div className="details1">
-      <ScollToTop/>
+        <ScollToTop />
         {isSaved ? (
           <div className="details">
             <div className="big-img">
@@ -192,20 +187,20 @@ class DetailProduct extends React.Component {
                   /> */}
               <br />
               <br />
-           
-                  <button
+
+              <button
+              style={{marginLeft: "-93px", marginTop: "40px"}}
                 // variant="dark"
                 className="cart"
                 disabled={inCart}
-                onClick={ 
-                  this.clickAddToCartItem
-
-                }
-              >{ (inCart === true) ? <span>InCart</span> : (<span>Add To Cart</span>) }
-                </button>
-               
-              
-              
+                onClick={this.clickAddToCartItem}
+              >
+                {inCart === true ? (
+                  <span>InCart</span>
+                ) : (
+                  <span>Add To Cart</span>
+                )}
+              </button>
             </div>
           </div>
         ) : (

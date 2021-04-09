@@ -42,9 +42,9 @@ getCookie(name) {
             <div>
               {(isLogin)?(
                 <div className="authen">
-                  <div className="signIn" to="/user/profile">
+                  {/* <div className="signIn" to="/user/profile">
                     <ProfileOutlined />
-                  </div>
+                  </div> */}
                   <div onClick ={ ()=>{
                     this.deleteCookie("uid")
                     this.deleteCookie("username");
