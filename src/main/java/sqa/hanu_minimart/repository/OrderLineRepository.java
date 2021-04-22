@@ -13,11 +13,4 @@ import java.util.Optional;
 
 public interface OrderLineRepository extends JpaRepository<OrderLine,Long> {
     Optional<OrderLine> findById(Long orderID);
-
-    List<OrderLine> findByOrder_Id(Long orderId);
-
-    @Modifying
-    @Transactional
-    @Query(value = "Update order_line set order_id = :orderId where id = :orderItemId", nativeQuery = true)
-    void update(@Param("orderId") Long orderId, @Param("orderItemId") Long orderItemId);
 }
