@@ -24,7 +24,13 @@ public class SignUpRequest {
     @Size(min = 6, max = 20)
     private String password;
 
-
+    public SignUpRequest(String name, String username, String phoneNumber, String address, String password) {
+        this.name = name;
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.password = password;
+    }
 
     public String getName() {
         return name;

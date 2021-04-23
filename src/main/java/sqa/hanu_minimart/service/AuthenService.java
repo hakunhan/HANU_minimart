@@ -62,7 +62,7 @@ public class AuthenService{
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String usernameOrEmail = loginRequest.getUsernameOrEmail();
-        Optional<User> user = userRepository.findByUsernameOrPhoneNumber(usernameOrEmail, usernameOrEmail );
+        Optional<User> user = userRepository.findByUsernameOrPhoneNumber(usernameOrEmail, usernameOrEmail);
 
         String jwt = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user.get()));
@@ -100,7 +100,7 @@ public class AuthenService{
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(result.getUsername()).toUri();
+                .buildAndExpand(signUpRequest.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
