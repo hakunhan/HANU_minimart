@@ -24,39 +24,66 @@ public class CartControllerTest {
 
     @Test
     public void testDeleteCart() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/delete/{id}", 1L);
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/cart/delete/{id}", 1L);
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.cartController)
                 .build()
                 .perform(requestBuilder);
-        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testDeleteCart2() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/cart/delete/{id}", "1L");
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.cartController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
     @Test
     public void testGetAll() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/getAll");
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/cart/getAll");
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.cartController)
                 .build()
                 .perform(requestBuilder);
-        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
     public void testGetByUser() throws Exception {
-        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/getByUser");
+        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/cart/getByUser");
         MockHttpServletRequestBuilder requestBuilder = getResult.param("userId", String.valueOf(1L));
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.cartController)
                 .build()
                 .perform(requestBuilder);
-        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testGetByUser2() throws Exception {
+        MockHttpServletRequestBuilder getResult = MockMvcRequestBuilders.get("/api/cart/getByUser");
+        MockHttpServletRequestBuilder requestBuilder = getResult.param("userId", String.valueOf("1L"));
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.cartController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
     @Test
     public void testGetOne() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/{id}", 1L);
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/cart/{id}", 1L);
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.cartController)
                 .build()
                 .perform(requestBuilder);
-        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+    @Test
+    public void testGetOne2() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/cart/{id}", "huy");
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(this.cartController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 }
 
