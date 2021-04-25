@@ -26,6 +26,9 @@ public class AccountService {
     @Autowired
     private RoleRepository roleRepository;
 
+    public AccountService() {
+    }
+
     public Page<User> getAllAccount(Long id, String username, String phoneNumber, String name, String address, int page, int size, String[] sort){
 
         List<Order> orders = new ArrayList<>();
