@@ -80,7 +80,7 @@ public class OrderController {
 
     // order/updateStatus/1?status=Accepted (hoac Cancel)
     @PutMapping(path = "/updateStatus/{id}")
-    public ResponseEntity updateOrderStatus(@PathVariable Long id,
+    public ResponseEntity<?> updateOrderStatus(@PathVariable Long id,
                                   @RequestParam String status){
         try{
             orderService.updateOrderStatus(id, status);
