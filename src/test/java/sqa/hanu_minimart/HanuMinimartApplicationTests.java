@@ -1,9 +1,9 @@
 package sqa.hanu_minimart;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.runner.RunWith;
+//import org.junit.Before;
+//import org.junit.Test;
+//import org.junit.jupiter.api.Assertions;
+//import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ import sqa.hanu_minimart.service.ProductService;
 import java.time.LocalDate;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 class HanuMinimartApplicationTests{
 
@@ -31,9 +31,9 @@ class HanuMinimartApplicationTests{
     @Autowired
     ProductService productService;
 
-    @Before
-    public void setUp(){
-        Mockito.when(productRepository.findAll())
-                .thenReturn((List<Product>) new Product());
-    }
+//    @Before
+//    public void setUp(){
+//        Mockito.when(productRepository.findAll())
+//                .thenReturn((List<Product>) new Product());
+//    }
 }
